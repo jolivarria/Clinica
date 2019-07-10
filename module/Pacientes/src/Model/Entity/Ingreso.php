@@ -15,42 +15,20 @@ namespace Pacientes\Model\Entity;
  */
 class Ingreso {
 
-    private $idDepartamento; //int(11) PK 
-    private $idConfiguracion;   // int(11) PK 
-    private $nombre; //varchar(45) 
-    private $descripcion; //text
-
-    function getIdDepartamento() {
-        return $this->idDepartamento;
-    }
-
-    function getIdConfiguracion() {
-        return $this->idConfiguracion;
-    }
-
-    function getNombre() {
-        return $this->nombre;
-    }
-
-    function getDescripcion() {
-        return $this->descripcion;
-    }
-
-    function setIdDepartamento($idDepartamento) {
-        $this->idDepartamento = $idDepartamento;
-    }
-
-    function setIdConfiguracion($idConfiguracion) {
-        $this->idConfiguracion = $idConfiguracion;
-    }
-
-    function setNombre($nombre) {
-        $this->nombre = $nombre;
-    }
-
-    function setDescripcion($descripcion) {
-        $this->descripcion = $descripcion;
-    }
+    private $idingreso; //int(11) AI PK 
+    private $idpaciente; // int(11) PK 
+    private $tipo; // enum('Voluntario','Involuntario','Obligatorio') 
+    private $referencia; // enum('Domicilio Particular','Institución Pública','Institución Privada','Hospital Psiquiatrico','Centro de Redaptación Social') 
+    private $otro; // varchar(45) 
+    private $adulo; // enum('Si','No') 
+    private $drogasAlcohol; // enum('Si','No') 
+    private $consecunciaConsumo; // enum('Si','No') 
+    private $mental; // enum('Si','No') 
+    private $criteriosAdmision; // enum('Si','No') 
+    private $fechaIngreso; // datetime 
+    private $expediente; // tinyint(4)
+    
+    
 
     public function exchangeArray($data) {
         $this->idDepartamento = (isset($data['idDepartamento'])) ? $data['idDepartamento'] : null;
