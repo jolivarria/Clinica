@@ -1,0 +1,229 @@
+<?php
+$form = $this->form;
+
+$form->get('idSolicitud');
+
+$form->get('RFC')->setAttributes([
+    'class' => 'span3',
+    'placeholder' => 'RFC'
+]);
+
+$form->get('folio')->setAttributes([
+    'class' => 'span3',
+    'placeholder' => '000000'
+]);
+
+
+$form->get('operadora')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => 'Operadora 911',
+]);
+
+$form->get('nombrePaciente')->setAttributes([
+    'class' => 'span5 m-wrap',
+    'placeholder' => 'Ejemplo: Nombre Apellido Pat. Apellido Mat. ',
+]);
+
+$form->get('sexo')->setAttributes([
+    'class' => 'control-label',
+    'placeholder' => ''
+]);
+
+$form->get('edad')->setAttributes([
+    'class' => 'span2',
+    'placeholder' => 'Ejemplo: 35'
+]);
+
+$form->get('nombreFamiliar')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => 'Ejemplo: Nombre Apellido Pat. Apellido Mat.'
+]);
+
+$form->get('parentesco')->setAttributes([
+    'class' => 'span3',
+    'placeholder' => 'Seleccione parentesco'
+]);
+
+$form->get('telefono')->setAttributes([
+    'class' => 'span3',
+    'placeholder' => '(000) 000-0000'
+]);
+
+$form->get('costo')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => '00.00'
+]);
+
+$form->get('tipoSolicitud')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Escribir el motivo de la atencion del paciente'
+]);
+
+$form->get('municipio')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => 'Ejemplo: Aconchi'
+]);
+
+$form->get('domicilio')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Calle entre calle y numero '
+]);
+
+$form->get('colonia')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Pronostico del paciente'
+]);
+
+
+$form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
+$form->prepare();
+?>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="<?= $this->url('home'); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes'); ?>">Expedientes</a> <a href="#" class="current">Solicitud Ingreso</a> </div>
+    <h1><?= $this->titulo; ?></h1>
+</div>
+
+<div class="container-fluid">  
+    <div id="message-text"></div>
+    <hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Notificación Ministerio Público</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <?= $this->form()->openTag($form); ?>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('RFC')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('RFC')); ?> <a href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" class="btn btn-info" title="Consulta tu RFC." target="_blank"><i class="icon-th-large"></i></a>
+                            <?= $this->formElementErrors($form->get('RFC')); ?>
+                            <div id="cargando">
+                            </div>
+                            <div class="hint">
+                                (RFC Paciente)</div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('folio')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('folio')); ?>
+                            <?= $this->formElementErrors($form->get('folio')); ?>
+                            <div id="cargando">
+                            </div>
+                            <div class="hint">
+                                (Folio 911)</div>
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('operadora')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('operadora')); ?>
+                            <?= $this->formElementErrors($form->get('operadora')); ?>
+                            <div id="cargando">
+                            </div>
+                            <div class="hint">
+                                (Operadora 911)</div>
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('nombrePaciente')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('nombrePaciente')); ?>
+                            <?= $this->formElementErrors($form->get('nombrePaciente')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">                       
+                        <label class="control-label">Sexo paciente:</label>
+                        <div class="controls">                             
+                            <?= $this->formElement($form->get('sexo')); ?>
+                            <?= $this->formElementErrors($form->get('sexo')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('edad')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('edad')); ?>
+                            <?= $this->formElementErrors($form->get('edad')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('nombreFamiliar')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('nombreFamiliar')); ?>
+                            <?= $this->formElementErrors($form->get('nombreFamiliar')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('parentesco')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('parentesco')); ?><br><br> 
+                            <?= $this->formElementErrors($form->get('parentesco')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('telefono')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('telefono')); ?><br><br> 
+                            <?= $this->formElementErrors($form->get('telefono')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                       <label class="control-label">Tipo solicitud:</label>
+                        <div class="controls">                     
+                                <?= $this->formElement($form->get('tipoSolicitud')); ?>                           
+                            <?= $this->formElementErrors($form->get('tipoSolicitud')); ?>
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('municipio')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('municipio')); ?><br><br> 
+                            <?= $this->formElementErrors($form->get('municipio')); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('domicilio')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('domicilio')); ?><br><br> 
+                            <?= $this->formElementErrors($form->get('domicilio')); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('colonia')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('colonia')); ?><br><br> 
+                            <?= $this->formElementErrors($form->get('colonia')); ?>
+                        </div>
+                    </div>                    
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('costo')); ?>
+                        <div class="controls">  
+                                <div class="input-append">
+                                <?= $this->formElement($form->get('costo')); ?>
+                                <span class="add-on">$</span> </div>
+                            <?= $this->formElementErrors($form->get('costo')); ?>
+                        </div>
+                    </div> 
+        
+                    <div class="form-actions">
+                        <?= $this->formElement($form->get('submit')); ?>
+                        <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
+                        <div id="status"></div>
+                    </div>
+                    <?= $this->form()->closeTag(); ?>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

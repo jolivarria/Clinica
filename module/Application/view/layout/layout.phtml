@@ -1,0 +1,238 @@
+<?= $this->doctype() ?>
+<html lang="es">
+    <head>        
+        <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">
+        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?=
+                $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?=
+                $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+                ->prependStylesheet($this->basePath('css/bootstrap-responsive.min.css'))
+                ->prependStylesheet($this->basePath('css/fullcalendar.css'))
+                ->prependStylesheet($this->basePath('css/matrix-style.css'))
+                ->prependStylesheet($this->basePath('css/matrix-media.css'))
+                ->prependStylesheet($this->basePath('css/datepicker.css'))
+                ->prependStylesheet($this->basePath('css/uniform.css'))
+                ->prependStylesheet($this->basePath('css/select2.css'))
+                ->prependStylesheet($this->basePath('font-awesome/css/font-awesome.css'))
+                ->prependStylesheet($this->basePath('css/jquery.gritter.css'))
+                ->prependStylesheet('http://fonts.googleapis.com/css?family=Open+Sans:400,700,800')
+                ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+        ?>
+
+
+    </head>
+    <body>
+        <!--Header-part-->
+        <div id="header">
+            <h1><a href="dashboard.html">Matrix Admin</a></h1>
+        </div>
+        <!--close-Header-part--> 
+
+
+        <!--top-Header-menu-->
+        <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav">
+                <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href=""><i class="icon-user"></i> My Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href=""><i class="icon-check"></i> My Tasks</a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
+                        <li class="divider"></li>
+                        <li><a class="sInbox" title="" href=""><i class="icon-envelope"></i> inbox</a></li>
+                        <li class="divider"></li>
+                        <li><a class="sOutbox" title="" href=""><i class="icon-arrow-up"></i> outbox</a></li>
+                        <li class="divider"></li>
+                        <li><a class="sTrash" title="" href=""><i class="icon-trash"></i> trash</a></li>
+                    </ul>
+                </li>
+                <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+                <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+            </ul>
+        </div>
+        <!--close-top-Header-menu-->
+        <!--start-top-serch-->
+        <div id="search">
+            <input type="text" placeholder="Search here..."/>
+            <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+        </div>
+        <!--close-top-serch-->
+        <!--sidebar-menu-->
+        <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Panel Principal</a>
+            <ul>
+                <li class=""><a href="index.html"><i class="icon icon-home"></i> <span>Panel Principal</span></a> </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Expedientes</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="<?= $this->url('expedientes'); ?>">Ver Expedientes</a></li>                        
+                        <li><a href="">Contrato</a></li>
+                        <li><a href="">Imprimir</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Pacientes</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="<?= $this->url('pacientes'); ?>">Pacientes</a></li>
+                        <li><a href="<?= $this->url('solicitud'); ?>">Solicitud Ingreso</a></li>
+                        <li><a href="<?= $this->url('pacientes'); ?>">Ingreso de Paciente</a></li>
+                        <li><a href="form-wizard.html">Familiares</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-heart"></i> <span>Médicos</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="form-validation.html">Valoracion Médica</a></li>
+                        <li><a href="form-wizard.html">Hisotial Clínico</a></li>
+                        <li><a href="form-wizard.html">Nota de Interconsulta</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-cloud"></i> <span>Psicología</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="form-validation.html">Primer Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Segundo Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Valoración Psicológica</a></li>
+                        <li><a href="form-wizard.html">Plan de Psicología Individual</a></li>
+
+                    </ul>
+                </li>
+                <li> <a href="charts.html"><i class="icon icon-signal"></i> <span>Psiquiatríca</span></a></li>
+                <li class="submenu"> <a href="#"><i class="icon icon-cloud"></i> <span>Consejería</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="form-validation.html">Primer Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Segundo Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Valoración Psicológica</a></li>
+                        <li><a href="form-wizard.html">Plan de Psicología Individual</a></li>
+
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-cloud"></i> <span>Pagos Contratos</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="form-validation.html">Primer Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Segundo Cuestionario</a></li>
+                        <li><a href="form-wizard.html">Valoración Psicológica</a></li>
+                        <li><a href="form-wizard.html">Plan de Psicología Individual</a></li>
+
+                    </ul>
+                </li>
+                <li> <a href="widgets.html"><i class="icon icon-inbox"></i> <span>Ayuda</span></a> </li>
+                <li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+                <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li>
+                <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Forms</span> <span class="icon-sort-down"></span></a>
+                    <ul>
+                        <li><a href="form-common.html">Basic Form</a></li>
+                        <li><a href="form-validation.html">Form with Validation</a></li>
+                        <li><a href="form-wizard.html">Form with Wizard</a></li>
+                    </ul>
+                </li>
+                <li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+                <li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Eelements</span></a></li>
+                <li class="submenu"> <a href="#"><i class="icon icon-file"></i> <span>Addons</span> <span class="label label-important">5</span></a>
+                    <ul>
+                        <li><a href="index2.html">Dashboard2</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="calendar.html">Calendar</a></li>
+                        <li><a href="invoice.html">Invoice</a></li>
+                        <li><a href="chat.html">Chat option</a></li>
+                    </ul>
+                </li>
+                <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>Error</span> <span class="label label-important">4</span></a>
+                    <ul>
+                        <li><a href="error403.html">Error 403</a></li>
+                        <li><a href="error404.html">Error 404</a></li>
+                        <li><a href="error405.html">Error 405</a></li>
+                        <li><a href="error500.html">Error 500</a></li>
+                    </ul>
+                </li>
+                <li class="content"> <span>Monthly Bandwidth Transfer</span>
+                    <div class="progress progress-mini progress-danger active progress-striped">
+                        <div style="width: 77%;" class="bar"></div>
+                    </div>
+                    <span class="percent">77%</span>
+                    <div class="stat">21419.94 / 14000 MB</div>
+                </li>
+                <li class="content"> <span>Disk Space Usage</span>
+                    <div class="progress progress-mini active progress-striped">
+                        <div style="width: 87%;" class="bar"></div>
+                    </div>
+                    <span class="percent">87%</span>
+                    <div class="stat">604.44 / 4000 MB</div>
+                </li>
+            </ul>
+        </div>
+        <!--sidebar-menu-->
+
+        <!--main-container-part-->
+        <div id="content">
+            <?= $this->content ?>
+        </div>
+        <!--end-main-container-part-->
+
+        <!--Footer-part-->
+
+        <div class="row-fluid">
+            <div id="footer" class="span12">
+                <footer>
+                    <p>&copy; 2005 - <?= date('Y') ?> by Zend Technologies Ltd. All rights reserved.</p>
+                </footer> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
+        </div>
+        <?= $this->inlineScript() ?>
+        <!-- Scripts -->
+        <?=
+                $this->headScript() 
+                ->prependFile($this->basePath('js/principal.js'))
+                ->prependFile($this->basePath('js/matrix.tables.js'))               
+                ->prependFile($this->basePath('js/matrix.js'))
+                ->prependFile($this->basePath('js/jquery.dataTables.min.js'))               
+                ->prependFile($this->basePath('js/select2.min.js'))
+                ->prependFile($this->basePath('js/matrix.form_common.js'))
+                ->prependFile($this->basePath('js/bootstrap-colorpicker.js'))
+                ->prependFile($this->basePath('js/bootstrap-datepicker.js'))                
+                ->prependFile($this->basePath('js/jquery.uniform.js'))
+                ->prependFile($this->basePath('js/masked.js'))                           
+                ->prependFile($this->basePath('js/jquery.validate.js'))              
+                ->prependFile($this->basePath('js/jquery.flot.min.js'))
+                ->prependFile($this->basePath('js/bootstrap.min.js'))
+                ->prependFile($this->basePath('js/jquery.ui.custom.js'))
+                ->prependFile($this->basePath('js/jquery.min.js'))
+                ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+                ->prependFile($this->basePath('js/jquery.ui.custom.js'))                              
+                
+                                
+        ?> 
+
+        <script type="text/javascript">
+            // This function is called from the pop-up menus to transfer to
+            // a different page. Ignore if the value returned is a null string:
+            function goPage(newURL) {
+
+                // if url is empty, skip the menu dividers and reset the menu selection to default
+                if (newURL != "") {
+
+                    // if url is "-", it is this page -- reset the menu:
+                    if (newURL == "-") {
+                        resetMenu();
+                    }
+                    // else, send page to designated URL            
+                    else {
+                        document.location.href = newURL;
+                    }
+                }
+            }
+
+            // resets the menu selection upon entry to this page:
+            function resetMenu() {
+                document.gomenu.selector.selectedIndex = 2;
+            }
+        </script>
+    </body>
+</html>

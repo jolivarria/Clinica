@@ -1,0 +1,135 @@
+<?php
+$form = $this->form;
+
+$form->get('idEmpleado');
+
+$form->get('email')->setAttributes([
+    'class' => 'span12 m-wrap',
+    'placeholder' => 'Ejemplo: usuario@dominio.com'
+]);
+
+$form->get('nombre_completo')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'Ejemplo: Nombre Apellido Pat Apellido Mat',
+]);
+
+$form->get('fecha_nac')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'Ejemplo: 00/00/0000'
+]);
+
+$form->get('password')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'Ejemplo: password con 6 caracteres como minimo'
+]);
+
+$form->get('confirm_password')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'Repetir password'
+]);
+
+$form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
+$form->prepare();
+?>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Form elements</a> <a href="#" class="current">Form wizard</a> </div>
+    <h1>Registrar Empleado - Paso 1</h1>
+</div>
+<div class="container-fluid"><hr>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+                    <h5>Form wizard &amp; validation</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <?= $this->form()->openTag($form); ?>
+                    <form id="form-wizard" class="form-horizontal" method="post">
+
+                        <div id="form-wizard-1" class="step">                            
+                            <div class="control-group">
+                                <?= $this->formLabel($form->get('file')); ?>
+                                <div class="controls">                
+                                    <?= $this->formElement($form->get('file')); ?>
+                                    <?= $this->formElementErrors($form->get('file')); ?>
+                                    <div class="hint">(PNG and JPG formats are allowed)</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?= $this->formLabel($form->get('email')); ?>
+                                <div class="controls">
+                                    <?= $this->formElement($form->get('email')); ?>
+                                    <?= $this->formElementErrors($form->get('email')); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?= $this->formLabel($form->get('nombre_completo')); ?>
+                                <div class="controls">
+                                    <?= $this->formElement($form->get('nombre_completo')); ?>
+                                    <?= $this->formElementErrors($form->get('nombre_completo')); ?>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                
+                                    <?= $this->formLabel($form->get('fecha_nac')); ?>
+                                <div class="controls">
+                                    <?= $this->formElement($form->get('fecha_nac')); ?>
+                                    <?= $this->formElementErrors($form->get('fecha_nac')); ?>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <?= $this->formLabel($form->get('password')); ?>
+                                    <?= $this->formElement($form->get('password')); ?>
+                                    <?= $this->formElementErrors($form->get('password')); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <?= $this->formLabel($form->get('confirm_password')); ?>
+                                    <?= $this->formElement($form->get('confirm_password')); ?>
+                                    <?= $this->formElementErrors($form->get('confirm_password')); ?>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Password</label>
+                                <div class="controls">
+                                    <input id="password" type="password" name="password" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Confirm Password</label>
+                                <div class="controls">
+                                    <input id="password2" type="password" name="password2" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-2" class="step">
+                            <div class="control-group">
+                                <label class="control-label">Email</label>
+                                <div class="controls">
+                                    <input id="email" type="text" name="email" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">EULA</label>
+                                <div class="controls">
+                                    <input id="eula" type="checkbox" name="eula" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <?= $this->formElement($form->get('submit')); ?>
+                            <input id="back" class="btn btn-primary" type="reset" value="Back" />
+                            <input id="next" class="btn btn-primary" type="submit" value="Next" />
+                            <div id="status"></div>
+                        </div>
+                        <?= $this->form()->closeTag(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

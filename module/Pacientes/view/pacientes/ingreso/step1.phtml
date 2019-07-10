@@ -1,0 +1,217 @@
+<?php
+$form = $this->form;
+
+$form->get('idSolicitud');
+
+$form->get('RFC')->setAttributes([
+    'class' => 'span3',
+    'placeholder' => 'RFC'
+]);
+
+$form->get('nombrePaciente')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => 'Ejemplo: Juan Perez',
+]);
+
+$form->get('Hombre')->setAttributes([
+    'class' => 'span5 m-wrap',
+    'placeholder' => 'Ejemplo: Nombre Apellido Pat Apellido Mat',
+]);
+
+$form->get('Mujer')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'Ejemplo: 00/00/0000'
+]);
+
+$form->get('edad')->setAttributes([
+    'class' => 'span2',
+    'placeholder' => 'Ejemplo: 35'
+]);
+
+$form->get('nombreFamiliar')->setAttributes([
+    'class' => 'span5',
+    'placeholder' => 'Ejemplo: Nombre Apellido Pat Apellido Mat'
+]);
+
+$form->get('parentesco')->setAttributes([
+    'class' => 'span4',
+    'placeholder' => 'Seleccione parentesco'
+]);
+
+$form->get('telefono')->setAttributes([
+    'class' => 'span4',
+    'placeholder' => '(000) 000-0000'
+]);
+
+$form->get('domicilio')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Direccion completa del familiar o pacinete'
+]);
+
+$form->get('motivoAtencion')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Escribir el motivo de la atencion del paciente'
+]);
+
+$form->get('lesiones')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Encaso de tener lesiones'
+]);
+
+$form->get('diacnostico')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Diacnostico del paciente'
+]);
+
+$form->get('pronostico')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Pronostico del paciente'
+]);
+
+$form->get('nombreMedico')->setAttributes([
+    'class' => 'span7',
+    'placeholder' => 'Ejemplo: Dr. José Aranda Martinez'
+]);
+
+$form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
+$form->prepare();
+?>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Pacientes</a> <a href="#" class="current">Solicitud de ingreso</a> </div>
+    <h1><?= $this->titulo ?></h1>
+</div>
+<div class="container-fluid"><hr>    
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+                    <h5><?= $this->subTitulo ?></h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <?= $this->form()->openTag($form); ?>
+                    <div id="form-wizard-1" class="step"> 
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('RFC')); ?>
+                            <div class="controls">                
+                                <?= $this->formElement($form->get('RFC')); ?>
+                                <?= $this->formElementErrors($form->get('RFC')); ?>
+                                <div class="hint">(RFC Paciente)</div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('nombrePaciente')); ?>
+                            <div class="controls">                
+                                <?= $this->formElement($form->get('nombrePaciente')); ?>
+                                <?= $this->formElementErrors($form->get('nombrePaciente')); ?>
+                                <!--<div class="hint">(PNG and JPG formats are allowed)</div>-->
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="checkboxes" class="control-label">Sexo:</label>
+                            <div class="controls">
+                                <div data-toggle="buttons-radio" class="btn-group">
+                                    <button class="btn btn-info" type="button">Hombre</button>
+                                    <button class="btn btn-info" type="button">Mujer</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('edad')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('edad')); ?>
+                                <?= $this->formElementErrors($form->get('edad')); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('nombreFamiliar')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('nombreFamiliar')); ?>
+                                <?= $this->formElementErrors($form->get('nombreFamiliar')); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('parentesco')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('parentesco')); ?>
+                                <?= $this->formElementErrors($form->get('parentesco')); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('telefono')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('telefono')); ?>
+                                <?= $this->formElementErrors($form->get('telefono')); ?>
+                                <div class="hint">(000) 000-0000</div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('domicilio')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('domicilio')); ?>
+                                <?= $this->formElementErrors($form->get('domicilio')); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('motivoAtencion')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('motivoAtencion')); ?>
+                                <?= $this->formElementErrors($form->get('motivoAtencion')); ?>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('lesiones')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('lesiones')); ?>
+                                <?= $this->formElementErrors($form->get('lesiones')); ?>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('diacnostico')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('diacnostico')); ?>
+                                <?= $this->formElementErrors($form->get('diacnostico')); ?>
+                            </div>
+                        </div>
+
+                        <label for="checkboxes" class="control-label">Plan terapéutico:</label>
+                        <div class="controls">
+                            <div data-toggle="buttons-radio" class="btn-group">
+                                <button class="btn btn-primary" type="button">Farmacoterapia</button>
+                                <button class="btn btn-primary" type="button">Exámenes de laboratorio</button>
+                                <button class="btn btn-primary" type="button">Psicología</button>
+                                <button class="btn btn-primary" type="button">Consejería</button>
+                                <button class="btn btn-primary" type="button">Canalización</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <?= $this->formLabel($form->get('pronostico')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('pronostico')); ?>
+                                <?= $this->formElementErrors($form->get('pronostico')); ?>
+                            </div>
+                        </div>
+                         <div class="control-group">
+                            <?= $this->formLabel($form->get('nombreMedico')); ?>
+                            <div class="controls">
+                                <?= $this->formElement($form->get('nombreMedico')); ?>
+                                <?= $this->formElementErrors($form->get('nombreMedico')); ?>
+                            </div>
+                        </div>
+  
+                    <div class="form-actions">
+                        <?= $this->formElement($form->get('submit')); ?>
+                        <input id="back" class="btn btn-primary" type="reset" value="Back" />
+                        <input id="next" class="btn btn-primary" type="submit" value="Next" />
+                        <div id="status"></div>
+                    </div>
+                    <?= $this->form()->closeTag(); ?>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+

@@ -1,0 +1,121 @@
+<div class="container-fluid"><hr>
+    <div class="widget-box widget-plain">
+        <div class="center">
+            <ul class="stat-boxes2">
+                <li>
+                    <div class="right" title="Solicitude del paciente"> <strong><?= $this->countSolicitud ?></strong> Solicitudes </div>
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-briefcase"></i> </span>
+                    <h5>Detalle del paciente</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <table class="">
+                                <tbody>
+                                    <tr>
+                                        <td><h3><?= $this->paciente->getNombrePaciente() ?></h3></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h5>Sexo: <?= $this->paciente->getSexo() ?> Edad:  <?= $this->paciente->getEdad() ?></h5></td>
+                                    </tr>
+                                    <tr>
+                                        <td><h5>Responsable: <?= $this->paciente->getNombreFamiliar() ?></h5> Parentesco: <?= $this->paciente->getParentesco() ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Teléfono Cel.: +<?= $this->paciente->getTelefono() ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Direccion: <strong><?= $this->paciente->getDomicilio() ?></strong> <br>
+                                            <?= $this->paciente->getColonia() .' '. $this->paciente->getMunicipio() ?>, <br></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="span6">
+                            <table class="table table-bordered table-invoice">
+                                <tbody>
+                                    <tr>
+                                    </tr><tr>
+                                        <td class="width30">RFC:</td>
+                                        <td class="width70"><strong><?= $this->paciente->getRFC() ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha Solicitud:</td>
+                                        <td><strong><?= $this->paciente->getFechaSolicitud() ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Folio:</td>
+                                        <td><strong><?= $this->paciente->getFolio() ?></strong></td>
+                                    </tr>
+                                    <tr><td class="width30">Operadora 199:</td>
+                                        <td class="width70">
+                                           <strong><?= $this->paciente->getOperadora() ?></strong></td>
+                                    </tr>
+                                    <tr><td class="width30">Tipo Solicitud:</td>
+                                        <td class="width70">
+                                           <strong><?= $this->paciente->getTipoSolicitud()  ?></strong></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <table class="table table-bordered table-invoice-full">
+                                <thead>
+                                    <tr>
+                                        <th class="head0">Num</th>
+                                        <th class="head1">Solicitud</th>
+                                        <th class="head1">Fecha Solicitud</th>
+                                        <th class="head1">Estado de Solicitud</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $cont = 1; ?>
+                                    <?php foreach ($this->solicitud as $obj): ?>
+                                        <tr>
+                                            <td><?=$cont++ ?></td>
+                                            <td><?= $obj->getNombrePaciente() ?></td>
+                                            <td><?= $obj->getFechaSolicitud() ?> </td>
+                                            <td><?= $obj->getEstado() ?> <img src="<?= $this->basePath('img/icons/16/calendar.png') ?>" ></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+<!--                            <table class="table table-bordered table-invoice-full">
+                                <tbody>
+                                    <tr>
+                                        <td class="msg-invoice" width="85%"><h4>Payment method: </h4>
+                                            <a href="#" class="tip-bottom" data-original-title="Wire Transfer">Wire transfer</a> |  <a href="#" class="tip-bottom" data-original-title="Bank account">Bank account #</a> |  <a href="#" class="tip-bottom" data-original-title="SWIFT code">SWIFT code </a>|  <a href="#" class="tip-bottom" data-original-title="IBAN Billing address">IBAN Billing address </a></td>
+                                        <td class="right"><strong>Subtotal</strong> <br>
+                                            <strong>Tax (5%)</strong> <br>
+                                            <strong>Discount</strong></td>
+                                        <td class="right"><strong>$7,000 <br>
+                                                $600 <br>
+                                                $50</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>-->
+                            <div class="pull-right">
+                                <h4><span>Costo Solicitud:</span> $<?= $this->paciente->getCosto()  ?></h4>
+                                <br>
+                                <a class="btn btn-primary btn-large pull-right" href="<?= $this->url('solicitud-detallerpt')?><?= '/'.$this->paciente->getIdSolicitud() ?>">Export PDF</a> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
