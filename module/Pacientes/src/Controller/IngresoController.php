@@ -12,33 +12,43 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Pacientes\Form\SolicitudForm;
+use Pacientes\Form\IngresoForm;
 
 class IngresoController extends AbstractActionController {
 
     private $sessionContainer;
-    private $objSolicitud;
-    public function __construct($sessionContainer,$objSolicitud) {
-        $this->sessionContainer = $sessionContainer;
-        $this->objSolicitud = $objSolicitud;
+    private $ingreso;
+    private $dbAdapter;
 
+    public function __construct($sessionContainer, $ingreso,$dbAdapter) {
+        $this->sessionContainer = $sessionContainer;
+        $this->ingreso = $ingreso;
+        $this->dbAdapter = $dbAdapter;
+        
     }
 
     public function indexAction() {
-        $solicitud = $this->objSolicitud->obtenerTodos();                
+
+        $solicitud = $this->ingreso->obtenerTodos();
         return [
             'titulo' => 'Ingreso del paciente al sistema',
             'subTitulo' => 'En esta lista se muestran todos los expedientes del sistema',
             'solicitud' => $solicitud,
         ];
     }
-    
-    public function nuevoAction(){
+
+    public function nuevoAction() {
+        $form = new IngresoForm($this->dbAdapter);
+        $viewModel = new ViewModel([
+            'form' => $form,
+        ]);
+        return $viewModel;
+    }
+
+    public function ingresoAction() {
         
     }
-    
-    public  function ingresoAction(){
-        
-    }
+
     public function solicitudAction() {
         // Determine the current step.
         $step = 1;
@@ -54,7 +64,7 @@ class IngresoController extends AbstractActionController {
             // Init user choices.
             $this->sessionContainer->userChoices = [];
         }
-               
+
         $form = new SolicitudForm($step);
         // Check if user has submitted the form
         if ($this->request->getPost("submit")) {
@@ -103,10 +113,7 @@ class IngresoController extends AbstractActionController {
         $viewModel->setTemplate("pacientes/ingreso/step$step");
 
         return $viewModel;
-       
     }
-   
-    
 
     public function borrarAction() {
         return [
@@ -122,4 +129,6 @@ class IngresoController extends AbstractActionController {
         ];
     }
 
+    
+   
 }

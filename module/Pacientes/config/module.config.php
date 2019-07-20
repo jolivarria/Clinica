@@ -47,6 +47,17 @@ return [
                     ],
                 ],
             ],
+            'ingreso-nuevo' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/pacientes/ingreso/[/:action]',
+                    'defaults' => [
+                        'controller' => Controller\IngresoController::class,
+                        'action' => 'nuevo',
+                    ],
+                ],
+            ],
+            
             'solicitud' => [
                 'type' => Segment::class,
                 'options' => [

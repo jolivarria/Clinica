@@ -1,77 +1,55 @@
 <?php
 $form = $this->form;
 
-$form->get('idSolicitud');
+$form->get('idingreso');
 
 $form->get('RFC')->setAttributes([
-    'class' => 'span3',
+    'class' => 'span15 m-wrap',
     'placeholder' => 'RFC'
 ]);
 
-$form->get('folio')->setAttributes([
-    'class' => 'span3',
-    'placeholder' => '000000'
+$form->get('nombre')->setAttributes([
+    'class' => 'span50 m-wrap',
+    'placeholder' => ''
 ]);
-
-
-$form->get('operadora')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => 'Operadora 911',
-]);
-
-$form->get('nombrePaciente')->setAttributes([
-    'class' => 'span5 m-wrap',
-    'placeholder' => 'Ejemplo: Nombre Apellido Pat. Apellido Mat. ',
-]);
-
 $form->get('sexo')->setAttributes([
-    'class' => 'control-label',
+    'class' => 'span50 m-wrap',
+    'placeholder' => ''
+]);
+$form->get('fechaNac')->setAttributes([
+    'class' => 'span15 m-wrap',
+    'placeholder' => ''
+]);
+$form->get('edad')->setAttributes([
+    'class' => 'span15 m-wrap',
     'placeholder' => ''
 ]);
 
-$form->get('edad')->setAttributes([
-    'class' => 'span2',
-    'placeholder' => 'Ejemplo: 35'
+$form->get('escolaridad')->setAttributes([
+    'class' => 'span15 m-wrap',
+    'placeholder' => ''
+]);
+$form->get('ocupacion')->setAttributes([
+    'class' => 'span15 m-wrap',
+    'placeholder' => ''
+]);
+$form->get('estadoCivil')->setAttributes([
+    'class' => 'span15 m-wrap',
+    'placeholder' => ''
+]);
+$form->get('direccion')->setAttributes([
+    'class' => 'span50 m-wrap',
+    'placeholder' => ''
 ]);
 
-$form->get('nombreFamiliar')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => 'Ejemplo: Nombre Apellido Pat. Apellido Mat.'
-]);
-
-$form->get('parentesco')->setAttributes([
-    'class' => 'span3',
-    'placeholder' => 'Seleccione parentesco'
-]);
-
-$form->get('telefono')->setAttributes([
-    'class' => 'span3',
-    'placeholder' => '(000) 000-0000'
-]);
-
-$form->get('costo')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => '00.00'
-]);
-
-$form->get('tipoSolicitud')->setAttributes([
-    'class' => 'span7',
-    'placeholder' => 'Ejemplo: Escribir el motivo de la atencion del paciente'
+$form->get('nacionalidad')->setAttributes([
+    'class' => 'span50',
+  
 ]);
 
 $form->get('municipio')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => 'Ejemplo: Aconchi'
-]);
-
-$form->get('domicilio')->setAttributes([
-    'class' => 'span7',
-    'placeholder' => 'Ejemplo: Calle entre calle y numero '
-]);
-
-$form->get('colonia')->setAttributes([
-    'class' => 'span7',
-    'placeholder' => 'Ejemplo: Pronostico del paciente'
+    'class' => 'span50',
+  
 ]);
 
 
@@ -79,6 +57,7 @@ $form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
 $form->prepare();
 ?>
 
+<?= $this->form()->closeTag(); ?>
 <div id="content-header">
     <div id="breadcrumb"> <a href="<?= $this->url('home'); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes'); ?>">Expedientes</a> <a href="#" class="current">Solicitud Ingreso</a> </div>
     <h1><?= $this->titulo; ?></h1>
@@ -88,188 +67,352 @@ $form->prepare();
     <div id="message-text"></div>
     <hr>
     <div class="row-fluid">
-        <div class="span12">
+        <div class="span10">
             <div class="widget-box">
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Notificación Ministerio Público</h5>
+                    <h5><?= $this->subTitulo ?></h5>
                 </div>
-                <div class="widget-content nopadding">
-                    <?= $this->form()->openTag($form); ?>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('RFC')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('RFC')); ?> <a href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" class="btn btn-info" title="Consulta tu RFC." target="_blank"><i class="icon-th-large"></i></a>
-                            <?= $this->formElementErrors($form->get('RFC')); ?>
-                            <div id="cargando">
-                            </div>
-                            <div class="hint">
-                                (RFC Paciente)</div>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('folio')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('folio')); ?>
-                            <?= $this->formElementErrors($form->get('folio')); ?>
-                            <div id="cargando">
-                            </div>
-                            <div class="hint">
-                                (Folio 911)</div>
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('operadora')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('operadora')); ?>
-                            <?= $this->formElementErrors($form->get('operadora')); ?>
-                            <div id="cargando">
-                            </div>
-                            <div class="hint">
-                                (Operadora 911)</div>
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('nombrePaciente')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('nombrePaciente')); ?>
-                            <?= $this->formElementErrors($form->get('nombrePaciente')); ?>
+                <div class="widget-content">
+                    <fieldset>
+                        <legend><h5>Datos del paciente</h5></legend>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">                       
-                        <label class="control-label">Sexo paciente:</label>
-                        <div class="controls">                             
-                            <?= $this->formElement($form->get('sexo')); ?>
-                            <?= $this->formElementErrors($form->get('sexo')); ?>
+                        <table class="table-striped">
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        RFC Paciente
+                                    </div>
+                                </td>
+                                <td colspan="2">
+                                    <div class="control-label">
+                                        Nombre Paciente
+                                    </div>
+                                </td>
+                                <td>                      
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <?= $this->formElement($form->get('RFC')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('RFC')); ?>
+                                        
+                                    </div>
+                                </td>
+                                <td colspan="2">
+                                    <div class="controls">
+                                        <?= $this->formElement($form->get('nombre')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('nombre')); ?>
+                                    </div>
+                                </td>
+                                <td>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('edad')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('edad')); ?>
-                            <?= $this->formElementErrors($form->get('edad')); ?>
+                                </td>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('nombreFamiliar')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('nombreFamiliar')); ?>
-                            <?= $this->formElementErrors($form->get('nombreFamiliar')); ?>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Sexo
+                                    </div>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('parentesco')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('parentesco')); ?><br><br> 
-                            <?= $this->formElementErrors($form->get('parentesco')); ?>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Fecha Nacimiento
+                                    </div>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('telefono')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('telefono')); ?><br><br> 
-                            <?= $this->formElementErrors($form->get('telefono')); ?>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Edad
+                                    </div>
+                                </td>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                       <label class="control-label">Tipo solicitud:</label>
-                        <div class="controls">                     
-                                <?= $this->formElement($form->get('tipoSolicitud')); ?>                           
-                            <?= $this->formElementErrors($form->get('tipoSolicitud')); ?>
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('municipio')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('municipio')); ?><br><br> 
-                            <?= $this->formElementErrors($form->get('municipio')); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('domicilio')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('domicilio')); ?><br><br> 
-                            <?= $this->formElementErrors($form->get('domicilio')); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('colonia')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('colonia')); ?><br><br> 
-                            <?= $this->formElementErrors($form->get('colonia')); ?>
-                        </div>
-                    </div>                    
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('costo')); ?>
-                        <div class="controls">  
-                                <div class="input-append">
-                                <?= $this->formElement($form->get('costo')); ?>
-                                <span class="add-on">$</span> </div>
-                            <?= $this->formElementErrors($form->get('costo')); ?>
-                        </div>
-                    </div> 
-        
-                    <div class="form-actions">
-                        <?= $this->formElement($form->get('submit')); ?>
-                        <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
-                        <div id="status"></div>
-                    </div>
-                    <?= $this->form()->closeTag(); ?>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <?= $this->formElement($form->get('sexo')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('sexo')); ?>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div class="controls">
+                                        <?= $this->formElement($form->get('fechaNac')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('fechaNac')); ?>
 
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <?= $this->formElement($form->get('edad')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('edad')); ?>
+                                        
+                                    </div>
+                                </td>
 
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Escolaridad
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Ocupacion
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Estado Civil
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                       <?= $this->formElement($form->get('escolaridad')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('escolaridad')); ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls"><br>
+                                       <?= $this->formElement($form->get('ocupacion')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('ocupacion')); ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                       <?= $this->formElement($form->get('estadoCivil')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('estadoCivil')); ?>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="control-label">
+                                        Direccion
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="controls controls-row">
+                                        <?= $this->formElement($form->get('direccion')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('direccion')); ?>
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Código Postal
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Delegación/Municipio
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Nacionalidad
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span2" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                       
+                                        <?= $this->formElement($form->get('municipio')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('municipio')); ?>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        
+                                        <?= $this->formElement($form->get('nacionalidad')); ?><br><br> 
+                                        <?= $this->formElementErrors($form->get('nacionalidad')); ?>
+                                    </div>
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Teléfono
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Celular
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Teléfono Trabajo
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span2" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Servicio médico
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Num. de servicio
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="control-label">
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span2" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>   
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend><h5>Tipo de Ingreso</h5></legend>
+
+                        <table class="table-striped">                            
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Voluntario
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Involuntario
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Obligatorio
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span2" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </fieldset>
+                    <fieldset>
+                        <legend><h5>Tipo de Ingreso</h5></legend>
+
+                        <table class="table-striped">                            
+                            <tr>
+                                <td>
+                                    <div class="control-label">
+                                        Voluntario
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Involuntario
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="control-label">
+                                        Obligatorio
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span2" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" placeholder=".span4" class="span15 m-wrap">
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </table>
+                    </fieldset>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5>Form Layout</h5>
-        </div>
-        <div class="widget-content">
-          <div class="controls">
-            <input type="text" placeholder=".span12" class="span12 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span11" class="span11 m-wrap">
-            <input type="text" placeholder=".span1" class="span1 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span10" class="span10 m-wrap">
-            <input type="text" placeholder=".span2" class="span2 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span9" class="span9 m-wrap">
-            <input type="text" placeholder=".span3" class="span3 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span8" class="span8 m-wrap">
-            <input type="text" placeholder=".span4" class="span4 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span7" class="span7 m-wrap">
-            <input type="text" placeholder=".span5" class="span5 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span6" class="span6 m-wrap">
-            <input type="text" placeholder=".span6" class="span6 m-wrap">
-          </div>
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span5" class="span5 m-wrap">
-            <input type="text" placeholder=".span7" class="span7 m-wrap">
-          </div>
-         
-          <div class="controls controls-row">
-            <input type="text" placeholder=".span2" class="span2 m-wrap">
-            <input type="text" placeholder=".span3" class="span3 m-wrap">
-            <input type="text" placeholder=".span4" class="span4 m-wrap">
-            <input type="text" placeholder=".span1" class="span2 m-wrap">
-            <input type="text" placeholder=".span1" class="span1 m-wrap">
-          </div>
-        </div>
-      </div>
+</div>
+

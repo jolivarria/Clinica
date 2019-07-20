@@ -6,9 +6,7 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 use Pacientes\Controller\IngresoController;
-use Pacientes\Model\Dao\IIngresoDao;
-use Zend\Db\Adapter\AdapterInterface;
-use Pacientes\Form\IngresoForm;
+use Pacientes\Model\Dao\ISolicitudIngresoDao;
 
 
 /**
@@ -20,12 +18,10 @@ class PacientesControllerFactory implements FactoryInterface {
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null) {
         $controller = null;
         switch ($requestedName) {
-            case IngresoController::class: 
-                $dbAdapter = $container->get(AdapterInterface::class);
-                $ingreso = $container->get(IIngresoDao::class);
+            case IngresoController::class:     
+                $objSolicitud = $container->get(ISolicitudIngresoDao::class);
                 $sessionContainer = $container->get('UserRegistration');               
-                $controller = new IngresoController($sessionContainer,$ingreso,$dbAdapter);
-                
+                $controller = new IngresoController($sessionContainer,$objSolicitud);
                 break;
             default :
                 return (null === $options) ? new $requestedName : new $requestedName;
