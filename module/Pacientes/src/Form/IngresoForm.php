@@ -24,7 +24,7 @@ class IngresoForm extends Form {
      * Constructor.
      */
     public function __construct(Adapter $dbAdapter) {
-        parent::__construct('ingreso-form');
+        parent::__construct('ingreso-form'); 
 
         // Set POST method for this form
         $this->setAttribute('method', 'post');
