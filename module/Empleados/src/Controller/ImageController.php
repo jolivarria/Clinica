@@ -29,6 +29,7 @@ class ImageController extends AbstractActionController {
     // This is the default "index" action of the controller. It displays the
     // Image Gallery page which contains the list of uploaded images.
     public function indexAction() {
+    
         // Get the list of already saved files.
         $files = $this->imageManager->getSavedFiles();
 

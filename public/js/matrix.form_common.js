@@ -30,6 +30,8 @@ $(document).ready(function() {
 
 	//------------- Masked input fields -------------//
 	$("#mask-phone").mask("(999) 999-9999", {completed:function(){}});
+        $("#mask-phonePart").mask("(999) 999-9999", {completed:function(){}});
+        $("#mask-phoneTrab").mask("(999) 999-9999", {completed:function(){}});
 	$("#mask-phoneExt").mask("(999) 999-9999? x99999");
 	$("#mask-phoneInt").mask("+40 999 999 999");
 	$("#mask-date").mask("99/99/9999");

@@ -1,5 +1,4 @@
 
-
 $("input[name='RFC']").focusout(function () {
     if ($('#RFC').val() != '') {
         $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
@@ -24,10 +23,33 @@ $("input[name='RFC']").focusout(function () {
 //    } else {
 //       $('#cargando').html('');
 //    }
-
-
-
+});
+$('#labNumServicio').html('');
+$('#inputNumServicio').hide();
+$("select[name='servicioMedico']").change(function () {
+    if ($('select[name=servicioMedico]').val() == 'Si') {
+        $('#labNumServicio').html('<div id="labNumServicio">Num. de servicio</div>');
+        $('#inputNumServicio').show();
+    }
+    else
+    {
+        $('#labNumServicio').html('');
+        $('#inputNumServicio').hide();
+    }
 
 });
+$('#labNumServicio').html('');
+$('#inputOtros').hide();
+$("button[name='otros']").click(function () {
+    if ($("button[name='otros']").val() == 'otros') {
+        $('#inputOtros').show();
+    }else{
+        $('#inputOtros').hide();
+    }
+});
+$("button[name='centroRedaptacion']").click(function () {
+    $('#inputOtros').hide();
+});
+
 
 

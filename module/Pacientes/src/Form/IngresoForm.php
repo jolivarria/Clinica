@@ -24,7 +24,7 @@ class IngresoForm extends Form {
      * Constructor.
      */
     public function __construct(Adapter $dbAdapter) {
-        parent::__construct('ingreso-form'); 
+        parent::__construct('ingreso-form');
 
         // Set POST method for this form
         $this->setAttribute('method', 'post');
@@ -34,7 +34,6 @@ class IngresoForm extends Form {
         $this->dbAdapter = $dbAdapter;
         $this->addElements();
         $this->addInputFilter();
-        
     }
 
     /**
@@ -93,7 +92,7 @@ class IngresoForm extends Form {
             'type' => 'text',
             'name' => 'fechaNac',
             'attributes' => [
-                'id' => 'fechaNac'
+                'id' => 'mask-date'
             ],
             'options' => [
                 'label' => 'Fecha Nacimiento',
@@ -157,13 +156,13 @@ class IngresoForm extends Form {
                 'value_options' => [
                     'Soltero/a' => 'Soltero/a',
                     'Comprometido/a' => 'Comprometido/a',
-                    'En Relación ( más de 1 Año de noviazgo)' => 'En Relación ( más de 1 Año de noviazgo)',
+                    'En Relación (más de 1 Año de noviazgo)' => 'En Relación (más de 1 Año)',
                     'Casado/a' => 'Casado/a',
-                    'Unión libre o unión de hecho' => 'Unión libre o unión de hecho',
+                    'Unión libre o unión de hecho' => 'Unión libre',
                     'Separado/a' => 'Separado/a',
                     'Divorciado/a' => 'Divorciado/a',
                     'Viudo/a' => 'Viudo/a',
-                    ' Noviazgo(período inferior a 1 año de relación amorosa)' => ' Noviazgo(período inferior a 1 año de relación amorosa)',
+                    ' Noviazgo(período inferior a 1 año de relación amorosa)' => 'En Relación (menos de 1 Año)',
                 ],
                 'label_attributes' => array('class' => 'control-label')
             )
@@ -219,46 +218,315 @@ class IngresoForm extends Form {
             )
         ]);
 
-        // Add "nombrePaciente" field
-        //Add "Hombre" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'Hombre',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Hombre',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-
-        //Add "Mujer" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'Mujer',
-            'attributes' => [
-                'value' => 'Hola',
-            ],
-            'options' => [
-                'label' => 'Mujer',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-
-        //Add "Edad" field
+        // Add "telefono" field
         $this->add([
             'type' => 'text',
-            'name' => 'edad',
+            'name' => 'telefonoParticular',
+            'class' => 'span5 m-wrap mask text',
             'attributes' => [
-                'id' => 'edad'
+                'id' => 'mask-phonePart',
+                'required' => true,
             ],
             'options' => [
-                'label' => 'Edad:',
+                'label' => 'Télefono:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        // Add "telefono" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'celular',
+            'class' => 'span5 m-wrap mask text',
+            'attributes' => [
+                'id' => 'mask-phone',
+                'required' => true,
+            ],
+            'options' => [
+                'label' => 'celular:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        // Add "telefono" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'telefonoTrabajo',
+            'class' => 'span5 m-wrap mask text',
+            'attributes' => [
+                'id' => 'mask-phoneTrab',
+                'required' => true,
+            ],
+            'options' => [
+                'label' => 'celular:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        // Add "parentesco" field
+        $this->add([
+            'type' => 'Zend\Form\Element\Select',
+            'name' => 'servicioMedico',
+            'attributes' => [
+                'id' => 'servicioMedico',
+                'required' => true,
+            ],
+            'options' => array(
+                'label' => 'Servicio Médico:',
+                'empty_option' => 'Servicio Medico',
+                'value_options' => array(
+                    'Si' => 'Si',
+                    'No' => 'No',
+                ),
+                'label_attributes' => array('class' => 'control-label')
+            )
+        ]);
+        $this->add([
+            'type' => 'text',
+            'name' => 'numeroServicio',
+            'attributes' => [
+                'id' => 'numeroServicio'
+            ],
+            'options' => [
+                'label' => 'Numero Servicio',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-
-        //Add "nombreFamiliar" field
+//         // Add "TipodeIngreso" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Radio',
+//            'name' => 'tipoIngreso',
+//            'attributes' => [
+//                'id' => 'tipoIngreso'
+//            ],
+//            'options' => [
+//                'label' => 'Sexo',
+//                'required' => true,
+//                'value_options' => [
+//                    'Voluntario' => 'Voluntario',
+//                    'Involuntario' => 'Involuntario',
+//                    'Obligatorio' => 'Obligatorio',                     
+//                ],
+//            ],
+//        ]);
+        $this->add([
+            'type' => 'button',
+            'name' => 'Voluntario',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Voluntario',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        $this->add([
+            'type' => 'button',
+            'name' => 'Involuntario',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Involuntario',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Mujer" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'Obligatorio',
+            'attributes' => [
+                'value' => 'Obligatorio',
+            ],
+            'options' => [
+                'label' => 'Obligatorio',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "'Domicilio Particular" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'domicilioParticular',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Domicilio Particular',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "institucionPublica" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'institucionPublica',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Institución Pública',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "institucionPrivada" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'institucionPrivada',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Institución Privada',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "hospitalPsiquiatrico" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'hospitalPsiquiatrico',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Hospital Psiquiatrico',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "centroRedaptacion" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'centroRedaptacion',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Centro De Readaptación Social',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Otros" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'otros',
+            'attributes' => [
+                'value'=>'otros',
+            ],
+            'options' => [
+                'label' => 'Otros',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Otros" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'otro',
+            'attributes' => [
+                'value'=>'',
+            ],
+            'options' => [
+                'label' => 'Otro',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Solo" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'solo',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Solo',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Amigo" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'amigo',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Amigo',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Vecino" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'vecino',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Vecino',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+        //Add "Familiar" field
+        $this->add([
+            'type' => 'button',
+            'name' => 'familiar',
+            'attributes' => [
+            ],
+            'options' => [
+                'label' => 'Familiar',
+                'label_attributes' => array('class' => 'btn btn-info')
+            ],
+        ]);
+         // Add "dependencia paciente" field
+        $this->add([
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'dependencia',
+            'attributes' => [
+                'id' => 'dependencia'
+            ],
+            'options' => [
+                'label' => 'El usuario presenta un nivel de dependencia al alcohol o drogas',
+                'required' => true,
+                'value_options' => [
+                    'Si' => 'Si',
+                    'No' => 'No',
+                ],
+            ],
+        ]);
+         // Add "consecuencia paciente" field
+        $this->add([
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'consecuencia',
+            'attributes' => [
+                'id' => 'consecuencia'
+            ],
+            'options' => [
+                'label' => 'El usuario presenta alguna (s) consecuencia asociada al consumo',
+                'required' => true,
+                'value_options' => [
+                    'Si' => 'Si',
+                    'No' => 'No',
+                ],
+            ],
+        ]);
+         // Add "trastorno paciente" field
+        $this->add([
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'trastorno',
+            'attributes' => [
+                'id' => 'trastorno'
+            ],
+            'options' => [
+                'label' => 'El usuario no presenta algún trastorno mental o psiquiátrico que le impida
+beneficiarse del tratamiento',
+                'required' => true,
+                'value_options' => [
+                    'Si' => 'Si',
+                    'No' => 'No',
+                ],
+            ],
+        ]);
+         // Add "criteriosAdmision paciente" field
+        $this->add([
+            'type' => 'Zend\Form\Element\Radio',
+            'name' => 'criteriosAdmision',
+            'attributes' => [
+                'id' => 'criteriosAdmision'
+            ],
+            'options' => [
+                'label' => '¿El usuario cumple con todos los criterios de admisión al tratamiento?',
+                'required' => true,
+                'value_options' => [
+                    'Si' => 'Si',
+                    'No' => 'No',
+                ],
+            ],
+        ]);
+        // Add "nombrePaciente" field.
         $this->add([
             'type' => 'text',
             'name' => 'nombreFamiliar',
@@ -266,10 +534,102 @@ class IngresoForm extends Form {
                 'id' => 'nombreFamiliar'
             ],
             'options' => [
-                'label' => 'Nombre del familiar:',
+                'label' => 'Nombre Familiar:',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
+         // Add "direccionFamiliar del paciente" field.
+        $this->add([
+            'type' => 'text',
+            'name' => 'direccionFamiliar',
+            'attributes' => [
+                'id' => 'direccionFamiliar'
+            ],
+            'options' => [
+                'label' => 'Dirección',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+        // Add "numero del paciente" field.
+        $this->add([
+            'type' => 'text',
+            'name' => 'numero',
+            'attributes' => [
+                'id' => 'numero'
+            ],
+            'options' => [
+                'label' => 'Numero',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+         // Add "colonia del paciente" field.
+        $this->add([
+            'type' => 'text',
+            'name' => 'colonia',
+            'attributes' => [
+                'id' => 'colonia'
+            ],
+            'options' => [
+                'label' => 'Colonia',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+         // Add "municipioFamiliar del paciente" field.
+        $this->add([
+            'type' => 'text',
+            'name' => 'municipioFamiliar',
+            'attributes' => [
+                'id' => 'municipioFamiliar'
+            ],
+            'options' => [
+                'label' => 'Colonia',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+        // Add "telefono" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'telefonoParticularF',
+            'class' => 'span5 m-wrap mask text',
+            'attributes' => [
+                'id' => 'mask-phonePart',
+                'required' => true,
+            ],
+            'options' => [
+                'label' => 'Télefono:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        // Add "telefono" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'celularF',
+            'class' => 'span5 m-wrap mask text',
+            'attributes' => [
+                'id' => 'mask-phone',
+                'required' => true,
+            ],
+            'options' => [
+                'label' => 'celular:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        // Add "telefono" field
+        $this->add([
+            'type' => 'text',
+            'name' => 'telefonoTrabajoF',
+            'class' => 'span5 m-wrap mask text',
+            'attributes' => [
+                'id' => 'mask-phoneTrab',
+                'required' => true,
+            ],
+            'options' => [
+                'label' => 'celular:',
+                'label_attributes' => ['class' => 'control-label']
+            ],
+        ]);
+        
+        
 
         // Add "parentesco" field
         $this->add([
@@ -287,253 +647,14 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'control-label')
             )
         ]);
-        // Add "telefono" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'telefono',
-            'class' => 'span8 mask text',
-            'attributes' => [
-                'id' => 'mask-phone',
-            ],
-            'options' => [
-                'label' => 'Télefono:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "domicilio" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'domicilio',
-            'class' => 'control-label',
-            'attributes' => [
-                'id' => 'domicilio',
-            ],
-            'options' => [
-                'label' => 'Domicilio:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-
-        // Add "motivoAtencion" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'motivoAtencion',
-            'attributes' => [
-                'id' => 'motivoAtencion'
-            ],
-            'options' => [
-                'label' => 'Motivo de Atencion:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "motivoAtencion" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'motivoAtencion',
-            'attributes' => [
-                'id' => 'motivoAtencion'
-            ],
-            'options' => [
-                'label' => 'Motivo de Atencion:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "lesiones" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'lesiones',
-            'attributes' => [
-                'id' => 'lesiones'
-            ],
-            'options' => [
-                'label' => 'Lesiones:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-
-        // Add "diacnostico" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'diacnostico',
-            'attributes' => [
-                'id' => 'diacnostico'
-            ],
-            'options' => [
-                'label' => 'Diacnostico:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-
-        // Add "planTerapeutico" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'planTerapeutico',
-            'attributes' => [
-                'id' => 'planTerapeutico'
-            ],
-            'options' => [
-                'label' => 'Plan Terapeutico:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "pronostico" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'pronostico',
-            'attributes' => [
-                'id' => 'pronostico'
-            ],
-            'options' => [
-                'label' => 'Pronostico:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "nombreMedico" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'nombreMedico',
-            'attributes' => [
-                'id' => 'nombreMedico'
-            ],
-            'options' => [
-                'label' => 'Nombre médico:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-
-
-        // Add "phone" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'phone',
-            'attributes' => [
-                'id' => 'phone'
-            ],
-            'options' => [
-                'label' => 'Mobile Phone',
-            ],
-        ]);
-
-        // Add "street_address" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'street_address',
-            'attributes' => [
-                'id' => 'street_address'
-            ],
-            'options' => [
-                'label' => 'Street address',
-            ],
-        ]);
-
-        // Add "city" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'city',
-            'attributes' => [
-                'id' => 'city'
-            ],
-            'options' => [
-                'label' => 'City',
-            ],
-        ]);
-
-        // Add "state" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'state',
-            'attributes' => [
-                'id' => 'state'
-            ],
-            'options' => [
-                'label' => 'State',
-            ],
-        ]);
-
-        // Add "post_code" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'post_code',
-            'attributes' => [
-                'id' => 'post_code'
-            ],
-            'options' => [
-                'label' => 'Post Code',
-            ],
-        ]);
-
-        // Add "country" field
-        $this->add([
-            'type' => 'select',
-            'name' => 'country',
-            'attributes' => [
-                'id' => 'country',
-            ],
-            'options' => [
-                'label' => 'Country',
-                'empty_option' => '-- Please select --',
-                'value_options' => [
-                    'US' => 'United States',
-                    'CA' => 'Canada',
-                    'BR' => 'Brazil',
-                    'GB' => 'Great Britain',
-                    'FR' => 'France',
-                    'IT' => 'Italy',
-                    'DE' => 'Germany',
-                    'RU' => 'Russia',
-                    'IN' => 'India',
-                    'CN' => 'China',
-                    'AU' => 'Australia',
-                    'JP' => 'Japan'
-                ],
-            ],
-        ]);
-
-
-        // Add "billing_plan" field
-        $this->add([
-            'type' => 'select',
-            'name' => 'billing_plan',
-            'attributes' => [
-                'id' => 'billing_plan',
-            ],
-            'options' => [
-                'label' => 'Billing Plan',
-                'empty_option' => '-- Please select --',
-                'value_options' => [
-                    'Free' => 'Free',
-                    'Bronze' => 'Bronze',
-                    'Silver' => 'Silver',
-                    'Gold' => 'Gold',
-                    'Platinum' => 'Platinum'
-                ],
-            ],
-        ]);
-
-        // Add "payment_method" field
-        $this->add([
-            'type' => 'select',
-            'name' => 'payment_method',
-            'attributes' => [
-                'id' => 'payment_method',
-            ],
-            'options' => [
-                'label' => 'Payment Method',
-                'empty_option' => '-- Please select --',
-                'value_options' => [
-                    'Visa' => 'Visa',
-                    'MasterCard' => 'Master Card',
-                    'PayPal' => 'PayPal'
-                ],
-            ],
-        ]);
+      
 
         // Add the submit button
         $this->add([
             'type' => 'submit',
             'name' => 'submit',
             'attributes' => [
-                'value' => 'Siguiente >>',
+                'value' => 'Guardar',
                 'id' => 'submitbutton',
             ],
         ]);
@@ -918,6 +1039,7 @@ class IngresoForm extends Form {
 //            ]);
 //        }
     }
+
     public function getMunicipios() {
         $sql = 'SELECT idmunicipios,municipio FROM municipios ORDER BY idmunicipios ASC';
         $statement = $this->dbAdapter->query($sql);
@@ -928,7 +1050,7 @@ class IngresoForm extends Form {
         foreach ($result as $res) {
             $selectData [$res['idmunicipios']] = $res['municipio'];
         }
-        
+
         return $selectData;
     }
 
@@ -942,7 +1064,7 @@ class IngresoForm extends Form {
         foreach ($result as $res) {
             $selectData [$res['nacionalidad']] = $res['nacionalidad'];
         }
-        
+
         return $selectData;
     }
 
