@@ -289,23 +289,7 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-//         // Add "TipodeIngreso" field
-//        $this->add([
-//            'type' => 'Zend\Form\Element\Radio',
-//            'name' => 'tipoIngreso',
-//            'attributes' => [
-//                'id' => 'tipoIngreso'
-//            ],
-//            'options' => [
-//                'label' => 'Sexo',
-//                'required' => true,
-//                'value_options' => [
-//                    'Voluntario' => 'Voluntario',
-//                    'Involuntario' => 'Involuntario',
-//                    'Obligatorio' => 'Obligatorio',                     
-//                ],
-//            ],
-//        ]);
+
         $this->add([
             'type' => 'button',
             'name' => 'Voluntario',
@@ -326,7 +310,7 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'btn btn-info')
             ],
         ]);
-        //Add "Mujer" field
+        //Add "Tipo de Internamiento Obligatorio" field
         $this->add([
             'type' => 'button',
             'name' => 'Obligatorio',
