@@ -38,7 +38,7 @@ $form->get('estadoCivil')->setAttributes([
     'placeholder' => ''
 ]);
 $form->get('direccion')->setAttributes([
-    'class' => 'span20 m-wrap',
+    'class' => 'span m-wrap',
     'placeholder' => ''
 ]);
 
@@ -179,8 +179,7 @@ $form->prepare();
                                         Nombre Paciente
                                     </div>
                                 </td>
-                                <td>                      
-                                </td>
+             
                             </tr>
                             <tr>
                                 <td>
@@ -196,10 +195,6 @@ $form->prepare();
                                         <?= $this->formElementErrors($form->get('nombre')); ?>
                                     </div>
                                 </td>
-                                <td>
-
-                                </td>
-
                             </tr>
                             <tr>
                                 <td>
@@ -242,7 +237,6 @@ $form->prepare();
 
                                     </div>
                                 </td>
-
                             </tr>
                             <tr>
                                 <td>
@@ -281,7 +275,6 @@ $form->prepare();
                                         <?= $this->formElementErrors($form->get('estadoCivil')); ?>
                                     </div>
                                 </td>
-
                             </tr>
                             <tr>
                                 <td colspan="3">
@@ -295,7 +288,6 @@ $form->prepare();
                                     <div class="controls controls-row">
                                         <?= $this->formElement($form->get('direccion')); ?><br><br> 
                                         <?= $this->formElementErrors($form->get('direccion')); ?>
-
                                     </div>
                                 </td>
                             </tr>
@@ -411,7 +403,7 @@ $form->prepare();
                                 </td>
                                 <td>
                                     <div class="controls">
-                                        
+                                        vcncv
                                     </div>
                                 </td>   
                             </tr>
