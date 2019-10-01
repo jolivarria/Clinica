@@ -31,7 +31,7 @@ class IngresoForm extends Form {
         $this->setAttribute('enctype', 'multipart/form-data');
         $this->setAttribute('class', 'form-horizontal');
         $this->setAttribute('id', 'form-ingreso');
-        $this->dbAdapter = $dbAdapter;
+//        $this->dbAdapter = $dbAdapter;
         $this->addElements();
         $this->addInputFilter();
     }
@@ -57,6 +57,43 @@ class IngresoForm extends Form {
             'options' => [
                 'label' => 'RFC:',
                 'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+        // Add validation rules for the "file" field.
+        $inputFilter->add([
+            'type' => 'Zend\InputFilter\FileInput',
+            'name' => 'file',
+            'required' => true,
+            'validators' => [
+                ['name' => 'fotoPaciente'],
+                [
+                    'name' => 'FileMimeType',
+                    'options' => [
+                        'mimeType' => ['image/jpeg', 'image/png']
+                    ]
+                ],
+                ['name' => 'FileIsImage'],
+                [
+                    'name' => 'FileImageSize',
+                    'options' => [
+                        'minWidth' => 128,
+                        'minHeight' => 128,
+                        'maxWidth' => 4096,
+                        'maxHeight' => 4096
+                    ]
+                ],
+            ],
+            'filters' => [
+                [
+                    'name' => 'FileRenameUpload',
+                    'options' => [
+                        'target' => './data/upload',
+                        'useUploadName' => true,
+                        'useUploadExtension' => true,
+                        'overwrite' => true,
+                        'randomize' => false
+                    ]
+                ]
             ],
         ]);
         // Add "nombrePaciente" field.
@@ -382,7 +419,7 @@ class IngresoForm extends Form {
             'type' => 'button',
             'name' => 'otros',
             'attributes' => [
-                'value'=>'otros',
+                'value' => 'otros',
             ],
             'options' => [
                 'label' => 'Otros',
@@ -394,7 +431,7 @@ class IngresoForm extends Form {
             'type' => 'text',
             'name' => 'otro',
             'attributes' => [
-                'value'=>'',
+                'value' => '',
             ],
             'options' => [
                 'label' => 'Otro',
@@ -445,7 +482,7 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'btn btn-info')
             ],
         ]);
-         // Add "dependencia paciente" field
+        // Add "dependencia paciente" field
         $this->add([
             'type' => 'Zend\Form\Element\Radio',
             'name' => 'dependencia',
@@ -461,7 +498,7 @@ class IngresoForm extends Form {
                 ],
             ],
         ]);
-         // Add "consecuencia paciente" field
+        // Add "consecuencia paciente" field
         $this->add([
             'type' => 'Zend\Form\Element\Radio',
             'name' => 'consecuencia',
@@ -477,7 +514,7 @@ class IngresoForm extends Form {
                 ],
             ],
         ]);
-         // Add "trastorno paciente" field
+        // Add "trastorno paciente" field
         $this->add([
             'type' => 'Zend\Form\Element\Radio',
             'name' => 'trastorno',
@@ -494,7 +531,7 @@ beneficiarse del tratamiento',
                 ],
             ],
         ]);
-         // Add "criteriosAdmision paciente" field
+        // Add "criteriosAdmision paciente" field
         $this->add([
             'type' => 'Zend\Form\Element\Radio',
             'name' => 'criteriosAdmision',
@@ -522,7 +559,7 @@ beneficiarse del tratamiento',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-         // Add "direccionFamiliar del paciente" field.
+        // Add "direccionFamiliar del paciente" field.
         $this->add([
             'type' => 'text',
             'name' => 'direccionFamiliar',
@@ -546,7 +583,7 @@ beneficiarse del tratamiento',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-         // Add "colonia del paciente" field.
+        // Add "colonia del paciente" field.
         $this->add([
             'type' => 'text',
             'name' => 'colonia',
@@ -558,7 +595,7 @@ beneficiarse del tratamiento',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-         // Add "municipioFamiliar del paciente" field.
+        // Add "municipioFamiliar del paciente" field.
         $this->add([
             'type' => 'text',
             'name' => 'municipioFamiliar',
@@ -612,8 +649,8 @@ beneficiarse del tratamiento',
                 'label_attributes' => ['class' => 'control-label']
             ],
         ]);
-        
-        
+
+
 
         // Add "parentesco" field
         $this->add([
@@ -631,7 +668,7 @@ beneficiarse del tratamiento',
                 'label_attributes' => array('class' => 'control-label')
             )
         ]);
-      
+
 
         // Add the submit button
         $this->add([
@@ -650,9 +687,6 @@ beneficiarse del tratamiento',
     private function addInputFilter() {
         $inputFilter = new InputFilter();
         $this->setInputFilter($inputFilter);
-//
-
-//
         $inputFilter->add([
             'name' => 'nombrePaciente',
             'required' => true,
@@ -684,285 +718,34 @@ beneficiarse del tratamiento',
                 ],
             ],
         ]);
+    }
+
+//    public function getMunicipios() {
+//        $sql = 'SELECT idmunicipios,municipio FROM municipios ORDER BY idmunicipios ASC';
+//        $statement = $this->dbAdapter->query($sql);
+//        $result = $statement->execute();
 //
-//            $inputFilter->add([
-//                'name' => 'fecha_nac',
-//                'required' => true,
-//                'filters' => [
-//                    ['name' => 'StringTrim'],
-//                    ['name' => 'StripTags'],
-//                    ['name' => 'StripNewlines'],
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'NotEmpty',
-//                        'options' => [
-//                            'messages' => [
-//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
-//                            ],
-//                        ],
-//                    ],
-//                    [
-//                        'name' => 'StringLength',
-//                        'options' => [
-//                            'min' => 10,
-//                            'max' => 10,
-//                            'messages' => [
-//                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
-//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
-//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 10, caracteres como máximo',
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]);
+//        $selectData = [];
 //
-//            // Add input for "password" field
-//            $inputFilter->add([
-//                'name' => 'password',
-//                'required' => true,
-//                'filters' => [
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'NotEmpty',
-//                        'options' => [
-//                            'messages' => [
-//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'No puede dejar vacío el campo password',
-//                            ],
-//                        ],
-//                    ],
-//                    [
-//                        'name' => 'StringLength',
-//                        'options' => [
-//                            'min' => 6,
-//                            'max' => 15,
-//                            'messages' => [
-//                                \Zend\Validator\StringLength::INVALID => 'No puede dejar vacío el campo password',
-//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 6, caracteres como mínimo',
-//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 15, caracteres como máximo',
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]);
-//
-//            // Add input for "confirm_password" field
-//            $inputFilter->add([
-//                'name' => 'confirm_password',
-//                'required' => true,
-//                'filters' => [
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'Identical',
-//                        'options' => [
-//                            'token' => 'password',
-//                            'messages' => [
-//                                \Zend\Validator\Identical::MISSING_TOKEN => 'La entrada no es una dirección de correo electrónico válida. Usa el formato básico local-part @ hostname',
-//                                \Zend\Validator\Identical::NOT_SAME => 'El campo password no corresponde',
-//                            ],
-//                        ],
-//                    ],
-//                    [
-//                        'name' => 'NotEmpty',
-//                        'options' => [
-//                            'messages' => [
-//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'No puede dejar vacío el campo confirmar password',
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]);
-//
-////            $inputFilter->add([
-////                'name'     => 'phone',
-////                'required' => true,
-////                'filters'  => [
-////                ],
-////                'validators' => [
-////                    [
-////                        'name'    => 'StringLength',
-////                        'options' => [
-////                            'min' => 3,
-////                            'max' => 32
-////                        ],
-////                    ],
-////                    [
-////                        'name' => PhoneValidator::class,
-////                        'options' => [
-////                            'format' => PhoneValidator::PHONE_FORMAT_INTL
-////                        ]
-////                    ],
-////                ],
-////            ]);
-//            // Add input for "street_address" field
-//            $inputFilter->add([
-//                'name' => 'street_address',
-//                'required' => true,
-//                'filters' => [
-//                    ['name' => 'StringTrim'],
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'NotEmpty',
-//                        'options' => [
-//                            'messages' => [
-//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco "Dirección"',
-//                            ],
-//                        ],
-//                    ],
-//                    [
-//                        'name' => 'StringLength',
-//                        'options' => [
-//                            'min' => 15,
-//                            'max' => 90,
-//                            'messages' => [
-//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 15 caracteres como minimo',
-//                                \Zend\Validator\StringLength::TOO_LONG => 'Dirección es muy largo 90 caracteres como maximo',
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]);
-//
-//            // Add input for "city" field
-//            $inputFilter->add([
-//                'name' => 'city',
-//                'required' => true,
-//                'filters' => [
-//                    ['name' => 'StringTrim'],
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'NotEmpty',
-//                        'options' => [
-//                            'messages' => [
-//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar ne blanco "Ciudad"',
-//                            ],
-//                        ],
-//                    ],
-//                    ['name' => 'StringLength',
-//                        'options' => [
-//                            'min' => 4,
-//                            'max' => 20,
-//                            'messages' => [
-//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 4 caracteres como minimo',
-//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 20 caracteres como maximo',
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]);
-//
-//            // Add input for "state" field
-//            $inputFilter->add([
-//                'name' => 'state',
-//                'required' => true,
-//                'filters' => [
-//                    ['name' => 'StringTrim'],
-//                ],
-//                'validators' => [
-//                    ['name' => 'StringLength', 'options' => ['min' => 1, 'max' => 32]]
-//                ],
-//            ]);
-//
-//            // Add input for "post_code" field
-//            $inputFilter->add([
-//                'name' => 'post_code',
-//                'required' => true,
-//                'filters' => [
-//                ],
-//                'validators' => [
-//                    ['name' => 'IsInt'],
-//                    ['name' => 'Between', 'options' => ['min' => 0, 'max' => 999999]]
-//                ],
-//            ]);
-//
-//            // Add input for "country" field
-//            $inputFilter->add([
-//                'name' => 'country',
-//                'required' => false,
-//                'filters' => [
-//                    ['name' => 'Alpha'],
-//                    ['name' => 'StringTrim'],
-//                    ['name' => 'StringToUpper'],
-//                ],
-//                'validators' => [
-//                    ['name' => 'StringLength', 'options' => ['min' => 2, 'max' => 2]]
-//                ],
-//            ]);
-//
-//            // Add input for "billing_plan" field
-//            $inputFilter->add([
-//                'name' => 'billing_plan',
-////                    'required' => true,
-//                'filters' => [
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'InArray',
-//                        'options' => [
-//                            'haystack' => [
-//                                'Free',
-//                                'Bronze',
-//                                'Silver',
-//                                'Gold',
-//                                'Platinum'
-//                            ]
-//                        ]
-//                    ]
-//                ],
-//            ]);
-//
-//            // Add input for "payment_method" field
-//            $inputFilter->add([
-//                'name' => 'payment_method',
-////                    'required' => true,
-//                'filters' => [
-//                ],
-//                'validators' => [
-//                    [
-//                        'name' => 'InArray',
-//                        'options' => [
-//                            'haystack' => [
-//                                'PayPal',
-//                                'Visa',
-//                                'MasterCard',
-//                            ]
-//                        ]
-//                    ]
-//                ],
-//            ]);
+//        foreach ($result as $res) {
+//            $selectData [$res['idmunicipios']] = $res['municipio'];
 //        }
-    }
+//
+//        return $selectData;
+//    }
 
-    public function getMunicipios() {
-        $sql = 'SELECT idmunicipios,municipio FROM municipios ORDER BY idmunicipios ASC';
-        $statement = $this->dbAdapter->query($sql);
-        $result = $statement->execute();
-
-        $selectData = [];
-
-        foreach ($result as $res) {
-            $selectData [$res['idmunicipios']] = $res['municipio'];
-        }
-
-        return $selectData;
-    }
-
-    public function getNacionalidad() {
-        $sql = 'SELECT idnacionalidad,nacionalidad FROM nacionalidad ORDER BY idnacionalidad ASC';
-        $statement = $this->dbAdapter->query($sql);
-        $result = $statement->execute();
-
-        $selectData = [];
-
-        foreach ($result as $res) {
-            $selectData [$res['nacionalidad']] = $res['nacionalidad'];
-        }
-
-        return $selectData;
-    }
+//    public function getNacionalidad() {
+//        $sql = 'SELECT idnacionalidad,nacionalidad FROM nacionalidad ORDER BY idnacionalidad ASC';
+//        $statement = $this->dbAdapter->query($sql);
+//        $result = $statement->execute();
+//
+//        $selectData = [];
+//
+//        foreach ($result as $res) {
+//            $selectData [$res['nacionalidad']] = $res['nacionalidad'];
+//        }
+//
+//        return $selectData;
+//    }
 
 }
