@@ -36,8 +36,7 @@ class SolicitudIngresoDao implements ISolicitudIngresoDao {
     }
 
     public function obtenerDetalle($RFC) {
-        $rowSet = $this->tableGateway->select(["RFC" => (string) $RFC]);          
-     
+        $rowSet = $this->tableGateway->select(["RFC" => (string) $RFC]);               
         return $rowSet;
     }
     public function obtenerDetalleConunt($RFC) {
@@ -63,15 +62,13 @@ class SolicitudIngresoDao implements ISolicitudIngresoDao {
     public function guardar(SolicitudIngreso $obj) {
         $data = [
             'RFC'               => $obj->getRFC(),
-            'folio'             =>$obj->getFolio(),
-            'operadora'         => $obj->getOperadora(),
             'nombrePaciente'    => $obj->getNombrePaciente(),
-            'tipoSolicitud'     => $obj->getTipoSolicitud(),
-            'municipio'         => $obj->getMunicipio(),
-            'domicilio'         => $obj->getDomicilio(),
-            'colonia'           => $obj->getColonia(),
             'sexo'              => $obj->getSexo(),
             'edad'              => $obj->getEdad(),
+            'tipoSolicitud'     => $obj->getTipoSolicitud(),
+            'domicilio'         => $obj->getDomicilio(),
+            'colonia'           => $obj->getColonia(),
+            'municipio'         => $obj->getMunicipio(),           
             'nombreFamiliar'    => $obj->getNombreFamiliar(),
             'parentesco'        => $obj->getParentesco(),
             'telefono'          => $obj->getTelefono(),

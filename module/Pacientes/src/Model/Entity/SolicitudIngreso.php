@@ -16,16 +16,14 @@ namespace Pacientes\Model\Entity;
 class SolicitudIngreso {
 
     private $idSolicitud; //int(11) AI PK 
-    private $RFC; // varchar(45) 
-    private $folio; //varchar(45)
-    private $operadora; //varchar(45);
+    private $RFC; //varchar(45)
     private $nombrePaciente; // varchar(45) 
-    private $tipoSolicitud; //enum('Foranea','Local')
-    private $municipio; //varchar(45)
-    private $domicilio; //varchar(45) 
-    private $colonia; //varchar(45)
     private $sexo; //enum('Hombre','Mujer') 
     private $edad; //int(11) 
+    private $tipoSolicitud; //enum('Foranea','Local
+    private $domicilio; //varchar(45) 
+    private $colonia; //varchar(45)
+    private $municipio; //varchar(45)        
     private $nombreFamiliar; //varchar(45) 
     private $parentesco; //varchar(45) 
     private $telefono; //varchar(45) 
@@ -36,29 +34,24 @@ class SolicitudIngreso {
     public function getIdSolicitud() {
         return $this->idSolicitud;
     }
-
     public function getRFC() {
         return $this->RFC;
-    }
-
-    public function getFolio() {
-        return $this->folio;
-    }
-
-    public function getOperadora() {
-        return $this->operadora;
     }
 
     public function getNombrePaciente() {
         return $this->nombrePaciente;
     }
 
-    public function getTipoSolicitud() {
-        return $this->tipoSolicitud;
+    public function getSexo() {
+        return $this->sexo;
     }
 
-    public function getMunicipio() {
-        return $this->municipio;
+    public function getEdad() {
+        return $this->edad;
+    }
+
+    public function getTipoSolicitud() {
+        return $this->tipoSolicitud;
     }
 
     public function getDomicilio() {
@@ -69,12 +62,8 @@ class SolicitudIngreso {
         return $this->colonia;
     }
 
-    public function getSexo() {
-        return $this->sexo;
-    }
-
-    public function getEdad() {
-        return $this->edad;
+    public function getMunicipio() {
+        return $this->municipio;
     }
 
     public function getNombreFamiliar() {
@@ -88,8 +77,8 @@ class SolicitudIngreso {
     public function getTelefono() {
         return $this->telefono;
     }
-    
-    public function getCosto(){
+
+    public function getCosto() {
         return $this->costo;
     }
 
@@ -104,29 +93,24 @@ class SolicitudIngreso {
     public function setIdSolicitud($idSolicitud) {
         $this->idSolicitud = $idSolicitud;
     }
-
     public function setRFC($RFC) {
-        $this->RFC = $RFC;
-    }
-
-    public function setFolio($folio) {
-        $this->folio = $folio;
-    }
-
-    public function setOperadora($operadora) {
-        $this->operadora = $operadora;
+        $this->idSolicitud = $RFC;
     }
 
     public function setNombrePaciente($nombrePaciente) {
         $this->nombrePaciente = $nombrePaciente;
     }
 
-    public function setTipoSolicitud($tipoSolicitud) {
-        $this->tipoSolicitud = $tipoSolicitud;
+    public function setSexo($sexo) {
+        $this->sexo = $sexo;
     }
 
-    public function setMunicipio($municipio) {
-        $this->municipio = $municipio;
+    public function setEdad($edad) {
+        $this->edad = $edad;
+    }
+
+    public function setTipoSolicitud($tipoSolicitud) {
+        $this->tipoSolicitud = $tipoSolicitud;
     }
 
     public function setDomicilio($domicilio) {
@@ -137,12 +121,8 @@ class SolicitudIngreso {
         $this->colonia = $colonia;
     }
 
-    public function setSexo($sexo) {
-        $this->sexo = $sexo;
-    }
-
-    public function setEdad($edad) {
-        $this->edad = $edad;
+    public function setMunicipio($municipio) {
+        $this->municipio = $municipio;
     }
 
     public function setNombreFamiliar($nombreFamiliar) {
@@ -156,7 +136,7 @@ class SolicitudIngreso {
     public function setTelefono($telefono) {
         $this->telefono = $telefono;
     }
-    
+
     public function setCosto($costo) {
         $this->costo = $costo;
     }
@@ -172,19 +152,17 @@ class SolicitudIngreso {
     public function exchangeArray($data) {
         $this->idSolicitud = (isset($data['idSolicitud'])) ? $data['idSolicitud'] : null;
         $this->RFC = (isset($data['RFC'])) ? $data['RFC'] : null;
-        $this->folio = (isset($data['folio'])) ? $data['folio'] : null;
-        $this->operadora = (isset($data['operadora'])) ? $data['operadora'] : null;
         $this->nombrePaciente = (isset($data['nombrePaciente'])) ? $data['nombrePaciente'] : null;
-        $this->tipoSolicitud = (isset($data['tipoSolicitud'])) ? $data['tipoSolicitud'] : null;
-        $this->municipio = (isset($data['municipio'])) ? $data['municipio'] : null;
-        $this->domicilio = (isset($data['domicilio'])) ? $data['domicilio'] : null;
-        $this->colonia = (isset($data['colonia'])) ? $data['colonia'] : null;
         $this->sexo = (isset($data['sexo'])) ? $data['sexo'] : null;
         $this->edad = (isset($data['edad'])) ? $data['edad'] : null;
+        $this->domicilio = (isset($data['domicilio'])) ? $data['domicilio'] : null;
+        $this->colonia = (isset($data['colonia'])) ? $data['colonia'] : null;
+        $this->tipoSolicitud = (isset($data['tipoSolicitud'])) ? $data['tipoSolicitud'] : null;
+        $this->municipio = (isset($data['municipio'])) ? $data['municipio'] : null;
         $this->nombreFamiliar = (isset($data['nombreFamiliar'])) ? $data['nombreFamiliar'] : null;
         $this->parentesco = (isset($data['parentesco'])) ? $data['parentesco'] : null;
         $this->telefono = (isset($data['telefono'])) ? $data['telefono'] : null;
-        $this->costo = (isset($data['costo'])) ? $data['costo'] : null;        
+        $this->costo = (isset($data['costo'])) ? $data['costo'] : null;
         $this->estado = (isset($data['estado'])) ? $data['estado'] : null;
         $this->fechaSolicitud = (isset($data['fechaSolicitud'])) ? $data['fechaSolicitud'] : null;
     }

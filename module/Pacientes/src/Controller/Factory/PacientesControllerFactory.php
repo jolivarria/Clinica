@@ -8,7 +8,7 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 use Pacientes\Controller\IngresoController;
 use Pacientes\Model\Dao\IIngresoDao;
 use Zend\Db\Adapter\AdapterInterface;
-use Pacientes\Form\IngresoForm;
+
 
 
 /**

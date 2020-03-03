@@ -33,7 +33,8 @@
             "Empleados\\": "module/Empleados/src/",
             "Expedientes\\": "module/Expedientes/src/",
             "Pacientes\\": "module/Pacientes/src/",
-            "DOMPDFModule\\": "module/DOMPDFModule/src/"
+            "DOMPDFModule\\": "module/DOMPDFModule/src/",
+            "Inventario\\": "module/Inventario/src/"
          
         }
     },

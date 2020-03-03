@@ -5,6 +5,7 @@ namespace Pacientes\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use Application\Validator\PhoneValidator;
+
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterAbstractServiceFactory;
@@ -31,8 +32,8 @@ class IngresoForm extends Form {
         $this->setAttribute('enctype', 'multipart/form-data');
         $this->setAttribute('class', 'form-horizontal');
         $this->setAttribute('id', 'form-ingreso');
-//        $this->dbAdapter = $dbAdapter;
-        $this->addElements();
+        $this->dbAdapter = $dbAdapter;
+        $this->addElements();      
         $this->addInputFilter();
     }
 
@@ -40,7 +41,6 @@ class IngresoForm extends Form {
      * This method adds elements to form (input fields and submit button).
      */
     protected function addElements() {
-
         // Add "idEmpleado" field.
         $this->add([
             'type' => 'hidden',
@@ -60,42 +60,42 @@ class IngresoForm extends Form {
             ],
         ]);
         // Add validation rules for the "file" field.
-        $inputFilter->add([
-            'type' => 'Zend\InputFilter\FileInput',
-            'name' => 'file',
-            'required' => true,
-            'validators' => [
-                ['name' => 'fotoPaciente'],
-                [
-                    'name' => 'FileMimeType',
-                    'options' => [
-                        'mimeType' => ['image/jpeg', 'image/png']
-                    ]
-                ],
-                ['name' => 'FileIsImage'],
-                [
-                    'name' => 'FileImageSize',
-                    'options' => [
-                        'minWidth' => 128,
-                        'minHeight' => 128,
-                        'maxWidth' => 4096,
-                        'maxHeight' => 4096
-                    ]
-                ],
-            ],
-            'filters' => [
-                [
-                    'name' => 'FileRenameUpload',
-                    'options' => [
-                        'target' => './data/upload',
-                        'useUploadName' => true,
-                        'useUploadExtension' => true,
-                        'overwrite' => true,
-                        'randomize' => false
-                    ]
-                ]
-            ],
-        ]);
+//        $inputFilter->add([
+//            'type' => 'Zend\InputFilter\FileInput',
+//            'name' => 'file',
+//            'required' => true,
+//            'validators' => [
+//                ['name' => 'fotoPaciente'],
+//                [
+//                    'name' => 'FileMimeType',
+//                    'options' => [
+//                        'mimeType' => ['image/jpeg', 'image/png']
+//                    ]
+//                ],
+//                ['name' => 'FileIsImage'],
+//                [
+//                    'name' => 'FileImageSize',
+//                    'options' => [
+//                        'minWidth' => 128,
+//                        'minHeight' => 128,
+//                        'maxWidth' => 4096,
+//                        'maxHeight' => 4096
+//                    ]
+//                ],
+//            ],
+//            'filters' => [
+//                [
+//                    'name' => 'FileRenameUpload',
+//                    'options' => [
+//                        'target' => './data/upload',
+//                        'useUploadName' => true,
+//                        'useUploadExtension' => true,
+//                        'overwrite' => true,
+//                        'randomize' => false
+//                    ]
+//                ]
+//            ],
+//        ]);
         // Add "nombrePaciente" field.
         $this->add([
             'type' => 'text',
@@ -720,32 +720,32 @@ beneficiarse del tratamiento',
         ]);
     }
 
-//    public function getMunicipios() {
-//        $sql = 'SELECT idmunicipios,municipio FROM municipios ORDER BY idmunicipios ASC';
-//        $statement = $this->dbAdapter->query($sql);
-//        $result = $statement->execute();
-//
-//        $selectData = [];
-//
-//        foreach ($result as $res) {
-//            $selectData [$res['idmunicipios']] = $res['municipio'];
-//        }
-//
-//        return $selectData;
-//    }
+    public function getMunicipios() {
+        $sql = 'SELECT idmunicipios,municipio FROM municipios ORDER BY idmunicipios ASC';
+        $statement = $this->dbAdapter->query($sql);
+        $result = $statement->execute();
 
-//    public function getNacionalidad() {
-//        $sql = 'SELECT idnacionalidad,nacionalidad FROM nacionalidad ORDER BY idnacionalidad ASC';
-//        $statement = $this->dbAdapter->query($sql);
-//        $result = $statement->execute();
-//
-//        $selectData = [];
-//
-//        foreach ($result as $res) {
-//            $selectData [$res['nacionalidad']] = $res['nacionalidad'];
-//        }
-//
-//        return $selectData;
-//    }
+        $selectData = [];
+
+        foreach ($result as $res) {
+            $selectData [$res['idmunicipios']] = $res['municipio'];
+        }
+
+        return $selectData;
+    }
+
+    public function getNacionalidad() {
+        $sql = 'SELECT idnacionalidad,nacionalidad FROM nacionalidad ORDER BY idnacionalidad ASC';
+        $statement = $this->dbAdapter->query($sql);
+        $result = $statement->execute();
+
+        $selectData = [];
+
+        foreach ($result as $res) {
+            $selectData [$res['nacionalidad']] = $res['nacionalidad'];
+        }
+
+        return $selectData;
+    }
 
 }

@@ -8,16 +8,7 @@ $form->get('RFC')->setAttributes([
     'placeholder' => 'RFC'
 ]);
 
-$form->get('folio')->setAttributes([
-    'class' => 'span3',
-    'placeholder' => '000000'
-]);
 
-
-$form->get('operadora')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => 'Operadora 911',
-]);
 
 $form->get('nombrePaciente')->setAttributes([
     'class' => 'span5 m-wrap',
@@ -105,29 +96,7 @@ $form->prepare();
                             <div class="hint">
                                 (RFC Paciente)</div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('folio')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('folio')); ?>
-                            <?= $this->formElementErrors($form->get('folio')); ?>
-                            <div id="cargando">
-                            </div>
-                            <div class="hint">
-                                (Folio 911)</div>
-                        </div>
-                    </div> 
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('operadora')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('operadora')); ?>
-                            <?= $this->formElementErrors($form->get('operadora')); ?>
-                            <div id="cargando">
-                            </div>
-                            <div class="hint">
-                                (Operadora 911)</div>
-                        </div>
-                    </div> 
+                    </div>                    
                     <div class="control-group">
                         <?= $this->formLabel($form->get('nombrePaciente')); ?>
                         <div class="controls">                

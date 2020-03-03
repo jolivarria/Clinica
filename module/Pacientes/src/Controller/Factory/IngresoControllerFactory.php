@@ -13,7 +13,7 @@ use Pacientes\Model\Dao\ISolicitudIngresoDao;
  * This is the factory for RegistrationController. Its purpose is to instantiate the
  * controller and inject dependencies into it.
  */
-class PacientesControllerFactory implements FactoryInterface {
+class IngresoControllerFactory implements FactoryInterface {
 
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null) {
         $controller = null;

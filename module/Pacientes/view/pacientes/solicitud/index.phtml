@@ -7,17 +7,16 @@
 <div class="container-fluid">                 
     <hr>
     <?PHP
-
     echo $this->flashMessenger()
-        ->setMessageOpenFormat('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h1>El registro se ha Guardado!</h1>')
-        ->setMessageSeparatorString('<p></p>')
-        ->setMessageCloseString('</div>')
-        ->render('success');
-?>
+            ->setMessageOpenFormat('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h1>El registro se ha Guardado!</h1>')
+            ->setMessageSeparatorString('<p></p>')
+            ->setMessageCloseString('</div>')
+            ->render('success');
+    ?>
     <?php
     echo $this->controlador;
     ?>
-    <a class="btn btn-info" href="<?=$this->url('solicitud-nuevo')?>"><i class="icon-plus-sign"></i> Nuevo</a>
+    <a class="btn btn-info" href="<?= $this->url('solicitud-nuevo') ?>"><i class="icon-plus-sign"></i> Nuevo</a>
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
@@ -26,11 +25,12 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>R.F.C</th>
+                        <th>RFC</th>
                         <th>Solicitante</th>
                         <th>Domicilio</th>
                         <th>Edad</th>                        
-                        <th>Familiar</th>                        
+                        <th>Familiar</th> 
+                        <th>Teléfono</th> 
                         <th>Estado</th>
                         <th>Acción</th>
                     </tr>
@@ -42,13 +42,22 @@
                             <td><?= $obj->getNombrePaciente() ?></td>
                             <td><?= $obj->getDomicilio() ?></td>
                             <td><?= $obj->getEdad() ?></td>
-                            <td><?= $obj->getNombreFamiliar() ?></td>                            
-                            <td><?= $obj->getEstado() ?> <img src="<?= $this->basePath('img/icons/16/calendar.png') ?>" ></td>
+                            <td><?= $obj->getNombreFamiliar() ?></td> 
+                            <td><?= $obj->getTelefono() ?></td> 
+                            <td><?= $estado = ($obj->getEstado() == 1) ? '<i class="icon-ok"></i>' : '<i class="icon-remove-sign"></i>' ?></td>
                             <td>
-                                <a class="btn btn-primary" title="Editar solicitud" href="<?= $this->url('solicitud-modificar')?><?= '/'.$obj->getIdSolicitud() ?>"><i class="icon-edit"></i> </a>
-                                <a class="btn btn-info" title="Detalle solicitud" href="<?= $this->url('solicitud-detalle')?><?= '/'.$obj->getIdSolicitud() ?><?= '/'.$obj->getRFC() ?>"><i class="icon-desktop"></i> </a>
+                                <a class="btn btn-primary" title="Editar solicitud" href="<?= $this->url('solicitud-modificar') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-edit"></i></a>
+                                <?php
+                                if($obj->getEstado() == 1) { ?>
+                                    <a class="btn btn" title="Ver reporte solicitud" href="<?= $this->url('solicitud-detallerpt') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-list-alt"></i></a>                                
+                                <?php
+                                } else {?>
+                                    <a class="btn btn-inverse" title="Nuevo reporte" href="<?= $this->url('solicitud-reporte') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-list-alt"></i></a>
+                                <?php
+                                }
+                                ?>                                
                                 <a class="btn btn-danger" title="Eliminar solicitud" href="#" ><i class="icon-remove"></i> </a>
-                                
+
                         </tr>
                     <?php endforeach; ?>
 

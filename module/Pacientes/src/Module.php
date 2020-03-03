@@ -16,7 +16,15 @@ use Pacientes\Model\Dao\ISolicitudIngresoDao;
 use Pacientes\Model\Dao\SolicitudIngresoDao;
 use Pacientes\Model\Entity\Ingreso;
 use Pacientes\Model\Dao\IIngresoDao;
-use Pacientes\Model\Dao\IngresoDao;
+
+use Pacientes\Model\Entity\Reporte;
+use Pacientes\Model\Dao\ReporteDao;
+use Pacientes\Model\Dao\IReporteDao;
+
+use Pacientes\Model\Entity\Vehiculo;
+use Pacientes\Model\Dao\VehiculoDao;
+use Pacientes\Model\Dao\IVehiculosDao;
+
 
 class Module {
 
@@ -50,7 +58,29 @@ class Module {
                     $tableGateway = $sm->get('IngresoTableGateway');
                     $dao = new SolicitudIngresoDao($tableGateway);
                     return $dao;
-                }, 
+                },
+                'ReporteDao' => function ($sm) {
+                    $dbAdapter = $sm->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Reporte());
+                    return new TableGateway('reporte911', $dbAdapter, null, $resultSetPrototype);
+                },
+                IReporteDao::class => function ($sm) {
+                    $tableGateway = $sm->get('ReporteDao');
+                    $dao = new ReporteDao($tableGateway);
+                    return $dao;
+                },
+                'VehiculoDao' => function ($sm) {
+                    $dbAdapter = $sm->get(AdapterInterface::class);
+                    $resultSetPrototype = new ResultSet();
+                    $resultSetPrototype->setArrayObjectPrototype(new Vehiculo());
+                    return new TableGateway('vehiculos', $dbAdapter, null, $resultSetPrototype);
+                },
+                IVehiculosDao::class => function ($sm) {
+                    $tableGateway = $sm->get('VehiculoDao');
+                    $dao = new VehiculoDao($tableGateway);
+                    return $dao;
+                },
             ],
         ];
     }

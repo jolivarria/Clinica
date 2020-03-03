@@ -27,4 +27,5 @@ return [
     'Pacientes',
     'DOMPDFModule',
     'Takeoo\Pdf',
+    'Inventario',
 ];

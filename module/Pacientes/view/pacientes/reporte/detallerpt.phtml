@@ -1,0 +1,47 @@
+<h5 align="right">Hermosillo, Sonora Fecha: <?= $this->fecha ?><br>Clinica Renovaciòn Blvd. Agustìn de Vildosola Num. 178<br>entre Antonia Ruiz y Cruz Glàvez Col. Piedra Bola</h5>
+<h3 align="center">AUTORIZACIÒN FAMILIAR DE TRASLADO</h3>
+
+<p align="justify">
+    Por medio del presente documento hago de su conocimiento a todas las autoridades del ámbito municipal, estatal y federal que la Sra./Sr. <strong><?= $this->responsable ?></strong> me autoriza trasladar a su familiar que lleva por nombre <strong><?= $this->paciente ?></strong> de <?= $this->edad ?> años de edad, de sus domicilio que esta ubicado en <strong><?= $this->domicilio ?> en <?= $this->colonia ?> </strong> a la clínica de tratamiento contra las adiciones Renovación que está ubicada en Hermosillo, Sonora México con la dirección Blvd. Agustín de Vildosola #178 entre Antonia Ruiz y Cruz Gálvez Col. Pedregal de la Villa, con la finalidad de poder ser atendido con un tratamiento terapéutico contra las adicciones.
+    es importante hacer menciòn que dicho documento de autorizaciòn esta reportado al 911 quien tambièn autoriza el traslado mediante el folio <strong><?= $this->folio ?></strong> y operadora <strong><?= $this->operadora ?></strong>y anexo credencial oficila del familiar quedando legal mente soportado dicho traslado.
+</p>
+<table style=" border: black  2px solid;">
+    <tbody>
+        <tr>
+            <td>Nombre del paciente: <?= $this->paciente ?></td>
+            <td><?= $this->paciente ?></td>
+        </tr>
+        <tr>
+            <td><h5>Sexo: <?= $this->folio ?> Edad:  <?= $this->operadora ?></h5></td>
+        </tr>
+        <tr>
+            <td><h5>Responsable: <?= $this->fecha ?></h5> Parentesco: <?= $this->domicilio ?></td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td><strong>Teléfono Cel.: +</strong></td>
+        </tr>
+        <tr>
+            <td>Direccion: <strong><?= $this->colonia ?></strong> <br>
+                , <br></td>
+        </tr>
+    </tbody>
+</table>
+<h3 align="center">Atentamente</h3><br><br>
+<h3 align="center">__________________________________________<br><?= $this->paciente ?></h3>
+
+<?= $this->basePath('/img/icons/16/calendar.png') ?>
+<img src="<?= $this->basePath('/img/icons/16/calendar.png') ?>" >
+
+     
+<!--        <div class="pull-right">
+            <h4><span>Costo Solicitud:</span></h4>
+            <br>
+            <a class="btn btn-primary btn-large pull-right" href="<?= $this->url('solicitud-detallerpt') ?>">Export PDF</a> </div>
+
+    </div>
+</div>
+</div>
+</div>  -->

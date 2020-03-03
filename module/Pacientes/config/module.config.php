@@ -13,6 +13,7 @@ use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Pacientes\Controller\Factory\PacientesControllerFactory;
 use Pacientes\Controller\Factory\SolicitudControllerFactory;
+use Pacientes\Controller\Factory\ReporteControllerFactory;
 
 return [
     'router' => [
@@ -108,6 +109,20 @@ return [
                     ],
                 ],
             ],
+            'reporte-obtenercarro' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/solicitud/reporte[/:id]',
+                    'constraints' => [
+                        'id' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\ReporteController::class,
+                        'action' => 'obtenercarro',
+                    ],
+                ],
+            ],
+            
             'solicitud-detalle' => [
                 'type' => Segment::class,
                 'options' => [
@@ -131,7 +146,7 @@ return [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
-                        'controller' => Controller\SolicitudController::class,
+                        'controller' => Controller\ReporteController::class,
                         'action' => 'detallerpt',
                     ],
                 ],
@@ -149,6 +164,21 @@ return [
                     ],
                 ],
             ],
+            'solicitud-reporte' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/solicitud/reporte[/:action][/:id][/:idReporte]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]',
+                        'idReporte' => '[0-9]',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\ReporteController::class,
+                        'action' => 'reporte',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -156,6 +186,7 @@ return [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\IngresoController::class => PacientesControllerFactory::class,
             Controller\SolicitudController::class => SolicitudControllerFactory::class,
+            Controller\ReporteController::class => ReporteControllerFactory::class,
         ],
     ],
     'session_containers' => [
@@ -171,6 +202,8 @@ return [
             'pacientes/index/index' => __DIR__ . '/../view/pacientes/index/index.phtml',
             'pacientes/ingreso/index' => __DIR__ . '/../view/pacientes/ingreso/index.phtml',
             'pacientes/solicitud/index' => __DIR__ . '/../view/pacientes/solicitud/index.phtml',
+            'pacientes/reporte/index' => __DIR__ . '/../view/pacientes/reporte/index.phtml',
+           
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

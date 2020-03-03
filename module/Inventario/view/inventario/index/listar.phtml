@@ -1,0 +1,12 @@
+<div class="row">
+  <?= $this->titulo ?>
+    
+    <table class="table table-bordered table-hover">
+        <?php foreach ($this->productos as $key => $value): ?>
+        <tr>
+            <td><?= $key; ?></td>
+            <td><?= $value; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

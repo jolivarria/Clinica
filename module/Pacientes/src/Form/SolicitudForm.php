@@ -46,7 +46,7 @@ class SolicitudForm extends Form {
                 'name' => 'idSolicitud',
             ]);
 
-            // Add "RFC" field.
+//            // Add "RFC" field.
             $this->add([
                 'type' => 'text',
                 'name' => 'RFC',
@@ -61,39 +61,39 @@ class SolicitudForm extends Form {
                 ],
             ]);
             // Add "folio" field.
-            $this->add([
-                'type' => 'text',
-                'name' => 'folio',                
-                'attributes' => [
-                    'id' => 'folio',
-                    'maxlength' => '10',
-                    'required' => true,
-                    'pattern'=>'[0-9]{10}',
-                ],
-                'options' => [
-                    'label' => 'Folio:',
-                    'label_attributes' => array('class' => 'control-label')
-                ],
-            ]);
+//            $this->add([
+//                'type' => 'text',
+//                'name' => 'folio',                
+//                'attributes' => [
+//                    'id' => 'folio',
+//                    'maxlength' => '10',
+//                    'required' => true,
+//                    'pattern'=>'[0-9]{10}',
+//                ],
+//                'options' => [
+//                    'label' => 'Folio:',
+//                    'label_attributes' => array('class' => 'control-label')
+//                ],
+//            ]);
             // Add "operadora" field.
-            $this->add([
-                'type' => 'text',
-                'name' => 'operadora',
-                'required' => true,
-                'attributes' => [
-                    'id' => 'operadora',
-                    'maxlength' => '10',
-                    'pattern'=>'[A-Za-z]{10}',
-                ],
-                'options' => [
-                    'label' => 'Operadora:',
-                    'label_attributes' => array('class' => 'control-label')
-                ],
-            ]);
+//            $this->add([
+//                'type' => 'text',
+//                'name' => 'operadora',
+//                'required' => true,
+//                'attributes' => [
+//                    'id' => 'operadora',
+//                    'maxlength' => '10',
+//                    'pattern'=>'[A-Za-z]{10}',
+//                ],
+//                'options' => [
+//                    'label' => 'Operadora:',
+//                    'label_attributes' => array('class' => 'control-label')
+//                ],
+//            ]);
             // Add "nombrePaciente" field.
             $this->add([
                 'type' => 'text',
-                'name' => 'nombrePaciente',                
+                'name' => 'nombrePaciente',
                 'attributes' => [
                     'id' => 'nombrePaciente',
                     'required' => true,
@@ -161,6 +161,8 @@ class SolicitudForm extends Form {
                         'Tía/Tío' => 'Tía/Tío',
                         'Abuela/Abuelo' => 'Abuela/Abuelo',
                         'Hermano/Hermana' => 'Hermano/Hermana',
+                        'Amigo/Amiga' => 'Amigo/Amiga',
+                        'Conocido/Conocida' => 'Conocido/Conocida'
                     ],
                     'label_attributes' => array('class' => 'control-label')
                 )
@@ -211,21 +213,6 @@ class SolicitudForm extends Form {
                 ],
             ]);
 
-            $this->add([
-                'type' => 'text',
-                'name' => 'municipio',
-                'class' => 'control-label',
-                'attributes' => [
-                    'id' => 'municipio',
-                    'required' => true,
-                 
-                ],
-                'options' => [
-                    'label' => 'Municipio:',
-                    'label_attributes' => ['class' => 'control-label']
-                ],
-            ]);
-
             // Add "domicilio" field
             $this->add([
                 'type' => 'text',
@@ -249,6 +236,20 @@ class SolicitudForm extends Form {
                 ],
                 'options' => [
                     'label' => 'Colonia:',
+                    'label_attributes' => ['class' => 'control-label']
+                ],
+            ]);
+
+            $this->add([
+                'type' => 'text',
+                'name' => 'municipio',
+                'class' => 'control-label',
+                'attributes' => [
+                    'id' => 'municipio',
+                    'required' => true,
+                ],
+                'options' => [
+                    'label' => 'Municipio:',
                     'label_attributes' => ['class' => 'control-label']
                 ],
             ]);
@@ -276,116 +277,116 @@ class SolicitudForm extends Form {
         $this->setInputFilter($inputFilter);
 //
         if ($step == 1) {
-            $inputFilter->add([
-                'name' => 'RFC',
-                'required' => true,
-                'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
-                    ['name' => 'StripNewlines'],
-                    ['name' => 'StringToUpper'],
-                ],
-                'validators' => [
-                    [
-                        'name' => 'NotEmpty',
-                        'options' => [
-                            'messages' => [
-                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => CURPValidator::class,
-                        'options' => [
-                            'format' => CURPValidator::CURP_FORMAT
-                        ],
-                    ],
-                    [
-                        'name' => 'StringLength',
-                        'options' => [
-                            'min' => 10,
-                            'max' => 10,
-                            'messages' => [
-                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
-                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
-                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 10, caracteres como máximo',
-                            ],
-                        ],
-                    ],
-                ],
-            ]);
-            $inputFilter->add([
-                'name' => 'folio',
-                'required' => true,
-                'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
-                    ['name' => 'StripNewlines'],
-                    ['name' => 'StringToUpper'],
-                ],
-                'validators' => [
-                    [
-                        'name' => 'NotEmpty',
-                        'options' => [
-                            'messages' => [
-                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'StringLength',
-                        'options' => [
-                            'min' => 5,
-                            'max' => 10,
-                            'messages' => [
-                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
-                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 5, caracteres como mínimo',
-                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 10, caracteres como máximo',
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'IsFloat',
-                        'options' => [
-                            'messages' => [
-                                \Zend\I18n\Validator\IsFloat::INVALID => 'La entrda debe de ser numero',
-                                \Zend\I18n\Validator\IsFloat::NOT_FLOAT => 'La entrda debe de ser numero',
-                            ],
-                        ],
-                    ],
-                ],
-            ]);
-            $inputFilter->add([
-                'name' => 'operadora',
-                'required' => true,
-                'filters' => [
-                    ['name' => 'StringTrim'],
-                    ['name' => 'StripTags'],
-                    ['name' => 'StripNewlines'],
-                ],
-                'validators' => [
-                    [
-                        'name' => 'NotEmpty',
-                        'options' => [
-                            'messages' => [
-                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
-                            ],
-                        ],
-                    ],
-                    [
-                        'name' => 'StringLength',
-                        'options' => [
-                            'min' => 10,
-                            'max' => 50,
-                            'messages' => [
-                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
-                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
-                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 50, caracteres como máximo',
-                            ],
-                        ],
-                    ],
-                ],
-            ]);
+//            $inputFilter->add([
+//                'name' => 'RFC',
+//                'required' => true,
+//                'filters' => [
+//                    ['name' => 'StringTrim'],
+//                    ['name' => 'StripTags'],
+//                    ['name' => 'StripNewlines'],
+//                    ['name' => 'StringToUpper'],
+//                ],
+//                'validators' => [
+//                    [
+//                        'name' => 'NotEmpty',
+//                        'options' => [
+//                            'messages' => [
+//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
+//                            ],
+//                        ],
+//                    ],
+//                    [
+//                        'name' => CURPValidator::class,
+//                        'options' => [
+//                            'format' => CURPValidator::CURP_FORMAT
+//                        ],
+//                    ],
+//                    [
+//                        'name' => 'StringLength',
+//                        'options' => [
+//                            'min' => 10,
+//                            'max' => 10,
+//                            'messages' => [
+//                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
+//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
+//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 10, caracteres como máximo',
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//            ]);
+//            $inputFilter->add([
+//                'name' => 'folio',
+//                'required' => true,
+//                'filters' => [
+//                    ['name' => 'StringTrim'],
+//                    ['name' => 'StripTags'],
+//                    ['name' => 'StripNewlines'],
+//                    ['name' => 'StringToUpper'],
+//                ],
+//                'validators' => [
+//                    [
+//                        'name' => 'NotEmpty',
+//                        'options' => [
+//                            'messages' => [
+//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
+//                            ],
+//                        ],
+//                    ],
+//                    [
+//                        'name' => 'StringLength',
+//                        'options' => [
+//                            'min' => 5,
+//                            'max' => 10,
+//                            'messages' => [
+//                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
+//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 5, caracteres como mínimo',
+//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 10, caracteres como máximo',
+//                            ],
+//                        ],
+//                    ],
+//                    [
+//                        'name' => 'IsFloat',
+//                        'options' => [
+//                            'messages' => [
+//                                \Zend\I18n\Validator\IsFloat::INVALID => 'La entrda debe de ser numero',
+//                                \Zend\I18n\Validator\IsFloat::NOT_FLOAT => 'La entrda debe de ser numero',
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//            ]);
+//            $inputFilter->add([
+//                'name' => 'operadora',
+//                'required' => true,
+//                'filters' => [
+//                    ['name' => 'StringTrim'],
+//                    ['name' => 'StripTags'],
+//                    ['name' => 'StripNewlines'],
+//                ],
+//                'validators' => [
+//                    [
+//                        'name' => 'NotEmpty',
+//                        'options' => [
+//                            'messages' => [
+//                                \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
+//                            ],
+//                        ],
+//                    ],
+//                    [
+//                        'name' => 'StringLength',
+//                        'options' => [
+//                            'min' => 10,
+//                            'max' => 50,
+//                            'messages' => [
+//                                \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
+//                                \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
+//                                \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 50, caracteres como máximo',
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//            ]);
             $inputFilter->add([
                 'name' => 'nombrePaciente',
                 'required' => true,
@@ -414,7 +415,7 @@ class SolicitudForm extends Form {
                                 \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 50, caracteres como máximo',
                             ],
                         ],
-                    ],                   
+                    ],
                 ],
             ]);
 
@@ -545,7 +546,7 @@ class SolicitudForm extends Form {
                                 \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 2, caracteres como máximo',
                             ],
                         ],
-                    ],                    
+                    ],
                     [
                         'name' => 'IsFloat',
                         'options' => [
@@ -574,7 +575,6 @@ class SolicitudForm extends Form {
                             ],
                         ],
                     ],
-
                 ],
             ]);
 //

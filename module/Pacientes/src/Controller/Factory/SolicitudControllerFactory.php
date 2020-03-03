@@ -8,6 +8,8 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 use Pacientes\Controller\SolicitudController;
 use Pacientes\Model\Dao\ISolicitudIngresoDao;
 
+
+
 /**
  * This is the factory for RegistrationController. Its purpose is to instantiate the
  * controller and inject dependencies into it.

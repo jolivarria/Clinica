@@ -51,19 +51,9 @@ class SolicitudController extends AbstractActionController {
         }
 
         $form = new SolicitudForm(1);
-        // Check if user has submitted the form
-        if ($this->request->getPost("submit")) {
-
+        if ($this->getRequest()->isPost()) {
             // Fill in the form with POST data
-            // Make certain to merge the files info!
-            $request = $this->getRequest();
-            $data = array_merge_recursive(
-                    $request->getPost()->toArray(), $request->getFiles()->toArray()
-            );
-
-
-            //$data = $this->params()->fromPost();
-
+            $data = $this->params()->fromPost();
             $form->setData($data);
             // Validate form
             if ($form->isValid()) {
@@ -161,7 +151,6 @@ class SolicitudController extends AbstractActionController {
     }
 
     public function detallerptAction() {
-
         $id = $this->params()->fromRoute("id", null);
         $obj = $this->objSolicitud->obtnerID($id);
 
@@ -183,13 +172,12 @@ class SolicitudController extends AbstractActionController {
         return $pdf;
     }
 
-    public function pdfAction() {
-        $pdfCreator = $serviceManager->get('PdfCreator');
-        $pdfCreator->setLayoutTemplate('layout/pdf')
-                ->createHtml('view', ['variable1' => $variable1Value])
-                ->setPdfFileName('./../file.pdf')
-                ->setHasXvfb(false)
-                ->output();
-    }
-
+//    public function pdfAction() {
+//        $pdfCreator = $serviceManager->get('PdfCreator');
+//        $pdfCreator->setLayoutTemplate('layout/pdf')
+//                ->createHtml('view', ['variable1' => $variable1Value])
+//                ->setPdfFileName('./../file.pdf')
+//                ->setHasXvfb(false)
+//                ->output();
+//    }
 }
