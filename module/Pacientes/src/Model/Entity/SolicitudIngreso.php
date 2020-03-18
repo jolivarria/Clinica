@@ -19,6 +19,7 @@ class SolicitudIngreso {
     private $RFC; //varchar(45)
     private $nombrePaciente; // varchar(45) 
     private $sexo; //enum('Hombre','Mujer') 
+    private $fechaNac; //date 
     private $edad; //int(11) 
     private $tipoSolicitud; //enum('Foranea','Local
     private $domicilio; //varchar(45) 
@@ -46,6 +47,10 @@ class SolicitudIngreso {
         return $this->sexo;
     }
 
+    public function getFechaNac(){
+        return $this->fechaNac;
+    }
+    
     public function getEdad() {
         return $this->edad;
     }
@@ -105,6 +110,10 @@ class SolicitudIngreso {
         $this->sexo = $sexo;
     }
 
+    public function setFechaNac($fechaNac) {
+        $this->fechaNac = $fechaNac;
+    }
+    
     public function setEdad($edad) {
         $this->edad = $edad;
     }
@@ -154,6 +163,7 @@ class SolicitudIngreso {
         $this->RFC = (isset($data['RFC'])) ? $data['RFC'] : null;
         $this->nombrePaciente = (isset($data['nombrePaciente'])) ? $data['nombrePaciente'] : null;
         $this->sexo = (isset($data['sexo'])) ? $data['sexo'] : null;
+        $this->fechaNac = (isset($data['fechaNac'])) ? $data['fechaNac'] : null;
         $this->edad = (isset($data['edad'])) ? $data['edad'] : null;
         $this->domicilio = (isset($data['domicilio'])) ? $data['domicilio'] : null;
         $this->colonia = (isset($data['colonia'])) ? $data['colonia'] : null;

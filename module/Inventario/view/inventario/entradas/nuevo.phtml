@@ -1,31 +1,29 @@
 <?php
 $form = $this->form;
 
-$form->get('idproductos');
+$form->get('identradas');
 
-$form->get('codigo')->setAttributes([
-    'class' => 'span3',
-    'placeholder' => 'Código'
-]);
-
-$form->get('nombre')->setAttributes([
-    'class' => 'span5 m-wrap',
-    'placeholder' => 'Nombre',
-]);
-
-$form->get('unidadMedida')->setAttributes([
-    'class' => 'control-label',
+$form->get('productos_idproductos')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'style' => '',
+    'id' => 'productos_idproductos',
     'placeholder' => ''
 ]);
 
-$form->get('precio')->setAttributes([
-    'class' => 'span2',
-    'placeholder' => '00.00'
+$form->get('cantidadMinima')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => '00'
 ]);
 
-$form->get('descripcion')->setAttributes([
-    'class' => 'span5',
-    'placeholder' => 'Descripción'
+$form->get('cantidad')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => '00'
+]);
+
+
+$form->get('precio')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => '00.00'
 ]);
 
 $form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
@@ -33,7 +31,7 @@ $form->prepare();
 ?>
 
 <div id="content-header">
-    <div id="breadcrumb"> <a href="<?= $this->url('home'); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes'); ?>">Inventario</a> <a href="#" class="current">Nuevo Producto</a> </div>
+    <div id="breadcrumb"> <a href="<?= $this->url('home'); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes'); ?>">Inventario</a> <a href="#" class="current">Nueva entrada de producto</a> </div>
     <h1><?= $this->titulo; ?></h1>
 </div>
 
@@ -41,38 +39,27 @@ $form->prepare();
     <div id="message-text"></div>
     <hr>
     <div class="row-fluid">
+
         <div class="span12">
             <div class="widget-box">
+                <div id="message-text">
+                    <div id="cargando">
+                    </div>
+                </div>
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Nuevo producto del Inventario</h5>
+                    <h5>Entradas de producto al inventario </h5>
                 </div>
                 <div class="widget-content nopadding">
                     <?= $this->form()->openTag($form); ?>
                     <div class="control-group">
-                        <?= $this->formLabel($form->get('codigo')); ?>
+                        <?= $this->formLabel($form->get('productos_idproductos')); ?>
                         <div class="controls">                
-                            <?= $this->formElement($form->get('codigo')); ?> 
-                            <?= $this->formElementErrors($form->get('codigo')); ?>                          
-                            <div class="hint">
-                                (Código del Producto)</div>
-                            </div>
+                            <?= $this->formElement($form->get('productos_idproductos')); ?> 
+                            <?= $this->formElementErrors($form->get('productos_idproductos')); ?>                          
+                            
+                        </div>
                     </div>
-                    <div class="control-group">
-                        <?= $this->formLabel($form->get('nombre')); ?>
-                        <div class="controls">                
-                            <?= $this->formElement($form->get('nombre')); ?>
-                            <?= $this->formElementErrors($form->get('nombre')); ?>
 
-                        </div>
-                    </div> 
-                    <div class="control-group">                       
-                        <label class="control-label">Sexo paciente:</label>
-                        <div class="controls">                             
-                            <?= $this->formElement($form->get('unidadMedida')); ?>
-                            <?= $this->formElementErrors($form->get('unidadMedida')); ?>
-
-                        </div>
-                    </div> 
                     <div class="control-group">
                         <?= $this->formLabel($form->get('precio')); ?>
                         <div class="controls">                
@@ -81,15 +68,24 @@ $form->prepare();
 
                         </div>
                     </div> 
+
                     <div class="control-group">
-                        <?= $this->formLabel($form->get('descripcion')); ?>
+                        <?= $this->formLabel($form->get('cantidadMinima')); ?>
                         <div class="controls">                
-                            <?= $this->formElement($form->get('descripcion')); ?>
-                            <?= $this->formElementErrors($form->get('descripcion')); ?>
+                            <?= $this->formElement($form->get('cantidadMinima')); ?>
+                            <?= $this->formElementErrors($form->get('cantidadMinima')); ?>
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('cantidad')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('cantidad')); ?>
+                            <?= $this->formElementErrors($form->get('cantidad')); ?>
 
                         </div>
                     </div> 
-                   
+
 
                     <div class="form-actions">
                         <?= $this->formElement($form->get('submit')); ?>

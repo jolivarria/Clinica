@@ -1,0 +1,90 @@
+<?php
+$form = $this->form;
+
+$form->get('identradas');
+
+$form->get('productos_idproductos')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'style' => '',
+    'id' => 'productos_idproductos',
+    'placeholder' => ''
+]);
+
+
+$form->get('cantidad')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => '00'
+]);
+
+$form->get('precio')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => '00.00'
+]);
+
+
+$form->get('submit')->setAttributes(array('class' => 'btn btn-primary'));
+$form->prepare();
+?>
+
+<div id="content-header">
+    <div id="breadcrumb"> <a href="<?= $this->url('home'); ?>" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes'); ?>">Inventario</a> <a href="#" class="current">Nueva entrada de producto</a> </div>
+    <h1><?= $this->titulo; ?></h1>
+</div>
+
+<div class="container-fluid">  
+    <div id="message-text"></div>
+    <hr>
+    <div class="row-fluid">
+        
+        <div class="span12">
+            <div class="widget-box">
+                <div id="message-text">
+            <div id="cargando">
+            </div>
+        </div>
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Entradas de producto al inventario </h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <?= $this->form()->openTag($form); ?>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('productos_idproductos')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('productos_idproductos')); ?> 
+                            <?= $this->formElementErrors($form->get('productos_idproductos')); ?>                          
+                            <div class="hint">
+                                (Código del Producto)</div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('precio')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('precio')); ?>
+                            <?= $this->formElementErrors($form->get('precio')); ?>
+
+                        </div>
+                    </div> 
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('cantidad')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('cantidad')); ?>
+                            <?= $this->formElementErrors($form->get('cantidad')); ?>
+
+                        </div>
+                    </div> 
+
+
+                    <div class="form-actions">
+                        <?= $this->formElement($form->get('submit')); ?>
+                        <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
+                        <div id="status"></div>
+                    </div>
+                    <?= $this->form()->closeTag(); ?>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

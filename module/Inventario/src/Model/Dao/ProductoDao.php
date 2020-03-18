@@ -35,27 +35,38 @@ class ProductoDao implements IProductoDao {
         
     }
 
+    public function buscarProductoNombre($nombre) {
+        $resultSet = $this->tableGateway->select(['nombre' => $nombre]);
+        return $resultSet;
+    }
+
+    public function buscarProductoCodigo($idproductos) {
+        $rowSet = $this->tableGateway->select(['idproductos' => (int) $idproductos]);
+        $row = $rowSet->current();
+        if (!$row)
+            throw new RuntimeException("No se puede tener acceso a : $idproductos");
+        return $row;
+    }
+
     public function guardar(Producto $obj) {
-         $data = [
-            'idproductos'       => $obj->getIdproductos(),
-            'codigo'            => $obj->getCodigo(),
-            'nombre'            => $obj->getNombre(),
-            'unidadMedida'      => $obj->getUnidadMedida(),
-            'precio'            => $obj->getPrecio(),
-            'descripcion'       => $obj->getDescripcion(),
-            
+        $data = [
+            'idproductos' => $obj->getIdproductos(),
+            'codigo' => $obj->getCodigo(),
+            'nombre' => $obj->getNombre(),
+            'unidadMedida' => $obj->getUnidadMedida(),
+            'precio' => $obj->getPrecio(),
+            'descripcion' => $obj->getDescripcion(),
         ];
 
         $id = (int) $obj->getIdproductos();
         if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if($this->obtnerID($id)){
-                $this->tableGateway->update($data,['idproductos' => $id]);
-            }else{
+            if ($this->obtnerID($id)) {
+                $this->tableGateway->update($data, ['idproductos' => $id]);
+            } else {
                 throw new RuntimeException("No se puede guardar: $id");
             }
-       
         }
     }
 

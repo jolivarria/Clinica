@@ -1,8 +1,7 @@
 <div id="content-header">
-    <div id="breadcrumb"> <a href="<?= $this->url('home') ?> " title="Panel" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes') ?>">Expediente</a></div>
+    <div id="breadcrumb"> <a href="<?= $this->url('home') ?> " title="Panel" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes') ?>">Inventario</a></div>
     <h1><?= $this->titulo; ?></h1>
 </div>
-
 
 <div class="container-fluid">                 
     <hr>
@@ -16,7 +15,7 @@
     <?php
     echo $this->controlador;
     ?>
-    <a class="btn btn-info" href="<?= $this->url('solicitud-nuevo') ?>"><i class="icon-plus-sign"></i> Nuevo</a>
+    <a class="btn btn-info" href="<?= $this->url('inventario-entradas-nuevo') ?>"><i class="icon-plus-sign"></i> Nuevo</a>
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
@@ -25,42 +24,32 @@
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
-                        <th>RFC</th>
-                        <th>Solicitante</th>
-                        <th>Domicilio</th>
-                        <th>Edad</th>                        
-                        <th>Familiar</th> 
-                        <th>Teléfono</th> 
-                        <th>Estado</th>
+                        <th>Código</th>
+                        <th>Marca</th>
+                        <th>Uni/Medida</th>
+                        <th>Descripcion</th>
+                         <th>Min Stock</th> 
+                        <th>Cantidad</th> 
+                        <th>Precio</th> 
+                        <th>Fecha</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($this->solicitud as $obj): ?>
+                    
+                    <?php foreach ($this->entradas as $obj): ?>
                         <tr class="gradeX">
-                            <td><?= $obj->getRFC() ?></td>
-                            <td><?= $obj->getNombrePaciente() ?></td>
-                            <td><?= $obj->getDomicilio() ?></td>
-                            <td><?= $obj->getEdad() ?></td>
-                            <td><?= $obj->getNombreFamiliar() ?></td> 
-                            <td><?= $obj->getTelefono() ?></td> 
-                            <td><?= $estado = ($obj->getEstado() == 1) ? '<i class="icon-ok"></i>' : '<i class="icon-remove-sign"></i>' ?></td>
-                            <td>
-                                <a class="btn btn-primary" title="Editar solicitud" href="<?= $this->url('solicitud-modificar') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-edit"></i></a>
-                                <?php
-                                if($obj->getEstado() == 1) { ?>
-                                    <a class="btn btn" title="Ver reporte solicitud" href="<?= $this->url('solicitud-detallerpt') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-list-alt"></i></a>                                
-                                <?php
-                                } else {?>
-                                    <a class="btn btn-inverse" title="Nuevo reporte" href="<?= $this->url('solicitud-reporte') ?><?= '/' . $obj->getIdSolicitud() ?>"><i class="icon-list-alt"></i></a>
-                                <?php
-                                }
-                                ?>                                
-                                <a class="btn btn-danger" title="Eliminar solicitud" href="#" ><i class="icon-remove"></i> </a>
-
+                            <td><?= $obj['codigo'] ?></td>
+                            <td><?= $obj['nombre'] ?></td>
+                            <td><?= $obj['unidadMedida'] ?></td>
+                            <td><?= $obj['descripcion'] ?></td>
+                            <td><?= $obj['cantidadMinima'] ?></td>
+                            <td><?= $obj['cantidad'] ?></td>
+                            <td><?= $obj['precio'] ?></td>
+                            <td><?= $obj['fechaEntrada'] ?></td>
+                            <td><a class="btn btn-primary icon-edit" href="<?= $this->url('solicitud-modificar') ?><?= '/' ?>"></a></td>
                         </tr>
                     <?php endforeach; ?>
-
                 </tbody>
             </table>
         </div>

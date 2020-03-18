@@ -16,7 +16,7 @@ use Inventario\Model\Entity\Producto;
 class ProductoController extends AbstractActionController {
 
     private $objProducto;
-    
+
     public function __construct($objProducto) {
         $this->objProducto = $objProducto;
     }
@@ -33,29 +33,40 @@ class ProductoController extends AbstractActionController {
             'solicitud' => $objProductos,
         ];
     }
-    
-     public function nuevoAction() {
+
+    public function nuevoAction() {
         $objProductos = $this->objProducto->obtenerTodos();
         $form = new ProductoForm();
-         if ($this->getRequest()->isPost()) {
+        if ($this->getRequest()->isPost()) {
             $data = $this->params()->fromPost();
             var_dump($data);
             $form->setData($data);
             if ($form->isValid()) {
-                $data = $form->getData();               
-                $objProductos = new Producto();            
+                $data = $form->getData();
+                $objProductos = new Producto();
                 $objProductos->exchangeArray($form->getData());
                 $this->objProducto->guardar($objProductos);
                 $this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
                 return $this->redirect()->toRoute('inventario', ['action' => 'producto']);
             }
-         }
+        }
         return [
             'form' => $form,
             'titulo' => 'Productos del Inventario',
             'subTitulo' => 'En esta lista se muestran todos los productos.',
             'solicitud' => $objProductos,
         ];
+    }
+
+    public function buscarproductoAction() {
+        $codigo = $this->params()->fromRoute("codigo", null);
+        $carro = $this->objProductos->buscarProductoCodigo($codigo);
+        $viewModel = new ViewModel([
+            'carro' => $carro,
+        ]);
+        //$viewModel->setTemplate("pacientes/ingreso/step$step");
+        $viewModel->setTerminal(TRUE);
+        return $viewModel;
     }
 
 }

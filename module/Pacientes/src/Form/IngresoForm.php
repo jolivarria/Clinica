@@ -50,52 +50,27 @@ class IngresoForm extends Form {
         // Add "RFC" field.
         $this->add([
             'type' => 'text',
-            'name' => 'RFC',
+            'name' => 'rfc',
+            'required' => true,
             'attributes' => [
-                'id' => 'RFC'
+                'id' => 'rfc'
             ],
             'options' => [
                 'label' => 'RFC:',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-        // Add validation rules for the "file" field.
-//        $inputFilter->add([
-//            'type' => 'Zend\InputFilter\FileInput',
-//            'name' => 'file',
-//            'required' => true,
-//            'validators' => [
-//                ['name' => 'fotoPaciente'],
-//                [
-//                    'name' => 'FileMimeType',
-//                    'options' => [
-//                        'mimeType' => ['image/jpeg', 'image/png']
-//                    ]
-//                ],
-//                ['name' => 'FileIsImage'],
-//                [
-//                    'name' => 'FileImageSize',
-//                    'options' => [
-//                        'minWidth' => 128,
-//                        'minHeight' => 128,
-//                        'maxWidth' => 4096,
-//                        'maxHeight' => 4096
-//                    ]
-//                ],
-//            ],
-//            'filters' => [
-//                [
-//                    'name' => 'FileRenameUpload',
-//                    'options' => [
-//                        'target' => './data/upload',
-//                        'useUploadName' => true,
-//                        'useUploadExtension' => true,
-//                        'overwrite' => true,
-//                        'randomize' => false
-//                    ]
-//                ]
-//            ],
-//        ]);
+         // Add validation rules for the "file" field.
+        $this->add([
+            'type' => 'file',
+            'name' => 'foto',
+            'required' => true,
+            'options' => [
+                'label' => 'Foto:',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+            
+        ]);
         // Add "nombrePaciente" field.
         $this->add([
             'type' => 'text',
@@ -116,7 +91,7 @@ class IngresoForm extends Form {
                 'id' => 'sexo'
             ],
             'options' => [
-                'label' => 'Sexo',
+                'label' => 'Sexo:',
                 'required' => true,
                 'value_options' => [
                     'Masculino' => 'Masculino',
@@ -132,7 +107,7 @@ class IngresoForm extends Form {
                 'id' => 'mask-date'
             ],
             'options' => [
-                'label' => 'Fecha Nacimiento',
+                'label' => 'Fecha Nacimiento:',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
@@ -144,10 +119,24 @@ class IngresoForm extends Form {
                 'id' => 'edad'
             ],
             'options' => [
-                'label' => 'Edad',
+                'label' => 'Edad:',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
+        
+        // Add "Direccion del paciente" field.
+        $this->add([
+            'type' => 'text',
+            'name' => 'direccion',
+            'attributes' => [
+                'id' => 'direccion'
+            ],
+            'options' => [
+                'label' => 'Dirección:',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+        
         // Add "Escolaridad paciente" field.
         $this->add([
             'type' => 'Zend\Form\Element\Select',
@@ -178,7 +167,7 @@ class IngresoForm extends Form {
                 'id' => 'ocupacion'
             ],
             'options' => [
-                'label' => 'Ocupación',
+                'label' => 'Ocupación:',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
@@ -187,7 +176,7 @@ class IngresoForm extends Form {
             'type' => 'Zend\Form\Element\Select',
             'name' => 'estadoCivil',
             'options' => array(
-                'label' => 'Estado Civil',
+                'label' => 'Estado Civil:',
                 'empty_option' => '',
                 'required' => true,
                 'value_options' => [
@@ -204,18 +193,7 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'control-label')
             )
         ]);
-        // Add "Direccion del paciente" field.
-        $this->add([
-            'type' => 'text',
-            'name' => 'direccion',
-            'attributes' => [
-                'id' => 'direccion'
-            ],
-            'options' => [
-                'label' => 'Dirección',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
+        
         // Add "Código Postal del paciente" field.
         $this->add([
             'type' => 'text',
@@ -230,30 +208,30 @@ class IngresoForm extends Form {
         ]);
         // Add "Municipio del paciente" field.
         // Add "Nacionalidad del paciente" field.
-        $this->add([
-            'type' => 'Zend\Form\Element\Select',
-            'name' => 'municipio',
-            'options' => array(
-                'label' => 'Municipio',
-                'required' => true,
-                'empty_option' => '',
-                'value_options' => $this->getMunicipios(),
-                'label_attributes' => array('class' => 'control-label')
-            )
-        ]);
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Select',
+//            'name' => 'municipio',
+//            'options' => array(
+//                'label' => 'Municipio',
+//                'required' => true,
+//                'empty_option' => '',
+//                'value_options' => $this->getMunicipios(),
+//                'label_attributes' => array('class' => 'control-label')
+//            )
+//        ]);
 
         // Add "Nacionalidad del paciente" field.
-        $this->add([
-            'type' => 'Zend\Form\Element\Select',
-            'name' => 'nacionalidad',
-            'options' => array(
-                'label' => 'Nacionalidad',
-                'required' => true,
-                'empty_option' => '',
-                'value_options' => $this->getNacionalidad(),
-                'label_attributes' => array('class' => 'control-label')
-            )
-        ]);
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Select',
+//            'name' => 'nacionalidad',
+//            'options' => array(
+//                'label' => 'Nacionalidad',
+//                'required' => true,
+//                'empty_option' => '',
+//                'value_options' => $this->getNacionalidad(),
+//                'label_attributes' => array('class' => 'control-label')
+//            )
+//        ]);
 
         // Add "telefono" field
         $this->add([
@@ -279,7 +257,7 @@ class IngresoForm extends Form {
                 'required' => true,
             ],
             'options' => [
-                'label' => 'celular:',
+                'label' => 'Celular:',
                 'label_attributes' => ['class' => 'control-label']
             ],
         ]);
@@ -293,7 +271,7 @@ class IngresoForm extends Form {
                 'required' => true,
             ],
             'options' => [
-                'label' => 'celular:',
+                'label' => 'Teléfono trabajo:',
                 'label_attributes' => ['class' => 'control-label']
             ],
         ]);
@@ -306,7 +284,7 @@ class IngresoForm extends Form {
                 'required' => true,
             ],
             'options' => array(
-                'label' => 'Servicio Médico:',
+                'label' => 'Servicio médico:',
                 'empty_option' => 'Servicio Medico',
                 'value_options' => array(
                     'Si' => 'Si',
@@ -326,252 +304,264 @@ class IngresoForm extends Form {
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
+        $this->add([
+            'type' => 'text',
+            'name' => 'email',
+            'attributes' => [
+                'id' => 'email'
+            ],
+            'options' => [
+                'label' => 'Correo',
+                'label_attributes' => array('class' => 'control-label')
+            ],
+        ]);
+        
 
-        $this->add([
-            'type' => 'button',
-            'name' => 'Voluntario',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Voluntario',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        $this->add([
-            'type' => 'button',
-            'name' => 'Involuntario',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Involuntario',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Tipo de Internamiento Obligatorio" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'Obligatorio',
-            'attributes' => [
-                'value' => 'Obligatorio',
-            ],
-            'options' => [
-                'label' => 'Obligatorio',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "'Domicilio Particular" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'domicilioParticular',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Domicilio Particular',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "institucionPublica" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'institucionPublica',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Institución Pública',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "institucionPrivada" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'institucionPrivada',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Institución Privada',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "hospitalPsiquiatrico" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'hospitalPsiquiatrico',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Hospital Psiquiatrico',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "centroRedaptacion" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'centroRedaptacion',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Centro De Readaptación Social',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Otros" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'otros',
-            'attributes' => [
-                'value' => 'otros',
-            ],
-            'options' => [
-                'label' => 'Otros',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Otros" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'otro',
-            'attributes' => [
-                'value' => '',
-            ],
-            'options' => [
-                'label' => 'Otro',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Solo" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'solo',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Solo',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Amigo" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'amigo',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Amigo',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Vecino" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'vecino',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Vecino',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        //Add "Familiar" field
-        $this->add([
-            'type' => 'button',
-            'name' => 'familiar',
-            'attributes' => [
-            ],
-            'options' => [
-                'label' => 'Familiar',
-                'label_attributes' => array('class' => 'btn btn-info')
-            ],
-        ]);
-        // Add "dependencia paciente" field
-        $this->add([
-            'type' => 'Zend\Form\Element\Radio',
-            'name' => 'dependencia',
-            'attributes' => [
-                'id' => 'dependencia'
-            ],
-            'options' => [
-                'label' => 'El usuario presenta un nivel de dependencia al alcohol o drogas',
-                'required' => true,
-                'value_options' => [
-                    'Si' => 'Si',
-                    'No' => 'No',
-                ],
-            ],
-        ]);
-        // Add "consecuencia paciente" field
-        $this->add([
-            'type' => 'Zend\Form\Element\Radio',
-            'name' => 'consecuencia',
-            'attributes' => [
-                'id' => 'consecuencia'
-            ],
-            'options' => [
-                'label' => 'El usuario presenta alguna (s) consecuencia asociada al consumo',
-                'required' => true,
-                'value_options' => [
-                    'Si' => 'Si',
-                    'No' => 'No',
-                ],
-            ],
-        ]);
-        // Add "trastorno paciente" field
-        $this->add([
-            'type' => 'Zend\Form\Element\Radio',
-            'name' => 'trastorno',
-            'attributes' => [
-                'id' => 'trastorno'
-            ],
-            'options' => [
-                'label' => 'El usuario no presenta algún trastorno mental o psiquiátrico que le impida
-beneficiarse del tratamiento',
-                'required' => true,
-                'value_options' => [
-                    'Si' => 'Si',
-                    'No' => 'No',
-                ],
-            ],
-        ]);
-        // Add "criteriosAdmision paciente" field
-        $this->add([
-            'type' => 'Zend\Form\Element\Radio',
-            'name' => 'criteriosAdmision',
-            'attributes' => [
-                'id' => 'criteriosAdmision'
-            ],
-            'options' => [
-                'label' => '¿El usuario cumple con todos los criterios de admisión al tratamiento?',
-                'required' => true,
-                'value_options' => [
-                    'Si' => 'Si',
-                    'No' => 'No',
-                ],
-            ],
-        ]);
-        // Add "nombrePaciente" field.
-        $this->add([
-            'type' => 'text',
-            'name' => 'nombreFamiliar',
-            'attributes' => [
-                'id' => 'nombreFamiliar'
-            ],
-            'options' => [
-                'label' => 'Nombre Familiar:',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
-        // Add "direccionFamiliar del paciente" field.
-        $this->add([
-            'type' => 'text',
-            'name' => 'direccionFamiliar',
-            'attributes' => [
-                'id' => 'direccionFamiliar'
-            ],
-            'options' => [
-                'label' => 'Dirección',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
-        // Add "numero del paciente" field.
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'Voluntario',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Voluntario',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'Involuntario',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Involuntario',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Tipo de Internamiento Obligatorio" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'Obligatorio',
+//            'attributes' => [
+//                'value' => 'Obligatorio',
+//            ],
+//            'options' => [
+//                'label' => 'Obligatorio',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "'Domicilio Particular" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'domicilioParticular',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Domicilio Particular',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "institucionPublica" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'institucionPublica',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Institución Pública',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "institucionPrivada" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'institucionPrivada',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Institución Privada',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "hospitalPsiquiatrico" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'hospitalPsiquiatrico',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Hospital Psiquiatrico',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "centroRedaptacion" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'centroRedaptacion',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Centro De Readaptación Social',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Otros" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'otros',
+//            'attributes' => [
+//                'value' => 'otros',
+//            ],
+//            'options' => [
+//                'label' => 'Otros',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Otros" field
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'otro',
+//            'attributes' => [
+//                'value' => '',
+//            ],
+//            'options' => [
+//                'label' => 'Otro',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Solo" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'solo',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Solo',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Amigo" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'amigo',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Amigo',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Vecino" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'vecino',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Vecino',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        //Add "Familiar" field
+//        $this->add([
+//            'type' => 'button',
+//            'name' => 'familiar',
+//            'attributes' => [
+//            ],
+//            'options' => [
+//                'label' => 'Familiar',
+//                'label_attributes' => array('class' => 'btn btn-info')
+//            ],
+//        ]);
+//        // Add "dependencia paciente" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Radio',
+//            'name' => 'dependencia',
+//            'attributes' => [
+//                'id' => 'dependencia'
+//            ],
+//            'options' => [
+//                'label' => 'El usuario presenta un nivel de dependencia al alcohol o drogas',
+//                'required' => true,
+//                'value_options' => [
+//                    'Si' => 'Si',
+//                    'No' => 'No',
+//                ],
+//            ],
+//        ]);
+//        // Add "consecuencia paciente" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Radio',
+//            'name' => 'consecuencia',
+//            'attributes' => [
+//                'id' => 'consecuencia'
+//            ],
+//            'options' => [
+//                'label' => 'El usuario presenta alguna (s) consecuencia asociada al consumo',
+//                'required' => true,
+//                'value_options' => [
+//                    'Si' => 'Si',
+//                    'No' => 'No',
+//                ],
+//            ],
+//        ]);
+//        // Add "trastorno paciente" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Radio',
+//            'name' => 'trastorno',
+//            'attributes' => [
+//                'id' => 'trastorno'
+//            ],
+//            'options' => [
+//                'label' => 'El usuario no presenta algún trastorno mental o psiquiátrico que le impida
+//beneficiarse del tratamiento',
+//                'required' => true,
+//                'value_options' => [
+//                    'Si' => 'Si',
+//                    'No' => 'No',
+//                ],
+//            ],
+//        ]);
+//        // Add "criteriosAdmision paciente" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Radio',
+//            'name' => 'criteriosAdmision',
+//            'attributes' => [
+//                'id' => 'criteriosAdmision'
+//            ],
+//            'options' => [
+//                'label' => '¿El usuario cumple con todos los criterios de admisión al tratamiento?',
+//                'required' => true,
+//                'value_options' => [
+//                    'Si' => 'Si',
+//                    'No' => 'No',
+//                ],
+//            ],
+//        ]);
+//        // Add "nombrePaciente" field.
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'nombreFamiliar',
+//            'attributes' => [
+//                'id' => 'nombreFamiliar'
+//            ],
+//            'options' => [
+//                'label' => 'Nombre Familiar:',
+//                'label_attributes' => array('class' => 'control-label')
+//            ],
+//        ]);
+//        // Add "direccionFamiliar del paciente" field.
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'direccionFamiliar',
+//            'attributes' => [
+//                'id' => 'direccionFamiliar'
+//            ],
+//            'options' => [
+//                'label' => 'Dirección',
+//                'label_attributes' => array('class' => 'control-label')
+//            ],
+//        ]);
+//        // Add "numero del paciente" field.
         $this->add([
             'type' => 'text',
             'name' => 'numero',
@@ -583,97 +573,97 @@ beneficiarse del tratamiento',
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-        // Add "colonia del paciente" field.
-        $this->add([
-            'type' => 'text',
-            'name' => 'colonia',
-            'attributes' => [
-                'id' => 'colonia'
-            ],
-            'options' => [
-                'label' => 'Colonia',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
+//        // Add "colonia del paciente" field.
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'colonia',
+//            'attributes' => [
+//                'id' => 'colonia'
+//            ],
+//            'options' => [
+//                'label' => 'Colonia',
+//                'label_attributes' => array('class' => 'control-label')
+//            ],
+//        ]);
         // Add "municipioFamiliar del paciente" field.
-        $this->add([
-            'type' => 'text',
-            'name' => 'municipioFamiliar',
-            'attributes' => [
-                'id' => 'municipioFamiliar'
-            ],
-            'options' => [
-                'label' => 'Colonia',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'municipioFamiliar',
+//            'attributes' => [
+//                'id' => 'municipioFamiliar'
+//            ],
+//            'options' => [
+//                'label' => 'Colonia',
+//                'label_attributes' => array('class' => 'control-label')
+//            ],
+//        ]);
         // Add "telefono" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'telefonoParticularF',
-            'class' => 'span5 m-wrap mask text',
-            'attributes' => [
-                'id' => 'mask-phonePart',
-                'required' => true,
-            ],
-            'options' => [
-                'label' => 'Télefono:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "telefono" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'celularF',
-            'class' => 'span5 m-wrap mask text',
-            'attributes' => [
-                'id' => 'mask-phone',
-                'required' => true,
-            ],
-            'options' => [
-                'label' => 'celular:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-        // Add "telefono" field
-        $this->add([
-            'type' => 'text',
-            'name' => 'telefonoTrabajoF',
-            'class' => 'span5 m-wrap mask text',
-            'attributes' => [
-                'id' => 'mask-phoneTrab',
-                'required' => true,
-            ],
-            'options' => [
-                'label' => 'celular:',
-                'label_attributes' => ['class' => 'control-label']
-            ],
-        ]);
-
-
-
-        // Add "parentesco" field
-        $this->add([
-            'type' => 'Zend\Form\Element\Select',
-            'name' => 'parentesco',
-            'options' => array(
-                'label' => 'Parentesco:',
-                'empty_option' => 'Seleccione parentesco',
-                'value_options' => array(
-                    '0' => 'Mamá/Papá',
-                    '1' => 'Tía/Tío',
-                    '2' => 'Abuela/Abuelo',
-                    '3' => 'Hermano/Hermana',
-                ),
-                'label_attributes' => array('class' => 'control-label')
-            )
-        ]);
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'telefonoParticularF',
+//            'class' => 'span5 m-wrap mask text',
+//            'attributes' => [
+//                'id' => 'mask-phonePart',
+//                'required' => true,
+//            ],
+//            'options' => [
+//                'label' => 'Télefono:',
+//                'label_attributes' => ['class' => 'control-label']
+//            ],
+//        ]);
+//        // Add "telefono" field
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'celularF',
+//            'class' => 'span5 m-wrap mask text',
+//            'attributes' => [
+//                'id' => 'mask-phone',
+//                'required' => true,
+//            ],
+//            'options' => [
+//                'label' => 'celular:',
+//                'label_attributes' => ['class' => 'control-label']
+//            ],
+//        ]);
+//        // Add "telefono" field
+//        $this->add([
+//            'type' => 'text',
+//            'name' => 'telefonoTrabajoF',
+//            'class' => 'span5 m-wrap mask text',
+//            'attributes' => [
+//                'id' => 'mask-phoneTrab',
+//                'required' => true,
+//            ],
+//            'options' => [
+//                'label' => 'celular:',
+//                'label_attributes' => ['class' => 'control-label']
+//            ],
+//        ]);
+//
+//
+//
+//        // Add "parentesco" field
+//        $this->add([
+//            'type' => 'Zend\Form\Element\Select',
+//            'name' => 'parentesco',
+//            'options' => array(
+//                'label' => 'Parentesco:',
+//                'empty_option' => 'Seleccione parentesco',
+//                'value_options' => array(
+//                    '0' => 'Mamá/Papá',
+//                    '1' => 'Tía/Tío',
+//                    '2' => 'Abuela/Abuelo',
+//                    '3' => 'Hermano/Hermana',
+//                ),
+//                'label_attributes' => array('class' => 'control-label')
+//            )
+//        ]);
 
 
         // Add the submit button
         $this->add([
             'type' => 'submit',
-            'name' => 'submit',
+            'name' => 'btnGuardar',
             'attributes' => [
                 'value' => 'Guardar',
                 'id' => 'submitbutton',
@@ -687,37 +677,6 @@ beneficiarse del tratamiento',
     private function addInputFilter() {
         $inputFilter = new InputFilter();
         $this->setInputFilter($inputFilter);
-        $inputFilter->add([
-            'name' => 'nombrePaciente',
-            'required' => true,
-            'filters' => [
-                ['name' => 'StringTrim'],
-                ['name' => 'StripTags'],
-                ['name' => 'StripNewlines'],
-            ],
-            'validators' => [
-                [
-                    'name' => 'NotEmpty',
-                    'options' => [
-                        'messages' => [
-                            \Zend\Validator\NotEmpty::IS_EMPTY => 'La entrada no se puede dejar en blanco',
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'StringLength',
-                    'options' => [
-                        'min' => 10,
-                        'max' => 50,
-                        'messages' => [
-                            \Zend\Validator\StringLength::INVALID => 'La entrada no es valida',
-                            \Zend\Validator\StringLength::TOO_SHORT => 'La entrada es muy corta 10, caracteres como mínimo',
-                            \Zend\Validator\StringLength::TOO_LONG => 'La entrada es muy larga 50, caracteres como máximo',
-                        ],
-                    ],
-                ],
-            ],
-        ]);
     }
 
     public function getMunicipios() {

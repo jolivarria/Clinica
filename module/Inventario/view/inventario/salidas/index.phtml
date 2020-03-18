@@ -1,0 +1,56 @@
+<div id="content-header">
+    <div id="breadcrumb"> <a href="<?= $this->url('home') ?> " title="Panel" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes') ?>">Inventario</a></div>
+    <h1><?= $this->titulo; ?></h1>
+</div>
+
+<div class="container-fluid">                 
+    <hr>
+    <?PHP
+    echo $this->flashMessenger()
+            ->setMessageOpenFormat('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h1>El registro se ha Guardado!</h1>')
+            ->setMessageSeparatorString('<p></p>')
+            ->setMessageCloseString('</div>')
+            ->render('success');
+    ?>
+    <?php
+    echo $this->controlador;
+    ?>
+    <a class="btn btn-info" href="<?= $this->url('inventario-salidas-nuevo') ?>"><i class="icon-plus-sign"></i> Nuevo</a>
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Marca</th>
+                        <th>Uni/Medida</th>
+                        <th>Descripcion</th>                        
+                        <th>Cantidad</th> 
+                        <th>Precio</th>
+                        <th>Concepto</th>
+                        <th>Fecha</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($this->salidas as $obj): ?>
+                        <tr class="gradeX">
+                           <td><?= $obj['codigo'] ?></td>
+                            <td><?= $obj['nombre'] ?></td>
+                            <td><?= $obj['unidadMedida'] ?></td>
+                            <td><?= $obj['descripcion'] ?></td>
+                            <td><?= $obj['cantidad'] ?></td>
+                            <td><?= $obj['precio'] ?></td>
+                             <td><?= $obj['concepto'] ?></td>
+                            <td><?= $obj['fechaSalida'] ?></td>
+                            <td><a class="btn btn-primary icon-edit" href="<?= $this->url('solicitud-modificar') ?><?= '/' ?>"></a></td>
+                         </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

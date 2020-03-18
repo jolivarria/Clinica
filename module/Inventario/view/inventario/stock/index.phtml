@@ -1,0 +1,88 @@
+<div id="content-header">
+    <div id="breadcrumb"> <a href="<?= $this->url('home') ?> " title="Panel" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes') ?>">Inventario</a><a href="">Stock</a></div>
+    <h1><?= $this->titulo; ?></h1>
+</div>
+
+<div class="container-fluid">                 
+    <hr>
+    <?PHP
+    echo $this->flashMessenger()
+            ->setMessageOpenFormat('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h1>El registro se ha Guardado!</h1>')
+            ->setMessageSeparatorString('<p></p>')
+            ->setMessageCloseString('</div>')
+            ->render('success');
+    ?>
+    <?php
+    echo $this->controlador;
+    ?>
+    <div class="widget-box widget-plain">
+      <div class="center">
+        <ul class="stat-boxes2">
+          <li>
+            <div class="left peity_bar_neutral"><span><span style="display: none;"><span style="display: none;"><span style="display: none;"><span style="display: none;">2,4,9,7,12,10,12</span><canvas width="50" height="24"></canvas></span>
+              <canvas width="50" height="24"></canvas>
+              </span><canvas width="50" height="24"></canvas></span><canvas width="50" height="24"></canvas></span>+10%</div>
+            <div class="right"> <strong>4</strong> Entradas </div>
+          </li>
+          <li>
+            <div class="left peity_line_neutral"><span><span style="display: none;"><span style="display: none;"><span style="display: none;"><span style="display: none;">10,15,8,14,13,10,10,15</span><canvas width="50" height="24"></canvas></span>
+              <canvas width="50" height="24"></canvas>
+              </span><canvas width="50" height="24"></canvas></span><canvas width="50" height="24"></canvas></span>10%</div>
+            <div class="right"> <strong>150</strong> New Users </div>
+          </li>
+          <li>
+            <div class="left peity_bar_bad"><span><span style="display: none;"><span style="display: none;"><span style="display: none;"><span style="display: none;">3,5,6,16,8,10,6</span><canvas width="50" height="24"></canvas></span>
+              <canvas width="50" height="24"></canvas>
+              </span><canvas width="50" height="24"></canvas></span><canvas width="50" height="24"></canvas></span>-40%</div>
+            <div class="right"> <strong>4560</strong> Orders</div>
+          </li>
+          <li>
+            <div class="left peity_line_good"><span><span style="display: none;"><span style="display: none;"><span style="display: none;"><span style="display: none;">12,6,9,23,14,10,17</span><canvas width="50" height="24"></canvas></span>
+              <canvas width="50" height="24"></canvas>
+              </span><canvas width="50" height="24"></canvas></span><canvas width="50" height="24"></canvas></span>+60%</div>
+            <div class="right"> <strong>5672</strong> Active Users </div>
+          </li>
+          <li>
+            <div class="left peity_bar_good"><span><span style="display: none;">12,6,9,23,14,10,13</span><canvas width="50" height="24"></canvas></span>+30%</div>
+            <div class="right"> <strong>2560</strong> Register</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="widget-box">
+        <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Stock del Sistema</h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Marca</th>
+                        <th>Uni/Medida</th>
+                        <th>Descripcion</th>
+                         <th>Min Stock</th> 
+                        <th>Precio</th> 
+                        <th>Stock</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php foreach ($this->stock as $obj): ?>
+                        <tr class="gradeX">
+                            <td><?= $obj['codigo'] ?></td>
+                            <td><?= $obj['nombre'] ?></td>
+                            <td><?= $obj['unidadMedida'] ?></td>
+                            <td><?= $obj['descripcion'] ?></td>
+                            <td><?= $obj['cantidadMinima'] ?></td>
+                            <td><?= $obj['precio'] ?></td>
+                            <td><?= $obj['stock'] ?></td>
+                            <td><a class="btn btn-primary icon-edit" href="<?= $this->url('solicitud-modificar') ?><?= '/' ?>"></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -6,8 +6,8 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 use Pacientes\Controller\IngresoController;
-use Pacientes\Model\Dao\ISolicitudIngresoDao;
-
+use Pacientes\Model\Dao\IIngresoDao;
+use Zend\Db\Adapter\AdapterInterface;
 
 /**
  * This is the factory for RegistrationController. Its purpose is to instantiate the
@@ -19,9 +19,9 @@ class IngresoControllerFactory implements FactoryInterface {
         $controller = null;
         switch ($requestedName) {
             case IngresoController::class:     
-                $objSolicitud = $container->get(ISolicitudIngresoDao::class);
+                $objIngreso= $container->get(IIngresoDao::class);
                 $sessionContainer = $container->get('UserRegistration');               
-                $controller = new IngresoController($sessionContainer,$objSolicitud);
+                $controller = new IngresoController($sessionContainer,$objIngreso);
                 break;
             default :
                 return (null === $options) ? new $requestedName : new $requestedName;

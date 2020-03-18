@@ -18,6 +18,13 @@ $form->get('sexo')->setAttributes([
     'placeholder' => ''
 ]);
 
+$form->get('fechaNac')->setAttributes([
+    'class' => 'span6',
+    'data-date-format'=>'mm-dd-yyyy',
+    'placeholder' => 'mm-dd-yyyy'
+]);
+
+
 $form->get('edad')->setAttributes([
     'class' => 'span2',
     'placeholder' => 'Ejemplo: 35'
@@ -107,6 +114,20 @@ $form->prepare();
                         <div class="controls">                             
                             <?= $this->formElement($form->get('sexo')); ?>
                             <?= $this->formElementErrors($form->get('sexo')); ?>
+
+                        </div>
+                    </div>                     
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('fechaNac')); ?>
+                        <div class="controls"> 
+                            <div data-date="12-02-2012" class="input-append date datepicker">
+                                <?= $this->formElement($form->get('fechaNac')); ?>
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+                            <div class="hint">
+                                (Formato: mm/dd/aaaa)
+                            </div>
+                            <?= $this->formElementErrors($form->get('fechaNac')); ?>
 
                         </div>
                     </div> 

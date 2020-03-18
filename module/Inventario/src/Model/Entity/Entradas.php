@@ -13,25 +13,34 @@ namespace Inventario\Model\Entity;
  *
  * @author jorge
  */
-class Entradas{
+class Entradas {
 
     //PROPIEDADES DE LA TABLA INGRESOS//
     private $identradas; //int(11) AI PK 
-    private $inventario_productos_idproductos; // int(11) PK 
-    private $fecha; // date; //  
+    private $productos_idproductos; // int(11) PK 
+    private $nombre; //varchar(45)
+    private $fecha; // date; //
+    private $cantidadMinima; // int(11)
     private $cantidad; // int(11) 
     private $precio; // float; // text
-    
+
     function getIdentradas() {
         return $this->identradas;
     }
 
-    function getInventario_productos_idproductos() {
-        return $this->inventario_productos_idproductos;
+    function getProductos_idproductos() {
+        return $this->productos_idproductos;
+    }
+
+    function getNombre() {
+        return $this->nombre;
     }
 
     function getFecha() {
         return $this->fecha;
+    }
+    function getCantidadMinima() {
+        return $this->cantidadMinima;
     }
 
     function getCantidad() {
@@ -46,14 +55,22 @@ class Entradas{
         $this->identradas = $identradas;
     }
 
-    function setInventario_productos_idproductos($inventario_productos_idproductos) {
-        $this->inventario_productos_idproductos = $inventario_productos_idproductos;
+    function setProductos_idproductos($productos_idproductos) {
+        $this->productos_idproductos = $productos_idproductos;
+    }
+
+    function setNombre($nombre) {
+        $this->nombre = $nombre;
     }
 
     function setFecha($fecha) {
         $this->fecha = $fecha;
     }
 
+    function setCantidadMinima($cantidadMinima) {
+        $this->cantidadMinima = $cantidadMinima;
+    }
+    
     function setCantidad($cantidad) {
         $this->cantidad = $cantidad;
     }
@@ -61,12 +78,14 @@ class Entradas{
     function setPrecio($precio) {
         $this->precio = $precio;
     }
-    
+
     public function exchangeArray($data) {
         $this->identradas = (isset($data['identradas'])) ? $data['identradas'] : null;
-        $this->inventario_productos_idproductos = (isset($data['inventario_productos_idproductos'])) ? $data['inventario_productos_idproductos'] : null;
+        $this->productos_idproductos = (isset($data['productos_idproductos'])) ? $data['productos_idproductos'] : null;
+        $this->nombre = (isset($data['nombre'])) ? $data['nombre'] : null;
         $this->fecha = (isset($data['fecha'])) ? $data['fecha'] : null;
         $this->cantidad = (isset($data['cantidad'])) ? $data['cantidad'] : null;
+        $this->cantidadMinima = (isset($data['cantidadMinima'])) ? $data['cantidadMinima'] : null;
         $this->precio = (isset($data['precio'])) ? $data['precio'] : null;
     }
 

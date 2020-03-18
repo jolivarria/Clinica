@@ -7,7 +7,8 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 
 use Inventario\Controller\EntradasController;
 use Inventario\Model\Dao\IEntradasDao;
-
+use Inventario\Model\Dao\IProductoDao;
+use Zend\Db\Adapter\AdapterInterface;
 
 
 /**
@@ -20,8 +21,10 @@ class EntradasControllerFactory implements FactoryInterface {
         $controller = null;
         switch ($requestedName) {
             case EntradasController::class:
+                $dbAdapter = $container->get(AdapterInterface::class);
                 $objDao = $container->get(IEntradasDao::class);
-                $controller = new EntradasController($objDao);
+                $objProductos = $container->get(IProductoDao::class);
+                $controller = new EntradasController($objDao,$objProductos,$dbAdapter);
                 break;
             default :
                 return (null === $options) ? new $requestedName : new $requestedName;

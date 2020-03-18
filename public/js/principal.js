@@ -27,7 +27,7 @@ $("input[name='RFC']").focusout(function () {
 
 $("#vehiculos_idvehiculos").change(function () {
      $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-    
+   
     $.ajax({
         type: "POST",
         url: "obtenercarro/" + $('#vehiculos_idvehiculos').val(),
@@ -39,6 +39,26 @@ $("#vehiculos_idvehiculos").change(function () {
 //                alert("Status: " + textStatus);
 //                alert("Error: " + errorThrown);
             $('#message-text').html('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda de datos del Carro!:</h4>No tubimos resultados... </div>');
+            $('#cargando').html('');
+        }
+    });
+});
+
+//buscar productos 
+$("#productos_idproductos").change(function () {
+     $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+   
+    $.ajax({
+        type: "POST",
+        url: "../buscarproducto/" + $('#productos_idproductos').val(),
+        success: function (data) {
+            $('#message-text').html('<div class="alert alert-success"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda del Producto!:</h4>' + data + '</div>');
+            $('#cargando').html('');
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+//                alert("Status: " + textStatus);
+//                alert("Error: " + errorThrown);
+            $('#message-text').html('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda de datos del Producto!:</h4>No tubimos resultados... </div>');
             $('#cargando').html('');
         }
     });

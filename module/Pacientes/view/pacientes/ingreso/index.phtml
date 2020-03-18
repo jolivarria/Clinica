@@ -23,8 +23,8 @@
                 <thead>
                     <tr>
                         <th>R.F.C</th>
-                        <th>Solicitante</th>
-                        <th>Domicilio</th>
+                        <th>Nombre</th>
+                        <th>Sexo</th>
                         <th>Edad</th>                        
                         <th>Familiar</th>                        
                         <th>Fecha</th>
@@ -33,17 +33,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($this->solicitud as $obj): ?>
+                    
+                    <?php foreach ($this->objIngreso as $obj): ?>
                         <tr class="gradeX">
-                            <td><?= $obj->getRFC() ?></td>
-                            <td><?= $obj->getNombrePaciente() ?></td>
-                            <td><?= $obj->getDomicilio() ?></td>
-                            <td><?= $obj->getEdad() ?></td>
-                            <td><?= $obj->getNombreFamiliar() ?></td>                            
-                            <td><?= $obj->getFechaSolicitud() ?></td>
-                            <td><?= $obj->getEstado() ?></td>
+                            <td><?= $obj['rfc'] ?></td>
+                            <td><?= $obj['nombre'] ?></td>
+                            <td><?= $obj['sexo'] ?></td>
+                            <td><?= $obj['edad'] ?></td>
+                            <td><?= $obj['edad'] ?></td>
+                            <td><?= $obj['edad'] ?></td>
+                            <td><?= $obj['edad'] ?></td>
                             <td>
-                                <a class="btn btn-primary" href="<?= $this->url('solicitud-modificar') ?><?= '/' . $obj->getIdSolicitud() ?>">Modificar</a>                                
+                                <a class="btn btn-primary" href="">Modificar</a>                                
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Borrar</button></td>
                         </tr>
                     <?php endforeach; ?>

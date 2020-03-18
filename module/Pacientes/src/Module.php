@@ -11,10 +11,13 @@ namespace Pacientes;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
+
 use Pacientes\Model\Entity\SolicitudIngreso;
 use Pacientes\Model\Dao\ISolicitudIngresoDao;
 use Pacientes\Model\Dao\SolicitudIngresoDao;
+
 use Pacientes\Model\Entity\Ingreso;
+use Pacientes\Model\Dao\IngresoDao;
 use Pacientes\Model\Dao\IIngresoDao;
 
 use Pacientes\Model\Entity\Reporte;
@@ -55,8 +58,9 @@ class Module {
                     return new TableGateway('ingreso', $dbAdapter, null, $resultSetPrototype);
                 },
                 IIngresoDao::class => function ($sm) {
+                    $dbAdapter = $sm->get(AdapterInterface::class);
                     $tableGateway = $sm->get('IngresoTableGateway');
-                    $dao = new SolicitudIngresoDao($tableGateway);
+                    $dao = new IngresoDao($tableGateway,$dbAdapter);
                     return $dao;
                 },
                 'ReporteDao' => function ($sm) {

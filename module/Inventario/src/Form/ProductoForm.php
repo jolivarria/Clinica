@@ -47,7 +47,7 @@ class ProductoForm extends Form {
             'name' => 'codigo',
             'attributes' => [
                 'id' => 'codigo',
-                'maxlength' => '10',
+                'maxlength' => '5',
                 'required' => true,
             ],
             'options' => [
@@ -60,7 +60,7 @@ class ProductoForm extends Form {
             'name' => 'nombre',
             'attributes' => [
                 'id' => 'nombre',
-                'maxlength' => '10',
+                'maxlength' => '50',
                 'required' => true,
             ],
             'options' => [
@@ -77,21 +77,24 @@ class ProductoForm extends Form {
                 'empty_option' => 'Seleccione una unidad de medida',
                 'required' => true,
                 'value_options' => [
-                    'Kilo' => 'Kilo',
+                    'Litro'=>'Litro',
+                    'Mililitro'=>'Mililitro',
+                    'Kilo'=> 'Kilo',
+                    'Gramos' => 'Gramos',
                     'Pieza' => 'Pieza',
+                    'Unidad' => 'Unidad',
                     'Paquete' => 'Paquete',
-                    'Cuveta' => 'Cuventa',
-                    'Litro' => 'Litro',
-                    'Caja' => 'Caja'
+                    'Bolsa' => 'Bolsa',
+                    'Caja' => 'Caja',
+                    'Cuveta'=>'Cuveta',
                 ],
                 'label_attributes' => array('class' => 'control-label')
             )
         ]);
 
         $this->add([
-            'type' => 'text',
+            'type' => 'number',
             'name' => 'precio',
-            'class' => '',
             'attributes' => [
                 'id' => 'precio',
                 'required' => true,

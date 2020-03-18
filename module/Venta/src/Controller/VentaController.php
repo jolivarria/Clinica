@@ -6,12 +6,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Inventario\Controller;
+namespace Venta\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class IndexController extends AbstractActionController {
+class VentaController extends AbstractActionController {
 
     public function indexAction() {
         return new ViewModel();

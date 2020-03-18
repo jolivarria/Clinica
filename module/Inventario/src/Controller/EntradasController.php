@@ -10,48 +10,64 @@ namespace Inventario\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Inventario\Form\ProductoForm;
-use Inventario\Model\Entity\Producto;
+use Inventario\Form\EntradasForm;
+use Inventario\Model\Entity\Entradas;
+use Zend\Db\Adapter\AdapterInterface;
+
 
 class EntradasController extends AbstractActionController {
 
     private $objEntradas;
-    
-    public function __construct($objEntradas) {
+    private $objProductos;
+    private $dbAdapter;
+
+    public function __construct($objEntradas, $objProductos, $dbAdapter) {
         $this->objEntradas = $objEntradas;
+        $this->objProductos = $objProductos;
+        $this->dbAdapter = $dbAdapter;
     }
 
-    public function entradasAction() {
-         $objEntradas = $this->objEntradas->obtenerTodos();
+    public function indexAction() {
+        $objEntradas = $this->objEntradas->obtenerView();        
         return [
             'titulo' => 'Todas las entradas del Inventario',
             'subTitulo' => 'En esta lista se muestran todos los productos.',
-            'solicitud' => $objEntradas,
+            'entradas' => $objEntradas,
         ];
     }
-    
-     public function nuevoAction() {
-        $objProductos = $this->objProducto->obtenerTodos();
-        $form = new ProductoForm();
-         if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost();
-            var_dump($data);
+
+    public function nuevoAction() {
+        $objProductos = $this->objEntradas->obtenerTodos();
+        $form = new EntradasForm($this->dbAdapter);
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();           
             $form->setData($data);
             if ($form->isValid()) {
-                $data = $form->getData();               
-                $objProductos = new Producto();            
-                $objProductos->exchangeArray($form->getData());
-                $this->objProducto->guardar($objProductos);
+                $data = $form->getData();
+                $objEntradas = new Entradas();
+                $objEntradas->exchangeArray($form->getData());
+                $this->objEntradas->guardar($objEntradas);              
                 $this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
-                return $this->redirect()->toRoute('inventario', ['action' => 'producto']);
+                return $this->redirect()->toRoute('inventario-entradas');
             }
-         }
+        }
         return [
             'form' => $form,
-            'titulo' => 'Productos del Inventario',
+            'titulo' => 'Nueva entrada de producto al sistema',
             'subTitulo' => 'En esta lista se muestran todos los productos.',
             'solicitud' => $objProductos,
         ];
+    }
+
+    public function buscarproductoAction() {
+        $codigo = $this->params()->fromRoute("codigo", null);
+        $producto = $this->objProductos->buscarProductoCodigo($codigo);
+        $viewModel = new ViewModel([
+            'producto' => $producto,
+        ]);
+        //$viewModel->setTemplate("pacientes/ingreso/step$step");
+        $viewModel->setTerminal(TRUE);
+        return $viewModel;
     }
 
 }

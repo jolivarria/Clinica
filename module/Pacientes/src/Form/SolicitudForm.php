@@ -60,36 +60,7 @@ class SolicitudForm extends Form {
                     'label_attributes' => array('class' => 'control-label')
                 ],
             ]);
-            // Add "folio" field.
-//            $this->add([
-//                'type' => 'text',
-//                'name' => 'folio',                
-//                'attributes' => [
-//                    'id' => 'folio',
-//                    'maxlength' => '10',
-//                    'required' => true,
-//                    'pattern'=>'[0-9]{10}',
-//                ],
-//                'options' => [
-//                    'label' => 'Folio:',
-//                    'label_attributes' => array('class' => 'control-label')
-//                ],
-//            ]);
-            // Add "operadora" field.
-//            $this->add([
-//                'type' => 'text',
-//                'name' => 'operadora',
-//                'required' => true,
-//                'attributes' => [
-//                    'id' => 'operadora',
-//                    'maxlength' => '10',
-//                    'pattern'=>'[A-Za-z]{10}',
-//                ],
-//                'options' => [
-//                    'label' => 'Operadora:',
-//                    'label_attributes' => array('class' => 'control-label')
-//                ],
-//            ]);
+            
             // Add "nombrePaciente" field.
             $this->add([
                 'type' => 'text',
@@ -116,7 +87,23 @@ class SolicitudForm extends Form {
                     ],
                 ],
             ]);
-
+                        
+            //Add "Edad" field
+            $this->add([
+                'type' => 'text',
+                'name' => 'fechaNac',
+                'attributes' => [
+                    'id' => 'fechaNac',
+                    'data-date-format'=>'mm-dd-yyyy',
+                    'required' => true,
+                    
+                ],
+                'options' => [
+                    'label' => 'Fecha Nacimiento:',
+                    'label_attributes' => array('class' => 'control-label')
+                ],
+            ]);
+            
             //Add "Edad" field
             $this->add([
                 'type' => 'number',

@@ -13,40 +13,90 @@ use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Pacientes\Form\SolicitudForm;
 use Pacientes\Form\IngresoForm;
+use Pacientes\Model\Entity\Ingreso;
 use Zend\Db\Adapter\AdapterInterface;
 
 
 class IngresoController extends AbstractActionController {
 
     private $sessionContainer;
-    private $ingreso;
+    private $objIngreso;
     private $dbAdapter;
 
-    public function __construct($sessionContainer, $ingreso,$dbAdapter) {
+    public function __construct($sessionContainer, $objIngreso,$dbAdapter) {
         $this->sessionContainer = $sessionContainer;
-        $this->ingreso = $ingreso;
+        $this->objIngreso = $objIngreso;
         $this->dbAdapter = $dbAdapter;
         
     }
 
     public function indexAction() {
-
-        $solicitud = $this->ingreso->obtenerTodos();
+        $objIngreso = $this->objIngreso->obtenerView();
         return [
             'titulo' => 'Ingreso del paciente al sistema',
             'subTitulo' => 'En esta lista se muestran todos los expedientes del sistema',
-            'solicitud' => $solicitud,
+            'objIngreso' => $objIngreso,
         ];
     }
 
     public function nuevoAction() {
         $form = new IngresoForm($this->dbAdapter);
+         if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();           
+            $form->setData($data);          
+            if ($form->isValid()) {
+                $data = $form->getData();               
+                $objIngreso = new Ingreso();
+                $objIngreso->exchangeArray($form->getData());
+                $this->ingreso->guardarIngresos($objIngreso);              
+                //$this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
+                //return $this->redirect()->toRoute('inventario-entradas');
+            }
+        }
+                       
         $viewModel = new ViewModel([
             'form' => $form,
+            'titulo' => 'Nuevo Ingreso del Usuario...',
+            'subTitulo' => 'Llenar los campos correctamente para nuevo ingresos al sistema',
         ]);
         return $viewModel;
     }
 
+    // This action shows the image upload form. This page allows to upload
+    // a single file.
+    public function uploadAction() {
+        // Create the form model.
+        $form = new ImageForm();
+
+        // Check if user has submitted the form.
+        if ($this->getRequest()->isPost()) {
+
+            // Make certain to merge the files info!
+            $request = $this->getRequest();
+            $data = array_merge_recursive(
+                    $request->getPost()->toArray(), $request->getFiles()->toArray()
+            );
+
+            // Pass data to form.
+            $form->setData($data);
+
+            // Validate form.
+            if ($form->isValid()) {
+
+                // Move uploaded file to its destination directory.
+                $data = $form->getData();
+
+                // Redirect the user to "Image Gallery" page.
+                return $this->redirect()->toRoute('images');
+            }
+        }
+
+        // Render the page.
+        return new ViewModel([
+            'form' => $form
+        ]);
+    }
+    
     public function ingresoAction() {
         
     }
