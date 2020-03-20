@@ -23,20 +23,55 @@ class Ingreso {
     private $sexo; // enum('Hombre','Mujer') 
     private $fechaNac; // date 
     private $edad; // varchar(45) 
-    private $direccion; // varchar(45) 
     private $escolaridad; // varchar(45) 
     private $ocupacion; // varchar(45) 
     private $estadoCivil; // varchar(45) 
-    private $codigoPostal; // varchar(45) 
-    private $telefonoParticular; // varchar(45) 
-    private $celular; // varchar(45) 
-    private $telefonoTrabajo; // varchar(45) 
     private $servicioMedico; // enum('Si','No') 
     private $tipoServicio; // varchar(45) 
     private $numero; // varchar(45) 
-    private $tipoPaciente; // enum('Servidor','Anexado') 
+    private $tipoPaciente; // enum('Servidor','Anexado')
+    private $telefonoPp; //varchar(45) 
+    private $telefonoPt; // varchar(45) 
+    private $celular; // varchar(45)
     private $email; // varchar(45)
-    function getIdpaciente() {
+    
+    private $idingreso; //int(11) AI PK 
+    private $tipo; // enum('Voluntario','Involuntario','Obligatorio') 
+    private $referencia; // enum('Domicilio Particular','Institución Pública','Institución Privada','Hospital Psiquiatrico','Centro de Redaptación Social') 
+    private $otro; // varchar(45) 
+    private $acude; // enum('Solo','Amigo','Vecino','Familiar','Parentesco') 
+    private $parentesco; // varchar(45) 
+    private $adulo; // enum('Si','No') 
+    private $drogasAlcohol; // enum('Si','No') 
+    private $consecunciaConsumo; // enum('Si','No') 
+    private $mental; // enum('Si','No') 
+    private $criteriosAdmision; // enum('Si','No') 
+
+    function getTelefonoPp() {
+        return $this->telefonoPp;
+    }
+
+    function getTelefonoPt() {
+        return $this->telefonoPt;
+    }
+
+    function getCelular() {
+        return $this->celular;
+    }
+
+    function setTelefonoPp($telefonoPp) {
+        $this->telefonoPp = $telefonoPp;
+    }
+
+    function setTelefonoPt($telefonoPt) {
+        $this->telefonoPt = $telefonoPt;
+    }
+
+    function setCelular($celular) {
+        $this->celular = $celular;
+    }
+
+        function getIdpaciente() {
         return $this->idpaciente;
     }
 
@@ -64,10 +99,6 @@ class Ingreso {
         return $this->edad;
     }
 
-    function getDireccion() {
-        return $this->direccion;
-    }
-
     function getEscolaridad() {
         return $this->escolaridad;
     }
@@ -78,22 +109,6 @@ class Ingreso {
 
     function getEstadoCivil() {
         return $this->estadoCivil;
-    }
-
-    function getCodigoPostal() {
-        return $this->codigoPostal;
-    }
-
-    function getTelefonoParticular() {
-        return $this->telefonoParticular;
-    }
-
-    function getCelular() {
-        return $this->celular;
-    }
-
-    function getTelefonoTrabajo() {
-        return $this->telefonoTrabajo;
     }
 
     function getServicioMedico() {
@@ -114,6 +129,102 @@ class Ingreso {
 
     function getEmail() {
         return $this->email;
+    }
+
+    function getIdingreso() {
+        return $this->idingreso;
+    }
+
+    function getTipo() {
+        return $this->tipo;
+    }
+
+    function getReferencia() {
+        return $this->referencia;
+    }
+
+    function getOtro() {
+        return $this->otro;
+    }
+
+    function getAcude() {
+        return $this->acude;
+    }
+
+    function getParentesco() {
+        return $this->parentesco;
+    }
+
+    function getAdulo() {
+        return $this->adulo;
+    }
+
+    function getDrogasAlcohol() {
+        return $this->drogasAlcohol;
+    }
+
+    function getConsecunciaConsumo() {
+        return $this->consecunciaConsumo;
+    }
+
+    function getMental() {
+        return $this->mental;
+    }
+
+    function getCriteriosAdmision() {
+        return $this->criteriosAdmision;
+    }
+
+    function getFechaIngreso() {
+        return $this->fechaIngreso;
+    }
+
+    function setIdingreso($idingreso) {
+        $this->idingreso = $idingreso;
+    }
+
+    function setTipo($tipo) {
+        $this->tipo = $tipo;
+    }
+
+    function setReferencia($referencia) {
+        $this->referencia = $referencia;
+    }
+
+    function setOtro($otro) {
+        $this->otro = $otro;
+    }
+
+    function setAcude($acude) {
+        $this->acude = $acude;
+    }
+
+    function setParentesco($parentesco) {
+        $this->parentesco = $parentesco;
+    }
+
+    function setAdulo($adulo) {
+        $this->adulo = $adulo;
+    }
+
+    function setDrogasAlcohol($drogasAlcohol) {
+        $this->drogasAlcohol = $drogasAlcohol;
+    }
+
+    function setConsecunciaConsumo($consecunciaConsumo) {
+        $this->consecunciaConsumo = $consecunciaConsumo;
+    }
+
+    function setMental($mental) {
+        $this->mental = $mental;
+    }
+
+    function setCriteriosAdmision($criteriosAdmision) {
+        $this->criteriosAdmision = $criteriosAdmision;
+    }
+
+    function setFechaIngreso($fechaIngreso) {
+        $this->fechaIngreso = $fechaIngreso;
     }
 
     function setIdpaciente($idpaciente) {
@@ -144,10 +255,6 @@ class Ingreso {
         $this->edad = $edad;
     }
 
-    function setDireccion($direccion) {
-        $this->direccion = $direccion;
-    }
-
     function setEscolaridad($escolaridad) {
         $this->escolaridad = $escolaridad;
     }
@@ -158,22 +265,6 @@ class Ingreso {
 
     function setEstadoCivil($estadoCivil) {
         $this->estadoCivil = $estadoCivil;
-    }
-
-    function setCodigoPostal($codigoPostal) {
-        $this->codigoPostal = $codigoPostal;
-    }
-
-    function setTelefonoParticular($telefonoParticular) {
-        $this->telefonoParticular = $telefonoParticular;
-    }
-
-    function setCelular($celular) {
-        $this->celular = $celular;
-    }
-
-    function setTelefonoTrabajo($telefonoTrabajo) {
-        $this->telefonoTrabajo = $telefonoTrabajo;
     }
 
     function setServicioMedico($servicioMedico) {
@@ -196,10 +287,7 @@ class Ingreso {
         $this->email = $email;
     }
 
-        
-    
-    
-    public function exchangeArray($data) {       
+    public function exchangeArray($data) {
         $this->idpaciente = (isset($data['idpaciente'])) ? $data['idpaciente'] : null;
         $this->rfc = (isset($data['rfc'])) ? $data['rfc'] : null;
         $this->foto = (isset($data['foto'])) ? $data['foto'] : null;
@@ -207,19 +295,30 @@ class Ingreso {
         $this->sexo = (isset($data['sexo'])) ? $data['sexo'] : null;
         $this->fechaNac = (isset($data['fechaNac'])) ? $data['fechaNac'] : null;
         $this->edad = (isset($data['edad'])) ? $data['edad'] : null;
-        $this->direccion = (isset($data['direccion'])) ? $data['direccion'] : null;
         $this->escolaridad = (isset($data['escolaridad'])) ? $data['escolaridad'] : null;
         $this->ocupacion = (isset($data['ocupacion'])) ? $data['ocupacion'] : null;
-        $this->estadoCivil = (isset($data['estadoCivil'])) ? $data['estadoCivil'] : null;        
-        $this->codigoPostal = (isset($data['codigoPostal'])) ? $data['codigoPostal'] : null;
-        $this->telefonoParticular = (isset($data['telefonoParticular'])) ? $data['telefonoParticular'] : null;
-        $this->celular = (isset($data['celular'])) ? $data['celular'] : null;
-        $this->telefonoTrabajo = (isset($data['telefonoTrabajo'])) ? $data['telefonoTrabajo'] : null;
+        $this->estadoCivil = (isset($data['estadoCivil'])) ? $data['estadoCivil'] : null;
         $this->servicioMedico = (isset($data['servicioMedico'])) ? $data['servicioMedico'] : null;
         $this->tipoServicio = (isset($data['tipoServicio'])) ? $data['tipoServicio'] : null;
         $this->numero = (isset($data['numero'])) ? $data['numero'] : null;
         $this->tipoPaciente = (isset($data['tipoPaciente'])) ? $data['tipoPaciente'] : null;
+        $this->telefonoPp = (isset($data['telefonoPp'])) ? $data['telefonoPp'] : null;
+        $this->telefonoPt = (isset($data['telefonoPt'])) ? $data['telefonoPt'] : null;
+        $this->celular = (isset($data['celular'])) ? $data['celular'] : null;
         $this->email = (isset($data['email'])) ? $data['email'] : null;
+        
+        
+        $this->idingreso = (isset($data['idingreso'])) ? $data['idingreso'] : null;
+        $this->tipo = (isset($data['tipo'])) ? $data['tipo'] : null;
+        $this->referencia = (isset($data['referencia'])) ? $data['referencia'] : null;
+        $this->otro = (isset($data['otro'])) ? $data['otro'] : null;
+        $this->acude = (isset($data['acude'])) ? $data['acude'] : null;
+        $this->parentesco = (isset($data['parentesco'])) ? $data['parentesco'] : null;
+        $this->adulo = (isset($data['adulo'])) ? $data['adulo'] : null;
+        $this->drogasAlcohol = (isset($data['drogasAlcohol'])) ? $data['drogasAlcohol'] : null;
+        $this->consecunciaConsumo = (isset($data['consecunciaConsumo'])) ? $data['consecunciaConsumo'] : null;
+        $this->mental = (isset($data['mental'])) ? $data['mental'] : null;
+        $this->criteriosAdmision = (isset($data['criteriosAdmision'])) ? $data['criteriosAdmision'] : null;
         
     }
 

@@ -16,18 +16,16 @@ use Pacientes\Form\IngresoForm;
 use Pacientes\Model\Entity\Ingreso;
 use Zend\Db\Adapter\AdapterInterface;
 
-
 class IngresoController extends AbstractActionController {
 
     private $sessionContainer;
     private $objIngreso;
     private $dbAdapter;
 
-    public function __construct($sessionContainer, $objIngreso,$dbAdapter) {
+    public function __construct($sessionContainer, $objIngreso, $dbAdapter) {
         $this->sessionContainer = $sessionContainer;
         $this->objIngreso = $objIngreso;
         $this->dbAdapter = $dbAdapter;
-        
     }
 
     public function indexAction() {
@@ -39,21 +37,21 @@ class IngresoController extends AbstractActionController {
         ];
     }
 
-    public function nuevoAction() {
+    public function nuevoAction() {      
         $form = new IngresoForm($this->dbAdapter);
-         if ($this->getRequest()->isPost()) {
-            $data = $this->params()->fromPost();           
-            $form->setData($data);          
+        if ($this->getRequest()->isPost()) {
+            $data = $this->params()->fromPost();
+            $form->setData($data);
             if ($form->isValid()) {
                 $data = $form->getData();               
                 $objIngreso = new Ingreso();
                 $objIngreso->exchangeArray($form->getData());
-                $this->ingreso->guardarIngresos($objIngreso);              
-                //$this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
-                //return $this->redirect()->toRoute('inventario-entradas');
+                $this->objIngreso->guardarIngresos($objIngreso);
+                $this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
+                return $this->redirect()->toRoute('pacientes');
             }
-        }
-                       
+        }   
+
         $viewModel = new ViewModel([
             'form' => $form,
             'titulo' => 'Nuevo Ingreso del Usuario...',
@@ -96,7 +94,7 @@ class IngresoController extends AbstractActionController {
             'form' => $form
         ]);
     }
-    
+
     public function ingresoAction() {
         
     }
@@ -181,6 +179,4 @@ class IngresoController extends AbstractActionController {
         ];
     }
 
-    
-   
 }
