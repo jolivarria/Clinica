@@ -8,6 +8,9 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 use Pacientes\Controller\SolicitudController;
 use Pacientes\Model\Dao\ISolicitudIngresoDao;
 
+use Pacientes\Controller\IngresoController;
+use Pacientes\Model\Dao\IIngresoDao;
+
 
 
 /**
@@ -21,8 +24,9 @@ class SolicitudControllerFactory implements FactoryInterface {
         switch ($requestedName) {
             case SolicitudController::class:
                 $objSolicitud = $container->get(ISolicitudIngresoDao::class);
+                $objIngreso = $container->get(IIngresoDao::class);
                 $sessionContainer = $container->get('UserRegistration');
-                $controller = new SolicitudController($sessionContainer, $objSolicitud);
+                $controller = new SolicitudController($sessionContainer, $objSolicitud,$objIngreso);
                 break;
             default :
                 return (null === $options) ? new $requestedName : new $requestedName;

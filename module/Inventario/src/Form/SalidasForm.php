@@ -54,6 +54,7 @@ class SalidasForm extends Form {
         $this->add([
             'type' => 'Zend\Form\Element\Select',
             'name' => 'codigoSalida',
+            'id' => 'codigoSalida',
             'options' => array(
                 'label' => 'Código',
                 'required' => true,

@@ -16,12 +16,13 @@
     <a class="btn btn-info" href="<?= $this->url('ingreso-nuevo') ?>"><i class="icon-plus-sign"></i> Nuevo</a>
     <div class="widget-box">
         <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
+            <h5>Pacientes del Sistema</h5>
         </div>
         <div class="widget-content nopadding">
             <table class="table table-bordered data-table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>R.F.C</th>
                         <th>Nombre</th>
                         <th>Sexo</th>
@@ -29,26 +30,46 @@
                         <th>Ingreso</th>                                                
                         <th>Tel. Personal</th>
                         <th>Fecha</th>
+                        <th>Tiempo</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <?php foreach ($this->objIngreso as $obj): ?>
+
+                    <?php
+                    $count=1;
+                    foreach ($this->objIngreso as $obj):
+                        $hoy = getdate();
+                        $d = $hoy['mday'];
+                        $m = $hoy['mon'];
+                        $y = $hoy['year'];
+                        $datetime1 = date_create($y.'/'.$m.'/'. $d);
+                        if(is_null($obj['fecha'])){
+                            $datetime2 = date_create($obj['fechaIngreso']);
+                        }else{
+                            $datetime2 = date_create($obj['fecha']);
+                        }
+                        $dias = date_diff($datetime1, $datetime2);
+                       
+                       
+                        ?>
                         <tr class="gradeX">
+                             <td><?= $count ?></td>
                             <td><?= $obj['rfc'] ?></td>
                             <td><?= $obj['nombre'] ?></td>
                             <td><?= $obj['sexo'] ?></td>
                             <td><?= $obj['edad'] ?></td>
                             <td><?= $obj['tipo'] ?></td>
                             <td><?= $obj['telefonoPp'] ?></td>
-                            <td><?= $obj['fechaIngreso'] ?></td>
+                            <td><?= (is_null($obj['fecha']))? $obj['fechaIngreso'] :$obj['fecha'] ; ?></td>
+                            <td><?= $dias->m.' Mes, '.$dias->d.' Dias' ?></td>
                             <td>
-                                <a class="btn btn-primary" href="">Modificar</a>                                
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Borrar</button></td>
+                                <a class="btn btn-primary" title="Editar Paciente" href=""><i class="icon-edit"></i></a>
+                                <a class="btn btn" title="Hoja de Ingreso" href="<?= $this->url('hoja-ingreso')?><?= '/' . $obj['idpaciente'] ?>"><i class="icon-list-alt"></i></a> 
                         </tr>
+                        <?php $count++; ?>
                     <?php endforeach; ?>
-
+                    <?php ?>
                 </tbody>
             </table>
         </div>

@@ -1,0 +1,161 @@
+<?php
+$form = $this->form;
+$form->get('idcontrato');
+
+$form->get('idexpedientes')->setAttributes([
+    'class' => 'span2',
+    'value' => $this->objExpedientes[0]['idexpedientes'],
+]);
+
+$form->get('idpaciente')->setAttributes([
+    'class' => 'span2',
+    'value' => $this->objExpedientes[0]['idpaciente'],
+]);
+
+$form->get('tiempo')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('costoTratamiento')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('pagoIngreso')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('cantidadPago')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('plazo')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+
+$form->get('btnGuardar')->setAttributes(array('class' => 'btn btn-primary'));
+$form->prepare();
+?>
+<div id="content-header">
+    <div id="breadcrumb"> <a href="<?= $this->url('home') ?> " title="Panel" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<?= $this->url('expedientes') ?>">Expediente</a><a href="<?= $this->url('expedientes') ?>">Contratos</a></div>
+    <h1><?= $this->titulo; ?></h1>
+</div>
+
+<div class="container-fluid"> 
+
+    <hr>
+    <?PHP
+    echo $this->flashMessenger()
+            ->setMessageOpenFormat('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h1>El registro se ha Guardado!</h1>')
+            ->setMessageSeparatorString('<p></p>')
+            ->setMessageCloseString('</div>')
+            ->render('success');
+    ?>
+    <div class="widget-content">
+
+        <div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading">N° Expediente: <?= $this->objExpedientes[0]['numeroExpediente'] ?> <?= $this->objExpedientes[0]['nombre'] ?> </h4>
+
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+                <h5>DATOS DEL EXPEDIENTE</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>N°Expediente</th>
+                            <th>Nombre paciente</th>
+                            <th>Familiar</th>
+                            <th>Cel.</th>
+                            <th>Fecha Ingreso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd gradeX">
+                            <td><?= $this->objExpedientes[0]['numeroExpediente'] ?></td>
+                            <td><?= $this->objExpedientes[0]['nombre'] ?> </td>
+                            <td><?= $this->objExpedientes[0]['nombreFam'] ?></td>
+                            <td class="center"> <?= $this->objExpedientes[0]['celularFam'] ?></td>
+                            <td class="center"><?= $this->objExpedientes[0]['fechaIngreso'] ?></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>Contratos</h5>
+                </div>
+                <div class="bs-docs-example">
+                    <?= $this->form()->openTag($form); ?>
+                    <?= $this->formElement($form->get('idcontrato')) ?> 
+                    <?= $this->formElement($form->get('idexpedientes')) ?>
+                    <?= $this->formElement($form->get('idpaciente')) ?>
+                    
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('tiempo')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('tiempo')); ?> 
+                            <?= $this->formElementErrors($form->get('tiempo')); ?>                             
+                        </div>
+                       
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('plazo')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('plazo')); ?> 
+                            <?= $this->formElementErrors($form->get('plazo')); ?>                         
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('costoTratamiento')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('costoTratamiento')); ?> 
+                            <?= $this->formElementErrors($form->get('costoTratamiento')); ?>                         
+                            <div class="hint">
+                                (3: $8,500|6: $12,500|12: $15,000)
+                            </div>
+                        </div>
+                         
+                    </div>
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('pagoIngreso')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('pagoIngreso')); ?> 
+                            <?= $this->formElementErrors($form->get('pagoIngreso')); ?>                         
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('cantidadPago')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('cantidadPago')); ?> 
+                            <?= $this->formElementErrors($form->get('cantidadPago')); ?>  
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <?= $this->formElement($form->get('btnGuardar')); ?>
+                        <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
+                        <div id="status"></div>
+                    </div>
+                    <?= $this->form()->closeTag(); ?>
+                </div>
+            </div>
+        </div>       
+    </div>

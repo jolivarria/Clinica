@@ -34,7 +34,8 @@
             "Expedientes\\": "module/Expedientes/src/",
             "Pacientes\\": "module/Pacientes/src/",
             "DOMPDFModule\\": "module/DOMPDFModule/src/",
-            "Inventario\\": "module/Inventario/src/"
+            "Inventario\\": "module/Inventario/src/",
+            "Venta\\": "module/Venta/src/"
          
         }
     },

@@ -14,7 +14,7 @@ use Zend\Db\Adapter\AdapterAbstractServiceFactory;
  * It determines which fields to create based on the $step argument you pass to
  * its constructor.
  */
-class EntradasForm extends Form {
+class CreditoForm extends Form {
 
     
     private $dbAdapter;
@@ -24,13 +24,13 @@ class EntradasForm extends Form {
     public function __construct(Adapter $dbAdapter) {
         // Check input.
         // Define form name
-        parent::__construct('entrada-form');
+        parent::__construct('credito-form');
 
         // Set POST method for this form
         $this->setAttribute('method', 'post');
         $this->setAttribute('enctype', 'multipart/form-data');
         $this->setAttribute('class', 'form-horizontal');
-        $this->setAttribute('id', 'form-wizard');
+        $this->setAttribute('id', 'form-credito');
         $this->dbAdapter = $dbAdapter;
         $this->addElements();
         $this->addInputFilter();
@@ -43,21 +43,17 @@ class EntradasForm extends Form {
 
         $this->add([
             'type' => 'hidden',
-            'name' => 'identradas',
+            'name' => 'idcredito',
         ]);
-        $this->add([
-            'type' => 'hidden',
-            'name' => 'productos_idproductos',
-        ]);
-        
+       
         $this->add([
             'type' => 'Zend\Form\Element\Select',
-            'name' => 'productos_idproductos',
+            'name' => 'paciente_idpaciente',
            'options' => array(
-                'label' => 'Código',
+                'label' => 'Paciente',
                 'required' => true,
-                'empty_option' => 'Seleccione Producto',
-                'value_options' => $this->getProducto(),
+                'empty_option' => 'Seleccione Paciente',
+                'value_options' => $this->getPaciente(),
                 'label_attributes' => array('class' => 'control-label')
             )
 
@@ -65,9 +61,9 @@ class EntradasForm extends Form {
         
         $this->add([
             'type' => 'number',
-            'name' => 'cantidad',
+            'name' => 'totalCredito',
             'attributes' => [
-                'id' => 'cantidad',
+                'id' => 'totalCredito',
                 'maxlength' => '2',
                 'required' => true,
             ],
@@ -76,20 +72,7 @@ class EntradasForm extends Form {
                 'label_attributes' => array('class' => 'control-label')
             ],
         ]);
-         $this->add([
-            'type' => 'text',
-            'name' => 'precio',
-            'attributes' => [
-                'id' => 'Precio',
-                'maxlength' => '4',
-                'required' => true,
-            ],
-            'options' => [
-                'label' => 'Precio:',
-                'label_attributes' => array('class' => 'control-label')
-            ],
-        ]);
-        
+       
 
         // Add the submit button
         $this->add([
@@ -110,15 +93,15 @@ class EntradasForm extends Form {
         $this->setInputFilter($inputFilter);
     }
     
-    public function getProducto() {
-        $sql = 'SELECT idproductos,codigo,nombre,nombre,precio,descripcion FROM productos ORDER BY idproductos ASC';
+    public function getPaciente() {
+        $sql = 'SELECT idpaciente,nombre FROM paciente ORDER BY idpaciente ASC';
         $statement = $this->dbAdapter->query($sql);
         $result = $statement->execute();
 
         $selectData = [];
 
         foreach ($result as $res) {
-            $selectData [$res['idproductos']] = $res['codigo'];
+            $selectData [$res['idpaciente']] = $res['nombre'];
         }
         return $selectData;
     }

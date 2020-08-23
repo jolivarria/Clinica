@@ -28,4 +28,5 @@ return [
     'DOMPDFModule',
     'Takeoo\Pdf',
     'Inventario',
+    'Venta',
 ];

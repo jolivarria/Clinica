@@ -16,7 +16,7 @@ namespace Pacientes\Model\Entity;
 class SolicitudIngreso {
 
     private $idSolicitud; //int(11) AI PK 
-    private $RFC; //varchar(45)
+    private $rfc; //varchar(45)
     private $nombrePaciente; // varchar(45) 
     private $sexo; //enum('Hombre','Mujer') 
     private $fechaNac; //date 
@@ -35,8 +35,8 @@ class SolicitudIngreso {
     public function getIdSolicitud() {
         return $this->idSolicitud;
     }
-    public function getRFC() {
-        return $this->RFC;
+    public function getRfc() {
+        return $this->rfc;
     }
 
     public function getNombrePaciente() {
@@ -98,8 +98,8 @@ class SolicitudIngreso {
     public function setIdSolicitud($idSolicitud) {
         $this->idSolicitud = $idSolicitud;
     }
-    public function setRFC($RFC) {
-        $this->idSolicitud = $RFC;
+    public function setRfc($rfc) {
+        $this->idSolicitud = $rfc;
     }
 
     public function setNombrePaciente($nombrePaciente) {
@@ -160,7 +160,7 @@ class SolicitudIngreso {
 
     public function exchangeArray($data) {
         $this->idSolicitud = (isset($data['idSolicitud'])) ? $data['idSolicitud'] : null;
-        $this->RFC = (isset($data['RFC'])) ? $data['RFC'] : null;
+        $this->rfc = (isset($data['rfc'])) ? $data['rfc'] : null;
         $this->nombrePaciente = (isset($data['nombrePaciente'])) ? $data['nombrePaciente'] : null;
         $this->sexo = (isset($data['sexo'])) ? $data['sexo'] : null;
         $this->fechaNac = (isset($data['fechaNac'])) ? $data['fechaNac'] : null;

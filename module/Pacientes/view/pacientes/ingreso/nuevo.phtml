@@ -3,8 +3,20 @@ $form = $this->form;
 
 $form->get('idingreso');
 
+$form->get('tienesFecha')->setAttributes([
+    'class' => 'span50 m-wrap',
+    'required' => true,
+]);
+
+$form->get('fecha')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'placeholder' => ''
+]);
+
+
 $form->get('rfc')->setAttributes([
     'class' => 'span2 m-wrap',
+    'required' => true,
     'placeholder' => 'RFC'
 ]);
 
@@ -14,40 +26,40 @@ $form->get('foto')->setAttributes([
 ]);
 $form->get('nombre')->setAttributes([
     'class' => 'span5 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 $form->get('sexo')->setAttributes([
     'class' => 'span50 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 $form->get('fechaNac')->setAttributes([
     'class' => 'span5 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 $form->get('edad')->setAttributes([
     'class' => 'span2 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 
 $form->get('escolaridad')->setAttributes([
     'class' => 'span3 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 
 $form->get('ocupacion')->setAttributes([
     'class' => 'span3 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 
 $form->get('estadoCivil')->setAttributes([
     'class' => 'span3 m-wrap',
-//    'required' => true,
+    'required' => true,
     'placeholder' => ''
 ]);
 
@@ -67,15 +79,19 @@ $form->get('celular')->setAttributes([
 ]);
 
 
-//$form->get('nacionalidad')->setAttributes([
-//    'class' => 'span50',
-//]);
-//$form->get('municipio')->setAttributes([
-//    'class' => 'span50',
-//]);
+$form->get('nacionalidad')->setAttributes([
+    'required' => true,
+    'class' => 'span5',
+]);
+
+$form->get('municipio')->setAttributes([
+    'required' => true,
+    'class' => 'span5',
+]);
 
 
 $form->get('servicioMedico')->setAttributes([
+    'required' => true,
     'class' => 'span2 m-wrap',
 //    'required' => true,
 ]);
@@ -98,7 +114,7 @@ $form->get('referencia')->setAttributes([
 
 $form->get('otro')->setAttributes([
     'class' => 'span2 m-wrap',
-    'required' => true,
+
 ]);
 
 $form->get('acude')->setAttributes([
@@ -134,81 +150,44 @@ $form->get('criteriosAdmision')->setAttributes([
 ]);
 
 
-//$form->get('Voluntario')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('Involuntario')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('Obligatorio')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('domicilioParticular')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('institucionPublica')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('institucionPrivada')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('hospitalPsiquiatrico')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('centroRedaptacion')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('otros')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('otro')->setAttributes([
-//    'class' => 'span10 m-wrap',
-//]);
-//$form->get('solo')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('amigo')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('vecino')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('familiar')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('dependencia')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('consecuencia')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('trastorno')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('criteriosAdmision')->setAttributes([
-//    'class' => 'btn',
-//]);
-//$form->get('nombreFamiliar')->setAttributes([
-//    'class' => 'span50 m-wrap',
-//    'placeholder' => ''
-//]);
-//$form->get('direccionFamiliar')->setAttributes([
-//    'class' => 'span50 m-wrap',
-//    'placeholder' => ''
-//]);
 $form->get('numero')->setAttributes([
     'class' => 'span2 m-wrap',
     'placeholder' => ''
 ]);
-//$form->get('colonia')->setAttributes([
-//    'class' => 'span15 m-wrap',
-//    'placeholder' => ''
-//]);
-//$form->get('municipioFamiliar')->setAttributes([
-//    'class' => 'span15 m-wrap',
-//    'placeholder' => ''
-//]);
 
+///////Familiares////////
+$form->get('nombreFam')->setAttributes([
+    'class' => 'span3 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('domicilioFam')->setAttributes([
+    'class' => 'span4 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+$form->get('numeroFam')->setAttributes([
+    'class' => 'span1 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+$form->get('coloniaFam')->setAttributes([
+    'class' => 'span2 m-wrap',
+    'required' => true,
+    'placeholder' => ''
+]);
+
+$form->get('telefonoParticularFam')->setAttributes([
+    'class' => 'span2 mask text',
+    'required' => true,
+    'placeholder' => ''
+]);
+$form->get('celularFam')->setAttributes([
+    'class' => 'span2 mask text',
+    'required' => true,
+    'placeholder' => ''
+]);
 
 
 $form->get('btnGuardar')->setAttributes(array('class' => 'btn btn-primary'));
@@ -229,9 +208,29 @@ $form->prepare();
             <?= $this->form()->openTag($form); ?>
             <div class="widget-box">                
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>DATOS DEL INTERNO</h5>
+                    <h5>DATOS DEL PACIENTE</h5>
                 </div>
-                <div class="widget-content nopadding">                    
+                <div class="widget-content nopadding"> 
+                    <div class="control-group">
+                        <label class="control-label">Tienes fecha de Ingreso</label>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('tienesFecha')); ?> 
+                            <?= $this->formElementErrors($form->get('tienesFecha')); ?>  
+                        </div>
+                    </div>
+              
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('fecha')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('fecha')); ?> 
+                            <?= $this->formElementErrors($form->get('fecha')); ?>
+                            <div class="hint">
+                                (año/mes/dia)</div>
+                        </div>
+                         
+                    </div>
+                    
+             
                     <div class="control-group">
                         <?= $this->formLabel($form->get('rfc')); ?>
                         <div class="controls">                
@@ -249,7 +248,8 @@ $form->prepare();
                         <div class="controls">                
                             <?= $this->formElement($form->get('foto')); ?> 
                             <?= $this->formElementErrors($form->get('foto')); ?>
-                        </div>
+                        </div> 
+
                     </div>
 
                     <div class="control-group">
@@ -301,13 +301,12 @@ $form->prepare();
 
                         </div>
                     </div> 
-                    
+
                     <div class="control-group">
                         <?= $this->formLabel($form->get('ocupacion')); ?>
                         <div class="controls">                
                             <?= $this->formElement($form->get('ocupacion')); ?>
                             <?= $this->formElementErrors($form->get('ocupacion')); ?>
-
                         </div>
                     </div> 
 
@@ -319,8 +318,8 @@ $form->prepare();
 
                         </div>
                     </div> 
-                    
-                     <div class="control-group">
+
+                    <div class="control-group">
                         <?= $this->formLabel($form->get('telefonoPp')); ?>
                         <div class="controls">                
                             <?= $this->formElement($form->get('telefonoPp')); ?>
@@ -328,7 +327,7 @@ $form->prepare();
 
                         </div>
                     </div> 
-                    
+
                     <div class="control-group">
                         <?= $this->formLabel($form->get('telefonoPt')); ?>
                         <div class="controls">                
@@ -337,8 +336,8 @@ $form->prepare();
 
                         </div>
                     </div> 
-                    
-                       <div class="control-group">
+
+                    <div class="control-group">
                         <?= $this->formLabel($form->get('celular')); ?>
                         <div class="controls">                
                             <?= $this->formElement($form->get('celular')); ?>
@@ -370,7 +369,7 @@ $form->prepare();
 
                         </div>
                     </div>  
-                    
+
                     <div class="control-group">
                         <?= $this->formLabel($form->get('email')); ?>
                         <div class="controls">                
@@ -378,25 +377,41 @@ $form->prepare();
                             <?= $this->formElementErrors($form->get('email')); ?>
                         </div>
                     </div>
-                    
+
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('municipio')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('municipio')); ?>
+                            <?= $this->formElementErrors($form->get('municipio')); ?>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <?= $this->formLabel($form->get('nacionalidad')); ?>
+                        <div class="controls">                
+                            <?= $this->formElement($form->get('nacionalidad')); ?>
+                            <?= $this->formElementErrors($form->get('nacionalidad')); ?>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="widget-box">                
                 <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                    <h5>Como ingresa el usuario</h5>
+                    <h5>COMO INGRESA EL USUARIO</h5>
                 </div>
                 <div class="widget-content nopadding">
-                     <div class="control-group">
-                       <label class="control-label">Tipo de ingreso:</label>
+                    <div class="control-group">
+                        <label class="control-label">Tipo de ingreso:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('tipo')); ?> 
                             <?= $this->formElementErrors($form->get('tipo')); ?>                            
-                          
+
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">Referencia del Usuario:</label>
+                        <label class="control-label">Referencia del Usuario:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('referencia')); ?> 
                             <?= $this->formElementErrors($form->get('referencia')); ?>  
@@ -410,15 +425,15 @@ $form->prepare();
                             <?= $this->formElementErrors($form->get('otro')); ?>
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">Con quien acude:</label>
+                        <label class="control-label">Con quien acude:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('acude')); ?> 
                             <?= $this->formElementErrors($form->get('acude')); ?>  
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
                         <?= $this->formLabel($form->get('parentesco')); ?>
                         <div class="controls">                
@@ -426,57 +441,124 @@ $form->prepare();
                             <?= $this->formElementErrors($form->get('parentesco')); ?>
                         </div>
                     </div>
-                    
+                </div>
+            </div>
+            <div class="widget-box">                
+                <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                    <h5>CRITERIOS DE INCLUSION</h5>
+                </div>
+                <div class="widget-content nopadding">
+
                     <div class="control-group">
-                       <label class="control-label">Es mayor de edad:</label>
+                        <label class="control-label">Es mayor de edad:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('adulo')); ?> 
                             <?= $this->formElementErrors($form->get('adulo')); ?>  
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">Presenta un nivel de dependencia al alcohol o drogas:</label>
+                        <label class="control-label">Presenta un nivel de dependencia al alcohol o drogas:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('drogasAlcohol')); ?> 
                             <?= $this->formElementErrors($form->get('drogasAlcohol')); ?>  
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">Consecuencia asociada al consumo:</label>
+                        <label class="control-label">Consecuencia asociada al consumo:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('consecunciaConsumo')); ?> 
                             <?= $this->formElementErrors($form->get('consecunciaConsumo')); ?>  
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">Mental o psiquiátrico que le impida beneficiarse del tratamiento:</label>
+                        <label class="control-label">Mental o psiquiátrico que le impida beneficiarse del tratamiento:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('mental')); ?> 
                             <?= $this->formElementErrors($form->get('mental')); ?>  
                         </div>
                     </div>
-                    
+
                     <div class="control-group">
-                       <label class="control-label">El usuario cumple con todos los criterios de admisión al tratamiento:</label>
+                        <label class="control-label">El usuario cumple con todos los criterios de admisión al tratamiento:</label>
                         <div class="controls">                
                             <?= $this->formElement($form->get('criteriosAdmision')); ?> 
                             <?= $this->formElementErrors($form->get('criteriosAdmision')); ?>  
                         </div>
                     </div>
-                    
                 </div>
-                <div class="form-actions">
-                        <?= $this->formElement($form->get('btnGuardar')); ?>
-                        <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
-                        <div id="status"></div>
-                    </div>    
             </div>
-            <?= $this->form()->closeTag(); ?>
+
+        <div class="widget-box">                
+            <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                <h5>DATOS DEL REPRESENTANTE LEGAL</h5>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('nombreFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('nombreFam')); ?> 
+                        <?= $this->formElementErrors($form->get('nombreFam')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('domicilioFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('domicilioFam')); ?> 
+                        <?= $this->formElementErrors($form->get('domicilioFam')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('numeroFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('numeroFam')); ?> 
+                        <?= $this->formElementErrors($form->get('numeroFam')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('coloniaFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('coloniaFam')); ?> 
+                        <?= $this->formElementErrors($form->get('coloniaFam')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('telefonoParticularFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('telefonoParticularFam')); ?> 
+                        <?= $this->formElementErrors($form->get('telefonoParticularFam')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-content nopadding">                    
+                <div class="control-group">
+                    <?= $this->formLabel($form->get('celularFam')); ?>
+                    <div class="controls">                
+                        <?= $this->formElement($form->get('celularFam')); ?> 
+                        <?= $this->formElementErrors($form->get('celularFam')); ?>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <div class="form-actions">
+            <?= $this->formElement($form->get('btnGuardar')); ?>
+            <input id="back" class="btn btn-danger" type="reset" value="Cancelar" />
+            <div id="status"></div>
+        </div>  
+        <?= $this->form()->closeTag(); ?>
     </div>
 </div>
 </div>
+
 

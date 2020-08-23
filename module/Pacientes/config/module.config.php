@@ -48,6 +48,20 @@ return [
                     ],
                 ],
             ],
+            'hoja-ingreso' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/pacientes/hojaingreso[/:action][/:id]',
+                     'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\IngresoController::class,
+                        'action' => 'hojaingreso',
+                    ],
+                ],
+            ],
             'ingreso-nuevo' => [
                 'type' => Segment::class,
                 'options' => [
@@ -109,6 +123,19 @@ return [
                     ],
                 ],
             ],
+            'ingreso-buscarfc' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/pacientes/ingreso/buscarfc[/:rfc]',
+                    'constraints' => [
+                        'rfc' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\SolicitudController::class,
+                        'action' => 'buscarfc',
+                    ],
+                ],
+            ],
             'reporte-obtenercarro' => [
                 'type' => Segment::class,
                 'options' => [
@@ -129,7 +156,7 @@ return [
                     'route' => '/solicitud/detalle[/:action][/:id][/:rfc]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]',
+                        'id' => '[0-9]+',
                         'rfc' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                     'defaults' => [
@@ -170,8 +197,8 @@ return [
                     'route' => '/solicitud/reporte[/:action][/:id][/:idReporte]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]',
-                        'idReporte' => '[0-9]',
+                        'id' => '[0-9]+',
+                        'idReporte' => '[0-9]+',
                     ],
                     'defaults' => [
                         'controller' => Controller\ReporteController::class,

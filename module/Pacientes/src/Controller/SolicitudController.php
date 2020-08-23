@@ -19,10 +19,13 @@ class SolicitudController extends AbstractActionController {
 
     private $sessionContainer;
     private $objSolicitud;
+    private $objIngreso;
 
-    public function __construct($sessionContainer, $objSolicitud) {
+    public function __construct($sessionContainer, $objSolicitud,$objIngreso) {
         $this->sessionContainer = $sessionContainer;
         $this->objSolicitud = $objSolicitud;
+        $this->objIngreso = $objIngreso;
+        
     }
 
     public function indexAction() {
@@ -35,21 +38,6 @@ class SolicitudController extends AbstractActionController {
     }
 
     public function nuevoAction() {
-        // Determine the current step.
-        $step = 1;
-        if (isset($this->sessionContainer->step)) {
-            $step = $this->sessionContainer->step;
-        }
-
-        // Ensure the step is correct (between 1 and 3).
-        if ($step < 1 || $step > 3)
-            $step = 1;
-
-        if ($step == 1) {
-            // Init user choices.
-            $this->sessionContainer->userChoices = [];
-        }
-
         $form = new SolicitudForm(1);
         if ($this->getRequest()->isPost()) {
             // Fill in the form with POST data
@@ -58,33 +46,18 @@ class SolicitudController extends AbstractActionController {
             // Validate form
             if ($form->isValid()) {
                 // Get filtered and validated data
-                $data = $form->getData();
-                // Save user choices in session.
-                $this->sessionContainer->userChoices["step$step"] = $data;
-
-
-                $this->sessionContainer->step = $step;
-
+                $data = $form->getData();             
                 $objSolicitud = new SolicitudIngreso();
                 $objSolicitud->exchangeArray($form->getData());
                 $this->objSolicitud->guardar($objSolicitud);
                 $this->flashMessenger()->addSuccessMessage('Los datos sé han guardado con éxito');
                 return $this->redirect()->toRoute('pacientes', ['action' => 'solicitud']);
-
-                // If we completed all 3 steps, redirect to Review page.
-                if ($step > 3) {
-
-                    return $this->redirect()->toRoute('empleados', ['action' => 'review']);
-                }
-
-                // Go to the next step.
-                return $this->redirect()->toRoute('empleados', ['action' => 'nuevo']);
             }
         }
 
         $viewModel = new ViewModel([
             'form' => $form,
-            'step' => $step,
+            'step' => 1,
             'titulo' => 'Solicitud de ingreso del paciente al sistema',
             'subTitulo' => 'Llenar los campos correctamente para la solicitud del ingreso',
         ]);
@@ -126,10 +99,14 @@ class SolicitudController extends AbstractActionController {
     public function buscarfcAction() {
         $rfc = $this->params()->fromRoute("rfc", null);
         $solicitud = $this->objSolicitud->buscarRFC($rfc);
+        $ingreso = $this->objIngreso->buscarRFC($rfc); 
+//        var_dump($solicitud);
+//        var_dump($ingreso);
         $viewModel = new ViewModel([
             'paciente' => $solicitud,
+            'ingreso' => $ingreso,
         ]);
-        //$viewModel->setTemplate("pacientes/ingreso/step$step");
+       
         $viewModel->setTerminal(TRUE);
         return $viewModel;
     }

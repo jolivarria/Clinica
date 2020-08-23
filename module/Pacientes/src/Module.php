@@ -55,7 +55,7 @@ class Module {
                     $dbAdapter = $sm->get(AdapterInterface::class);
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new Ingreso());
-                    return new TableGateway('ingreso', $dbAdapter, null, $resultSetPrototype);
+                    return new TableGateway('paciente', $dbAdapter, null, $resultSetPrototype);
                 },
                 IIngresoDao::class => function ($sm) {
                     $dbAdapter = $sm->get(AdapterInterface::class);

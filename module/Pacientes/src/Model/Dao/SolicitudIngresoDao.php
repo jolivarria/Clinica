@@ -36,11 +36,11 @@ class SolicitudIngresoDao implements ISolicitudIngresoDao {
     }
 
     public function obtenerDetalle($RFC) {
-        $rowSet = $this->tableGateway->select(["RFC" => (string) $RFC]);               
+        $rowSet = $this->tableGateway->select(["rfc" => (string) $RFC]);               
         return $rowSet;
     }
     public function obtenerDetalleConunt($RFC) {
-       $rowSet = $this->tableGateway->select(["RFC" => (string) $RFC]);
+       $rowSet = $this->tableGateway->select(["rfc" => (string) $RFC]);
         $row = $rowSet->count();
         if (!$row)
             throw new RuntimeException("No se puede tener acceso a : $RFC");
@@ -52,16 +52,16 @@ class SolicitudIngresoDao implements ISolicitudIngresoDao {
     }
     
     public function buscarRFC($RFC){
-        $rowSet = $this->tableGateway->select(['RFC' => (string) $RFC]);
+        $rowSet = $this->tableGateway->select(['rfc' => (string) $RFC]);
         $row = $rowSet->current();
-        if (!$row)
-            throw new RuntimeException("No se puede tener acceso a : $RFC");
+//        if (!$row)
+//            throw new RuntimeException("No se puede tener acceso a : $RFC");
         return $row;
     }
 
     public function guardar(SolicitudIngreso $obj) {
         $data = [
-            'RFC'               => $obj->getRFC(),
+            'rfc'               => $obj->getRfc(),
             'nombrePaciente'    => $obj->getNombrePaciente(),
             'sexo'              => $obj->getSexo(),
             'edad'              => $obj->getEdad(),

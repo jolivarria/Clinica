@@ -1,2 +1,5 @@
-<p>Se encontro esté paciente... <h4><?= $this->paciente->getNombrePaciente() ?></h4></p>
-<a class="btn btn-info " href="#"> Cargar Datos</a>
+<?php error_reporting(E_ALL); var_dump($this->ingreso->getRfc())?>
+<p>Se encontro una Solicitud con ese RFC: <?=  (is_null($this->paciente->getRfc())) ? "" :  $this->paciente->getRfc()?> y se encuentra en estatus de <?=$this->paciente->getEstado()?></p>
+
+Se encontro un Paciente con ese RFC:<br>
+<button class="btn btn-info btn-primary"><?=  (is_null($this->ingreso->getRfc())) ? "" : $this->paciente->getRfc();?></button>

@@ -77,22 +77,24 @@
                 <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Ventas</span> <span class="icon-sort-down"></span></a>
                     <ul>
                         <li><a href="<?= $this->url('expedientes'); ?>">Ver Todas Ventas</a></li>                        
-                        <li><a href="">Abrir Venta</a></li>
+                        <li><a href="<?= $this->url('venta'); ?>">Abrir Venta</a></li>
+                        <li><a href="<?= $this->url('venta-credito'); ?>">Credito</a></li>
+                        <li><a href="">Movimientos</a></li>
                         <li><a href="">Cancelar Venta</a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Expedientes</span> <span class="icon-sort-down"></span></a>
                     <ul>
-                        <li><a href="<?= $this->url('expedientes'); ?>">Ver Expedientes</a></li>                        
-                        <li><a href="">Contrato</a></li>
-                        <li><a href="">Imprimir</a></li>
+                        <li><a href="<?= $this->url('expedientes'); ?>">Expedientes</a></li>                        
+                        <li><a href="<?= $this->url('expedientes-contrato'); ?>">Contrato</a></li>
+                        <li><a href="">Pagos</a></li>
+                        <li><a href="">Cobros</a></li>
                     </ul>
                 </li>
                 <li class="submenu"> <a href="#"><i class="icon icon-group"></i> <span>Pacientes</span> <span class="icon-sort-down"></span></a>
                     <ul>
-                        <li><a href="<?= $this->url('pacientes'); ?>">Pacientes</a></li>
-                        <li><a href="<?= $this->url('solicitud'); ?>">Solicitud Ingreso</a></li>
-                        <li><a href="<?= $this->url('pacientes'); ?>">Paciente</a></li>
+                        <li><a href="<?= $this->url('pacientes'); ?>">Ingreso</a></li>
+                        <li><a href="<?= $this->url('solicitud'); ?>">Solicitud Ingreso</a></li>                       
                         <li><a href="form-wizard.html">Familiares</a></li>
                     </ul>
                 </li>

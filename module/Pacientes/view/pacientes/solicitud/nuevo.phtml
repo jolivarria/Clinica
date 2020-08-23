@@ -3,7 +3,7 @@ $form = $this->form;
 
 $form->get('idSolicitud');
 
-$form->get('RFC')->setAttributes([
+$form->get('rfc')->setAttributes([
     'class' => 'span3',
     'placeholder' => 'RFC'
 ]);
@@ -91,10 +91,10 @@ $form->prepare();
                 <div class="widget-content nopadding">
                     <?= $this->form()->openTag($form); ?>
                     <div class="control-group">
-                        <?= $this->formLabel($form->get('RFC')); ?>
+                        <?= $this->formLabel($form->get('rfc')); ?>
                         <div class="controls">                
-                            <?= $this->formElement($form->get('RFC')); ?> <a href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" class="btn btn-info" title="Consulta tu RFC." target="_blank"><i class="icon-th-large"></i></a>
-                            <?= $this->formElementErrors($form->get('RFC')); ?>
+                            <?= $this->formElement($form->get('rfc')); ?> <a href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" class="btn btn-info" title="Consulta tu RFC." target="_blank"><i class="icon-th-large"></i></a>
+                            <?= $this->formElementErrors($form->get('rfc')); ?>
                             <div id="cargando">
                             </div>
                             <div class="hint">

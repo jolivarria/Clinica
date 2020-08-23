@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h1>Hoja de Ingreso</h1>
+    Fecha de alta del registro: <?= $this->fechaIngreso ?> 
+    <hr>
+    RFC:                <?= $this->rfc ?> <br>
+    Foto:               <?= $this->foto ?> <br>
+    Nombre:             <?= $this->nombre ?><br>
+    Sexo:               <?= $this->sexo ?><br>
+    Fecha Nacimiento:   <?= $this->fechaNac ?><br>
+    Edad:               <?= $this->edad ?><br>
+    Escolaridad:        <?= $this->escolaridad ?><br>
+    Ocupacion           <?= $this->ocupacion ?><br>
+    Estado Civil:       <?= $this->estadoCivil ?><br>
+    <hr>
+    COMO ACUDE EL PACIENTE
+    <hr>
+    Tipo de Ingreso del Paciente:   <?= $this->tipo ?><br>
+    Como acude el paciente:         <?= $this->acude ?><br>
+    <hr>
+    REFERENCIA DEL PACIENTE
+    <hr>
+    Referencia:                     <?= $this->referencia ?><br>
+    Si tien otro:                   <?= $this->otro ?><br>       
+    Parentesco de la familiar:      <?= $this->parentesco ?><br>
+    <hr>
+    CRITERIOS DE INCLUSION
+    <hr>
+    El usuario es mayor de edad. <?= $this->adulto ?><br>
+    El usuario presenta un nivel de dependencia al alcohol o drogas.    <?= $this->drogasAlcohol ?><br>
+    El usuario presenta alguna (s) consecuencia asociada al consumo. <?= $this->consecunciaConsumo ?><br>
+    El usuario no presenta algún trastorno mental o psiquiátrico que le impida
+beneficiarse del tratamiento. <?= $this->mental ?><br>
+    El usuario cumple con todos los criterios de admisión al tratamiento. <?= $this->criteriosAdmision ?><br> 
+    <hr>
+    DATOS DEL FAMILIAR O REPRESENTANTE LEGAL
+    <hr>
+    Nombre Completo del Representante Legal: <?= $this->nombreFam ?><br>
+    Domicilio: <?= $this->domicilioFam ?> N°: <?= $this->numeroFam ?> Colonia: <?= $this->coloniaFam ?><br>
+    Teléfono Particular: <?= $this->telefonoParticularFam ?> Telefono Celular: <?= $this->celularFam ?>
+</div>  <br><hr><br><br><br>
+Firma del Entrevistador:_______________________________________<br><br>
+
+Firma del Encargado:___________________________________________<br><br>
+
+Firma del Director:_____________________________________________<br><br>

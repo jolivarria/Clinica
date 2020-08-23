@@ -12,6 +12,8 @@ use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Expedientes\Controller\Factory\ExpedienteControllerFactory;
+USE Expedientes\Controller\Factory\ContratoControllerFactory;
+
 return [
     'router' => [
         'routes' => [
@@ -25,23 +27,45 @@ return [
                     ],
                 ],
             ],
-            'expedientes-ingreso' => [
+            'expedientes-contrato' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/expedientes/ingreso[/:action]',
+                    'route' => '/expedientes/contrato[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ],
                     'defaults' => [
-                        'controller' => Controller\IngresoController::class,
+                        'controller' => Controller\ContratoController::class,
                         'action' => 'index',
                     ],
                 ],
             ],
-            'expedientes-solicitud' => [
+            'contrato-nuevo' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/expedientes/solicitud[/:action]',
+                    'route' => '/expedientes/contrato/nuevo[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ],
                     'defaults' => [
-                        'controller' => Controller\IngresoController::class,
-                        'action' => 'solicitud',
+                        'controller' => Controller\ContratoController::class,
+                        'action' => 'nuevo',
+                    ],
+                ],
+            ],
+            'reporte' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/expedientes/reporte[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Controller\ContratoController::class,
+                        'action' => 'reporte',
                     ],
                 ],
             ],
@@ -49,8 +73,9 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => ExpedienteControllerFactory::class,
             Controller\IngresoController::class => ExpedienteControllerFactory::class,
+            Controller\ContratoController::class => ContratoControllerFactory::class,
         ],
     ],
     'session_containers' => [
@@ -65,6 +90,7 @@ return [
         'template_map' => [
             'expedientes/index/index' => __DIR__ . '/../view/expedientes/index/index.phtml',
             'expedientes/ingreso/index' => __DIR__ . '/../view/expedientes/ingreso/index.phtml',
+            'expedientes/contrato/index' => __DIR__ . '/../view/expedientes/contrato/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

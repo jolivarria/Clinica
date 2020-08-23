@@ -49,9 +49,9 @@ class SolicitudForm extends Form {
 //            // Add "RFC" field.
             $this->add([
                 'type' => 'text',
-                'name' => 'RFC',
+                'name' => 'rfc',
                 'attributes' => [
-                    'id' => 'RFC',
+                    'id' => 'rfc',
                     'maxlength' => '10',
                     'required' => true,
                 ],

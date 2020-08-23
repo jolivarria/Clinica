@@ -27,23 +27,23 @@ return [
                     ],
                 ],
             ],
-            'inventario' => [
+            'venta' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/inventario/producto[/:action]',
+                    'route' => '/venta[/:action]',
                     'defaults' => [
-                        'controller' => Controller\ProductoController::class,
-                        'action' => 'producto',
+                        'controller' => Controller\VentaController::class,
+                        'action' => 'index',
                     ],
                 ],
             ],
-            'inventario-producto' => [
+            'venta-credito' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/inventario/producto[/:action]',
+                    'route' => '/venta/credito[/:action]',
                     'defaults' => [
-                        'controller' => Controller\ProductoController::class,
-                        'action' => 'producto',
+                        'controller' => Controller\CreditoController::class,
+                        'action' => 'index',
                     ],
                 ],
             ],
@@ -95,8 +95,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\ProductoController::class => ProductoControllerFactory::class,
-            Controller\EntradasController::class => EntradasControllerFactory::class,
+            Controller\VentaController::class => InvokableFactory::class,
+            Controller\CreditoController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
@@ -106,7 +106,7 @@ return [
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
         'template_map' => [
-            'inventario/index/index' => __DIR__ . '/../view/inventario/index/index.phtml',
+            'venta/index/index' => __DIR__ . '/../view/venta/index/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

@@ -46,8 +46,83 @@ class Ingreso {
     private $consecunciaConsumo; // enum('Si','No') 
     private $mental; // enum('Si','No') 
     private $criteriosAdmision; // enum('Si','No') 
+    private $fechaIngreso; //timestamp
+    private $fecha; //date
+    
 
-    function getTelefonoPp() {
+    private $paciente_idpaciente; //int(11) AI PK 
+    private $nombreFam; //varchar(45) 
+    private $domicilioFam; //varchar(45) 
+    private $numeroFam; //varchar(45) 
+    private $coloniaFam; // varchar(45) 
+    private $telefonoParticularFam; // varchar(45) 
+    private $celularFam; // varchar(45) 
+
+    function getFecha() {
+        return $this->fecha;
+    }
+
+    function setFecha($fecha) {
+        $this->fecha = $fecha;
+    }
+    
+    function getPaciente_idpaciente() {
+        return $this->paciente_idpaciente;
+    }
+
+    function getNombreFam() {
+        return $this->nombreFam;
+    }
+
+    function getDomicilioFam() {
+        return $this->domicilioFam;
+    }
+
+    function getNumeroFam() {
+        return $this->numeroFam;
+    }
+
+    function getColoniaFam() {
+        return $this->coloniaFam;
+    }
+
+    function getTelefonoParticularFam() {
+        return $this->telefonoParticularFam;
+    }
+
+    function getCelularFam() {
+        return $this->celularFam;
+    }
+
+    function setPaciente_idpaciente($paciente_idpaciente) {
+        $this->paciente_idpaciente = $paciente_idpaciente;
+    }
+
+    function setNombreFam($nombreFam) {
+        $this->nombreFam = $nombreFam;
+    }
+
+    function setDomicilioFam($domicilioFam) {
+        $this->domicilioFam = $domicilioFam;
+    }
+
+    function setNumeroFam($numeroFam) {
+        $this->numeroFam = $numeroFam;
+    }
+
+    function setColoniaFam($coloniaFam) {
+        $this->coloniaFam = $coloniaFam;
+    }
+
+    function setTelefonoParticularFam($telefonoParticularFam) {
+        $this->telefonoParticularFam = $telefonoParticularFam;
+    }
+
+    function setCelularFam($celularFam) {
+        $this->celularFam = $celularFam;
+    }
+
+        function getTelefonoPp() {
         return $this->telefonoPp;
     }
 
@@ -71,7 +146,7 @@ class Ingreso {
         $this->celular = $celular;
     }
 
-        function getIdpaciente() {
+    function getIdpaciente() {
         return $this->idpaciente;
     }
 
@@ -306,8 +381,7 @@ class Ingreso {
         $this->telefonoPt = (isset($data['telefonoPt'])) ? $data['telefonoPt'] : null;
         $this->celular = (isset($data['celular'])) ? $data['celular'] : null;
         $this->email = (isset($data['email'])) ? $data['email'] : null;
-        
-        
+
         $this->idingreso = (isset($data['idingreso'])) ? $data['idingreso'] : null;
         $this->tipo = (isset($data['tipo'])) ? $data['tipo'] : null;
         $this->referencia = (isset($data['referencia'])) ? $data['referencia'] : null;
@@ -319,6 +393,16 @@ class Ingreso {
         $this->consecunciaConsumo = (isset($data['consecunciaConsumo'])) ? $data['consecunciaConsumo'] : null;
         $this->mental = (isset($data['mental'])) ? $data['mental'] : null;
         $this->criteriosAdmision = (isset($data['criteriosAdmision'])) ? $data['criteriosAdmision'] : null;
+        $this->fecha = (isset($data['fecha'])) ? $data['fecha'] : null;
+        $this->fechaIngreso = (isset($data['fechaIngreso'])) ? $data['fechaIngreso'] : null;
+        
+        $this->nombreFam = (isset($data['nombreFam'])) ? $data['nombreFam'] : null;
+        $this->domicilioFam = (isset($data['domicilioFam'])) ? $data['domicilioFam'] : null;
+        $this->numeroFam = (isset($data['numeroFam'])) ? $data['numeroFam'] : null;
+        $this->coloniaFam = (isset($data['coloniaFam'])) ? $data['coloniaFam'] : null;
+        $this->telefonoParticularFam = (isset($data['telefonoParticularFam'])) ? $data['telefonoParticularFam'] : null;
+        $this->celularFam = (isset($data['celularFam'])) ? $data['celularFam'] : null;
+       
         
     }
 

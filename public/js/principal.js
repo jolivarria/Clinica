@@ -1,20 +1,53 @@
+$("#tiempo").change(function () {
+   if($('#tiempo').val() == "3 Meses"){
+       $('#costoTratamiento').val('8500');
+       $('#pagoIngreso').val('2500');
+       $('#plazo').val('Semanal');
+       $('#cantidadPago').val('500');
+       
+   }else if($('#tiempo').val() == "6 Meses"){
+       $('#costoTratamiento').val('9500');
+       $('#pagoIngreso').val('3500');
+       $('#plazo').val('Semanal');
+       $('#cantidadPago').val('500');
+   }
+    else if($('#tiempo').val() == "12 Meses"){
+       $('#costoTratamiento').val('9500');
+       $('#pagoIngreso').val('3500');
+       $('#plazo').val('Semanal');
+       $('#cantidadPago').val('500');
+   }
+    
+});
 
-$("input[name='RFC']").focusout(function () {
-    if ($('#RFC').val() != '') {
+$('input[name="fecha"]').hide();
+$("input[name='tienesFecha']").click(function () {
+    if($('input[name=tienesFecha]:checked').val() == "Si"){
+        $('input[name="fecha"]').show();
+    }
+    else
+    {
+        $('input[name="fecha"]').hide();
+    }
+});
+
+$("input[name='rfc']").focusout(function () {
+    if ($('#rfc').val() != '') {
         $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
 //    var confirmacion = confirm("Deseas realizar una busqueda del RFC: " + $('#RFC').val());
 //    if (confirmacion == true) {
         $.ajax({
             type: "POST",
-            url: "buscarfc/" + $('#RFC').val(),
+            url: "buscarfc/" + $('#rfc').val(),
             success: function (data) {
+
                 $('#message-text').html('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda de RFC!:</h4>' + data + '</div>');
                 $('#cargando').html('');
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
 //                alert("Status: " + textStatus);
 //                alert("Error: " + errorThrown);
-                $('#message-text').html('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda de RFC!:</h4>No tubimos resultados... </div>');
+                $('#message-text').html('');
                 $('#cargando').html('');
             }
         });
@@ -26,8 +59,8 @@ $("input[name='RFC']").focusout(function () {
 
 
 $("#vehiculos_idvehiculos").change(function () {
-     $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-   
+    $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+
     $.ajax({
         type: "POST",
         url: "obtenercarro/" + $('#vehiculos_idvehiculos').val(),
@@ -46,8 +79,8 @@ $("#vehiculos_idvehiculos").change(function () {
 
 //buscar productos 
 $("#productos_idproductos").change(function () {
-     $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
-   
+    $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+
     $.ajax({
         type: "POST",
         url: "../buscarproducto/" + $('#productos_idproductos').val(),
@@ -64,17 +97,37 @@ $("#productos_idproductos").change(function () {
     });
 });
 
+//Codigo salida 
+$("#codigoSalida").change(function () {
+    $('#cargando').html('<div class="loading"><img src="../img/loader.gif" alt="loading" /><br/>Un momento, por favor...</div>');
+
+    $.ajax({
+        type: "POST",
+        url: "../buscarproducto/" + $('#codigoSalida').val(),
+        success: function (data) {
+            $('#message-text').html('<div class="alert alert-success"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda del Producto!:</h4>' + data + '</div>');
+            $('#cargando').html('');
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+//                alert("Status: " + textStatus);
+//                alert("Error: " + errorThrown);
+            $('#message-text').html('<div class="alert alert-info alert-block"> <a class="close" data-dismiss="alert" href="#">×</a><h4 class="alert-heading">Busqueda de datos del Producto!:</h4>No tubimos resultados... </div>');
+            $('#cargando').html('');
+        }
+    });
+});
+
 $('#labNumServicio').html('');
-$('#inputNumServicio').hide();
+$('#numeroServicio').hide();
 $("select[name='servicioMedico']").change(function () {
     if ($('select[name=servicioMedico]').val() == 'Si') {
         $('#labNumServicio').html('<div id="labNumServicio">Num. de servicio</div>');
-        $('#inputNumServicio').show();
+        $('#numeroServicio').show();
     }
     else
     {
         $('#labNumServicio').html('');
-        $('#inputNumServicio').hide();
+        $('#numeroServicio').hide();
     }
 
 });

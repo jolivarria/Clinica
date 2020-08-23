@@ -14,6 +14,7 @@ use Zend\Session\Container;
 use Pacientes\Form\SolicitudForm;
 use Pacientes\Form\IngresoForm;
 use Pacientes\Model\Entity\Ingreso;
+use DOMPDFModule\View\Model\PdfModel;
 use Zend\Db\Adapter\AdapterInterface;
 
 class IngresoController extends AbstractActionController {
@@ -31,7 +32,7 @@ class IngresoController extends AbstractActionController {
     public function indexAction() {
         $objIngreso = $this->objIngreso->obtenerView();
         return [
-            'titulo' => 'Ingreso del paciente al sistema',
+            'titulo' => 'Ingreso del paciente..',
             'subTitulo' => 'En esta lista se muestran todos los expedientes del sistema',
             'objIngreso' => $objIngreso,
         ];
@@ -58,6 +59,48 @@ class IngresoController extends AbstractActionController {
             'subTitulo' => 'Llenar los campos correctamente para nuevo ingresos al sistema',
         ]);
         return $viewModel;
+    }
+    
+    public function hojaingresoAction(){
+        $id = $this->params()->fromRoute("id", null);
+        $hojaIngreso = $this->objIngreso->hojaIngreso($id);
+        //var_dump($hojaIngreso[0]['nombre']);
+               
+        $pdf = new PdfModel();
+        $pdf->setOption('filename', 'Hoja-Ingreso');
+        $pdf->setOption("paperSize", "a4"); //Defaults to 8x11
+        $pdf->setOption('paperOrientation', 'portrait'); // Defaults to "portrait"
+
+        $pdf->setVariables([
+            'rfc'           => $hojaIngreso[0]['rfc'],
+            'foto'          => $hojaIngreso[0]['foto'],
+            'nombre'        => $hojaIngreso[0]['nombre'],
+            'sexo'          => $hojaIngreso[0]['sexo'],
+            'fechaNac'      => $hojaIngreso[0]['fechaNac'],
+            'edad'          => $hojaIngreso[0]['edad'],
+            'escolaridad'   => $hojaIngreso[0]['escolaridad'],
+            'ocupacion'     => $hojaIngreso[0]['ocupacion'],
+            'estadoCivil'   => $hojaIngreso[0]['estadoCivil'],
+            'tipo'          => $hojaIngreso[0]['tipo'],
+            'referencia'    => $hojaIngreso[0]['referencia'],
+            'otro'          => $hojaIngreso[0]['otro'],
+            'acude'         => $hojaIngreso[0]['acude'],
+            'adulto'        => $hojaIngreso[0]['adulo'],
+            'drogasAlcohol' => $hojaIngreso[0]['drogasAlcohol'],
+            'consecunciaConsumo'    => $hojaIngreso[0]['consecunciaConsumo'],
+            'mental'                => $hojaIngreso[0]['mental'],
+            'criteriosAdmision'     => $hojaIngreso[0]['criteriosAdmision'],
+            'fechaIngreso'          => $hojaIngreso[0]['fechaIngreso'],
+            'nombreFam'          => $hojaIngreso[0]['nombreFam'],
+            'domicilioFam'          => $hojaIngreso[0]['domicilioFam'],
+            'numeroFam'          => $hojaIngreso[0]['numeroFam'],
+            'coloniaFam'          => $hojaIngreso[0]['coloniaFam'],
+            'telefonoParticularFam'          => $hojaIngreso[0]['telefonoParticularFam'],
+            'celularFam'          => $hojaIngreso[0]['celularFam'],
+        ]);
+
+        return $pdf;
+       
     }
 
     // This action shows the image upload form. This page allows to upload
@@ -99,6 +142,8 @@ class IngresoController extends AbstractActionController {
         
     }
 
+   
+    
     public function solicitudAction() {
         // Determine the current step.
         $step = 1;
@@ -118,17 +163,13 @@ class IngresoController extends AbstractActionController {
         $form = new SolicitudForm($step);
         // Check if user has submitted the form
         if ($this->request->getPost("submit")) {
-
             // Fill in the form with POST data
             // Make certain to merge the files info!
             $request = $this->getRequest();
             $data = array_merge_recursive(
                     $request->getPost()->toArray(), $request->getFiles()->toArray()
             );
-
-
             //$data = $this->params()->fromPost();
-
             $form->setData($data);
             // Validate form
             if ($form->isValid()) {
@@ -137,12 +178,9 @@ class IngresoController extends AbstractActionController {
                 var_dump($data);
                 // Save user choices in session.
                 $this->sessionContainer->userChoices["step$step"] = $data;
-
                 // Increase step
                 $step ++;
                 $this->sessionContainer->step = $step;
-
-
                 // If we completed all 3 steps, redirect to Review page.
                 if ($step > 3) {
 
@@ -152,7 +190,7 @@ class IngresoController extends AbstractActionController {
                 // Go to the next step.
                 return $this->redirect()->toRoute('empleados', ['action' => 'nuevo']);
             }
-        }
+    }    
 
         $viewModel = new ViewModel([
             'form' => $form,
